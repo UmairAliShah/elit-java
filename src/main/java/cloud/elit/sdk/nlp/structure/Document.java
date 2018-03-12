@@ -15,9 +15,9 @@
  */
 package cloud.elit.sdk.nlp.structure;
 
-public class Sentence
+public class Document
 {
-    public Sentence()
+    public Document()
     {
 
     }
