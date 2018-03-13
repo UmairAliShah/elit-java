@@ -13,36 +13,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package cloud.elit.sdk.nlp.structure;
 
-import java.util.ArrayList;
-import java.util.List;
+public class Arc {
+    private int head_id;
+    private String label;
 
-public class Document
-{
-    private List<Sentence> sentences;
-
-    public Document() {
-        sentences = new ArrayList<>();
+    public Arc(int head_id, String label) {
+        setHeadID(head_id);
+        setLabel(label);
     }
 
-    public List<Sentence> getSentences() {
-        return sentences;
+    public Arc(int head_id) {
+        this(head_id, null);
     }
 
-    public void setSentences(List<Sentence> sentences) {
-        this.sentences = sentences;
+    public Arc(String label) {
+        this(-1, label);
     }
 
-    public Sentence getSentence(int index) {
-        return sentences.get(index);
+    public Arc(Arc arc) {
+        this(arc.head_id, arc.label);
     }
 
-    public Sentence setSentence(int index, Sentence sentence) {
-        return sentences.set(index, sentence);
+    public int getHeadID() {
+        return head_id;
     }
 
-    public boolean addSentence(Sentence sentence) {
-        return sentences.add(sentence);
+    public String getLabel() {
+        return label;
+    }
+
+    public void setHeadID(int head_id) {
+        this.head_id = head_id;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 }
