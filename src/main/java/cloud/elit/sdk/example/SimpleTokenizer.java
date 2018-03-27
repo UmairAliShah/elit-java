@@ -19,7 +19,6 @@ package cloud.elit.sdk.example;
 import cloud.elit.sdk.DecodeComponent;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.util.regex.Pattern;
 
@@ -32,9 +31,8 @@ public class SimpleTokenizer extends DecodeComponent<String, String[], SimpleTok
 
     @Override
     public void load(String model_path, SimpleTokenizerParameters params) {
-        model_path += File.separator + params.getModelName();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(model_path));
+            BufferedReader reader = new BufferedReader(new FileReader(model_path+"/"+params.getModelName()));
             String line;
 
             for (int i=0; (line = reader.readLine()) != null; i++) {
