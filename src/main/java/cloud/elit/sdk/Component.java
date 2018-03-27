@@ -54,4 +54,12 @@ public abstract class Component<I, O, P extends Parameters> {
      * @param params custom parameters.
      */
     public abstract void train(List<I> trn_data, List<I> dev_data, P params);
+
+    public void load(String model_path) {
+        load(model_path, null);
+    }
+
+    public O decode(I input) {
+        return decode(input, null);
+    }
 }

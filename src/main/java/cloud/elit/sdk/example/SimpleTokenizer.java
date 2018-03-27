@@ -36,7 +36,7 @@ public class SimpleTokenizer extends DecodeComponent<String, String[], SimpleTok
             String line;
 
             for (int i=0; (line = reader.readLine()) != null; i++) {
-                if (i == params.getRegexID()) {
+                if (i == params.getChoice()) {
                     DELIM = Pattern.compile(line.trim());
                     break;
                 }

@@ -22,18 +22,18 @@ public class SimpleTokenizerParameters implements Parameters {
     /** The name of the model file where regular expressions are saved. */
     private final String model_name = "simple_tokenizer.txt";
     /** The number of the line in the model file including the regular expression to be used for tokenization. */
-    private int regex_id;
+    private int choice;
 
     public SimpleTokenizerParameters(int choice) {
-        setRegexID(choice);
+        setChoice(choice);
     }
 
-    public int getRegexID() {
-        return regex_id;
+    public int getChoice() {
+        return choice;
     }
 
-    public void setRegexID(int regex_id) {
-        this.regex_id = regex_id;
+    public void setChoice(int choice) {
+        this.choice = choice;
     }
 
     public String getModelName() {
