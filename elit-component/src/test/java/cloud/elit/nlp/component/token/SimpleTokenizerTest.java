@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package cloud.elit.sdk.example;
+package cloud.elit.nlp.component.token;
 
 import cloud.elit.sdk.nlp.structure.Document;
+import cloud.elit.nlp.component.token.SimpleTokenizer;
+import cloud.elit.nlp.component.token.SimpleTokenizerParameters;
 import org.junit.Test;
 
 import java.util.List;
@@ -26,7 +28,7 @@ import static org.junit.Assert.assertEquals;
 public class SimpleTokenizerTest {
     @Test
     public void test() {
-        final String model_path = "src/test/resources/example";
+        final String model_path = "src/test/resources/token";
         String s = "a b\tc d\ne";
 
         SimpleTokenizer tok = new SimpleTokenizer();

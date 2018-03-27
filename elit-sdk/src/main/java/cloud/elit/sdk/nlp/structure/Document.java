@@ -22,9 +22,13 @@ public class Document
 {
     private List<Sentence> sentences;
 
+    // ============================ Constructors ============================
+
     public Document() {
         sentences = new ArrayList<>();
     }
+
+    // ============================ Getters and Setters ============================
 
     public List<Sentence> getSentences() {
         return sentences;

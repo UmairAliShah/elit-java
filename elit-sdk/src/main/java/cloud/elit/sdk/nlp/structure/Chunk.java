@@ -16,37 +16,24 @@
 
 package cloud.elit.sdk.nlp.structure;
 
-public class Arc {
-    private int head_id;
+public class Chunk extends Offset {
     private String label;
 
-    public Arc(int head_id, String label) {
-        setHeadID(head_id);
+    // ============================ Constructors ============================
+
+    public Chunk(int begin, int end, String label) {
+        super(begin, end);
         setLabel(label);
     }
 
-    public Arc(int head_id) {
-        this(head_id, null);
+    public Chunk() {
+        this(-1, -1, null);
     }
 
-    public Arc(String label) {
-        this(-1, label);
-    }
-
-    public Arc(Arc arc) {
-        this(arc.head_id, arc.label);
-    }
-
-    public int getHeadID() {
-        return head_id;
-    }
+    // ============================ Getters and Setters ============================
 
     public String getLabel() {
         return label;
-    }
-
-    public void setHeadID(int head_id) {
-        this.head_id = head_id;
     }
 
     public void setLabel(String label) {

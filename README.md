@@ -1,2 +1,2 @@
-# ELIT SDK for Java
+# ELIT for Java
 

@@ -55,10 +55,19 @@ public abstract class Component<I, O, P extends Parameters> {
      */
     public abstract void train(List<I> trn_data, List<I> dev_data, P params);
 
+    /**
+     * Calls {@link #load(String, Parameters)} with {@code params = null}.
+     * @param model_path the path to the directory where the model is saved.
+     */
     public void load(String model_path) {
         load(model_path, null);
     }
 
+    /**
+     * Calls {@link #decode(Object, Parameters)} with {@code params = null}.
+     * @param input the input data.
+     * @return the output of the decoding.
+     */
     public O decode(I input) {
         return decode(input, null);
     }

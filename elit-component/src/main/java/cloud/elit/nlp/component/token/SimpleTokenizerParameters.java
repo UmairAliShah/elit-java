@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cloud.elit.sdk.example;
+package cloud.elit.nlp.component.token;
 
 import cloud.elit.sdk.Parameters;
 
@@ -28,15 +28,15 @@ public class SimpleTokenizerParameters implements Parameters {
         setChoice(choice);
     }
 
+    public String getModelName() {
+        return model_name;
+    }
+
     public int getChoice() {
         return choice;
     }
 
     public void setChoice(int choice) {
         this.choice = choice;
-    }
-
-    public String getModelName() {
-        return model_name;
     }
 }

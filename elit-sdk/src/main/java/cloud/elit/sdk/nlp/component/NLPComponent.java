@@ -14,34 +14,12 @@
  * limitations under the License.
  */
 
-package cloud.elit.sdk.nlp.structure;
+package cloud.elit.sdk.nlp.component;
 
-public class Offset {
-    private int begin;
-    private int end;
+import cloud.elit.sdk.Component;
+import cloud.elit.sdk.Parameters;
+import cloud.elit.sdk.nlp.structure.Document;
 
-    /**
-     * @param begin inclusive.
-     * @param end exclusive.
-     */
-    public Offset(int begin, int end) {
-        setBegin(begin);
-        setEnd(end);
-    }
+public abstract class NLPComponent<P extends Parameters> extends Component<Document, Document, P> {
 
-    public int getBegin() {
-        return begin;
-    }
-
-    public int getEnd() {
-        return end;
-    }
-
-    public void setBegin(int begin) {
-        this.begin = begin;
-    }
-
-    public void setEnd(int end) {
-        this.end = end;
-    }
 }

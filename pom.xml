@@ -3,20 +3,24 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>cloud.elit</groupId>
-    <artifactId>elit-sdk</artifactId>
+    <artifactId>elit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <url>http://elit.cloud</url>
 
     <scm>
-        <url>https://github.com/elitcloud/elit-sdk-java</url>
-        <connection>scm:git:git://github.com/elitcloud/elit-sdk-java.git</connection>
-        <developerConnection>scm:git:git@github.com:elitcloud/elit-sdk-java.git</developerConnection>
+        <url>https://github.com/elitcloud/elit-java</url>
+        <connection>scm:git:git://github.com/elitcloud/elit-java.git</connection>
+        <developerConnection>scm:git:git@github.com:elitcloud/elit-java.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
+
+    <modules>
+        <module>elit-sdk</module>
+        <module>elit-component</module>
+    </modules>
 
     <licenses>
         <license>
@@ -59,12 +63,6 @@
                 <includes>
                     <include>**/*</include>
                 </includes>
-            </resource>
-            <resource>
-                <directory>src/main/java/cloud/elit/sdk/example</directory>
-                <excludes>
-                    <exclude>**/*</exclude>
-                </excludes>
             </resource>
         </resources>
 

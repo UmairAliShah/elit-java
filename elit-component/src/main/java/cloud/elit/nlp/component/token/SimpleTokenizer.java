@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package cloud.elit.sdk.example;
+package cloud.elit.nlp.component.token;
 
 import cloud.elit.sdk.DecodeComponent;
+import cloud.elit.sdk.nlp.component.Tokenizer;
 import cloud.elit.sdk.nlp.structure.Document;
 import cloud.elit.sdk.nlp.structure.Sentence;
 
@@ -27,7 +28,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class SimpleTokenizer extends DecodeComponent<String, Document, SimpleTokenizerParameters> {
+public class SimpleTokenizer extends Tokenizer<SimpleTokenizerParameters> {
     private Pattern DELIM;
 
     public SimpleTokenizer() {
@@ -68,6 +69,16 @@ public class SimpleTokenizer extends DecodeComponent<String, Document, SimpleTok
             document.addSentence(new Sentence(getSubList(tokens, begin, tokens.length)));
 
         return document;
+    }
+
+    @Override
+    public void save(String model_path, SimpleTokenizerParameters params) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void train(List<String> trn_data, List<String> dev_data, SimpleTokenizerParameters params) {
+        throw new UnsupportedOperationException();
     }
 
     /**
