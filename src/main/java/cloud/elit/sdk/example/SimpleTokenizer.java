@@ -17,12 +17,17 @@
 package cloud.elit.sdk.example;
 
 import cloud.elit.sdk.DecodeComponent;
+import cloud.elit.sdk.nlp.structure.Document;
+import cloud.elit.sdk.nlp.structure.Sentence;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class SimpleTokenizer extends DecodeComponent<String, String[], SimpleTokenizerParameters> {
+public class SimpleTokenizer extends DecodeComponent<String, Document, SimpleTokenizerParameters> {
     private Pattern DELIM;
 
     public SimpleTokenizer() {
@@ -45,7 +50,33 @@ public class SimpleTokenizer extends DecodeComponent<String, String[], SimpleTok
     }
 
     @Override
-    public String[] decode(String input, SimpleTokenizerParameters params) {
-        return DELIM.split(input);
+    public Document decode(String input, SimpleTokenizerParameters params) {
+        String[] tokens = DELIM.split(input);
+        Document document = new Document();
+        int begin = 0;
+
+        for (int end=0; end<tokens.length; end++) {
+            String token = tokens[end];
+            if (token.endsWith(".") || token.endsWith("?") || token.endsWith("!")) {
+                List<String> t = IntStream.range(begin, end+1).mapToObj(j -> tokens[j]).collect(Collectors.toList());
+                document.addSentence(new Sentence(getSubList(tokens, begin, end+1)));
+                begin = end + 1;
+            }
+        }
+
+        if (begin < tokens.length)
+            document.addSentence(new Sentence(getSubList(tokens, begin, tokens.length)));
+
+        return document;
+    }
+
+    /**
+     * @param array
+     * @param begin inclusive.
+     * @param end exclusive.
+     * @return
+     */
+    private List<String> getSubList(String[] array, int begin, int end) {
+        return IntStream.range(begin, end).mapToObj(i -> array[i]).collect(Collectors.toList());
     }
 }

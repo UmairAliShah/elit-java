@@ -16,7 +16,6 @@
 package cloud.elit.sdk.nlp.structure;
 
 import cloud.elit.sdk.nlp.util.FieldType;
-import cloud.elit.sdk.nlp.util.ModelType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +26,11 @@ public class Sentence {
 
     public Sentence() {
         field_map = new HashMap<>();
+    }
+
+    public Sentence(List<String> tokens) {
+        this();
+        setTokens(tokens);
     }
 
 //  =================================== Getters ===================================
