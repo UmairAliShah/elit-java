@@ -14,8 +14,18 @@
  * limitations under the License.
  */
 
-package cloud.elit.sdk.example;
+package cloud.elit.sdk;
 
-public class POSSimpleParameters {
+import java.util.List;
 
+public abstract class DecodeComponent<I, O, P extends Parameters> extends Component<I, O, P> {
+    @Override
+    public void save(String model_path, P params) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void train(List<I> trn_data, List<I> dev_data, P params) {
+        throw new UnsupportedOperationException();
+    }
 }

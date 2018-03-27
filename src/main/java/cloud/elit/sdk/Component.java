@@ -18,20 +18,18 @@ package cloud.elit.sdk;
 
 import java.util.List;
 
-public abstract class Component<I, O> {
+/**
+ * @param <I> the type of input data.
+ * @param <O> the type of output data.
+ * @param <P> the type of custom parameters.
+ */
+public abstract class Component<I, O, P extends Parameters> {
     /**
      * Loads a model from the specific directory to initialize this component.
      * @param model_path the path to the directory where the model is saved.
      * @param params custom parameters.
      */
-    public abstract <P extends Parameters>void load(String model_path, P params);
-
-    /**
-     * Saves a trained model to the specific directory for this component.
-     * @param model_path the path to the directory where the model is saved.
-     * @param params custom parameters.
-     */
-    public abstract <P extends Parameters>void save(String model_path, P params);
+    public abstract void load(String model_path, P params);
 
     /**
      * Decodes input data.
@@ -39,20 +37,21 @@ public abstract class Component<I, O> {
      * @param params custom parameters.
      * @return the output of the decoding.
      */
-    public abstract <P extends Parameters>O decode(I input, P params);
+    public abstract O decode(I input, P params);
+
+    /**
+     * Saves a trained model to the specific directory for this component.
+     * @param model_path the path to the directory where the model is saved.
+     * @param params custom parameters.
+     */
+    public abstract void save(String model_path, P params);
 
     /**
      * Trains a model using the training and the development data.
+     * It is also responsible to set this component with the final model so it can be saved by {@link #save(String, Parameters)}.
      * @param trn_data the training data (required).
      * @param dev_data the development data (optional).
      * @param params custom parameters.
      */
-    public abstract <P extends Parameters>void train(List<I> trn_data, List<I> dev_data, P params);
-
-    /**
-     * Evaluates predicted labels in the output of this component using the gold labels.
-     * @param output the output of this component.
-     * @param gold the gold labels.
-     */
-    public abstract <G, P extends Parameters>void eval(I output, G gold);
+    public abstract void train(List<I> trn_data, List<I> dev_data, P params);
 }

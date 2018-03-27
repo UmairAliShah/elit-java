@@ -31,68 +31,62 @@ public class Sentence {
 
 //  =================================== Getters ===================================
 
-    public <V>V getFields(String field, String model) {
-        return (V)field_map.get(getKey(field, model));
+    public <V>V getFields(String field) {
+        return (V)field_map.get(field);
     }
 
-    public List<String> getTokens(String model) {
-        return getFields(FieldType.TOKEN, model);
+    public List<String> getTokens() {
+        return getFields(FieldType.TOKEN);
     }
 
-    public List<Offset> getOffsets(String model) {
-        return getFields(FieldType.OFFSET, model);
+    public List<Offset> getOffsets() {
+        return getFields(FieldType.OFFSET);
     }
 
-    public List<String> getLemmas(String model) {
-        return getFields(FieldType.LEMMA, model);
+    public List<String> getLemmas() {
+        return getFields(FieldType.LEMMA);
     }
 
-    public List<String> getPartOfSpeechTags(String model) {
-        return getFields(FieldType.POS, model);
+    public List<String> getPartOfSpeechTags() {
+        return getFields(FieldType.POS);
     }
 
-    public List<String> getNamedEntityTags(String model) {
-        return getFields(FieldType.NER, model);
+    public List<String> getNamedEntityTags() {
+        return getFields(FieldType.NER);
     }
 
-    public List<Arc> getDependencyRelations(String model) {
-        return getFields(FieldType.DEP, model);
+    public List<Arc> getDependencyRelations() {
+        return getFields(FieldType.DEP);
     }
 
 //  =================================== Setters ===================================
 
-    public <V>void setFields(String field, String model, V values) {
-        field_map.put(getKey(field, model), values);
+    public <V>void setFields(String field, V values) {
+        field_map.put(field, values);
     }
 
-    public void setTokens(String model, List<String> tokens) {
-        setFields(FieldType.TOKEN, model, tokens);
+    public void setTokens(List<String> tokens) {
+        setFields(FieldType.TOKEN, tokens);
     }
 
-    public void setOffsets(String model, List<Offset> offsets) {
-        setFields(FieldType.OFFSET, model, offsets);
+    public void setOffsets(List<Offset> offsets) {
+        setFields(FieldType.OFFSET, offsets);
     }
 
-    public void setLemmas(String model, List<String> lemmas) {
-        setFields(FieldType.LEMMA, model, lemmas);
+    public void setLemmas(List<String> lemmas) {
+        setFields(FieldType.LEMMA, lemmas);
     }
 
-    public void setPartOfSpeechTags(String model, List<String> tags) {
-        setFields(FieldType.POS, model, tags);
+    public void setPartOfSpeechTags(List<String> tags) {
+        setFields(FieldType.POS, tags);
     }
 
-    public void setNamedEntityTags(String model, List<String> tags) {
-        setFields(FieldType.NER, model, tags);
+    public void setNamedEntityTags(List<String> tags) {
+        setFields(FieldType.NER, tags);
     }
 
-    public void setDependencyRelations(String model, List<Arc> arcs) {
-        setFields(FieldType.NER, model, arcs);
-    }
-
-//  =================================== Helpers ===================================
-
-    private String getKey(String field, String model) {
-        return field + "_" + model;
+    public void setDependencyRelations(List<Arc> arcs) {
+        setFields(FieldType.NER, arcs);
     }
 }
 
