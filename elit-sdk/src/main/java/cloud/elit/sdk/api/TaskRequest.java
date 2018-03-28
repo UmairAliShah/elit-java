@@ -11,14 +11,14 @@ public class TaskRequest {
     public TaskRequest(String input, String task, String tool, TaskDependency... dependencies) {
         setInput(input);
         setTask(task);
-        setFramework(tool);
+        setTool(tool);
         setDependencies(dependencies);
     }
 
     public TaskRequest(String input, String task, String tool, List<TaskDependency> dependencies) {
         setInput(input);
         setTask(task);
-        setFramework(tool);
+        setTool(tool);
         setDependencies(dependencies);
     }
 
@@ -38,11 +38,11 @@ public class TaskRequest {
         this.task = task;
     }
 
-    public String getFramework() {
+    public String getTool() {
         return tool;
     }
 
-    public void setFramework(String tool) {
+    public void setTool(String tool) {
         this.tool = tool;
     }
 

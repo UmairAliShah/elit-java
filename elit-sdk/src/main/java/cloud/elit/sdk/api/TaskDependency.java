@@ -6,7 +6,7 @@ public class TaskDependency {
 
     public TaskDependency(String task, String tool) {
         setTask(task);
-        setFramework(tool);
+        setTool(tool);
     }
 
     public String getTask() {
@@ -17,11 +17,11 @@ public class TaskDependency {
         this.task = task;
     }
 
-    public String getFramework() {
+    public String getTool() {
         return tool;
     }
 
-    public void setFramework(String tool) {
+    public void setTool(String tool) {
         this.tool = tool;
     }
 }
