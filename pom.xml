@@ -12,7 +12,6 @@
         <url>https://github.com/elitcloud/elit-java</url>
         <connection>scm:git:git://github.com/elitcloud/elit-java.git</connection>
         <developerConnection>scm:git:git@github.com:elitcloud/elit-java.git</developerConnection>
-        <tag>HEAD</tag>
     </scm>
 
     <modules>
