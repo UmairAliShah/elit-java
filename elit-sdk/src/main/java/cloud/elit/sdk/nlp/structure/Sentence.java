@@ -15,7 +15,7 @@
  */
 package cloud.elit.sdk.nlp.structure;
 
-import cloud.elit.sdk.nlp.util.FieldType;
+import cloud.elit.sdk.nlp.util.TaskType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,51 +50,51 @@ public class Sentence {
     }
 
     public List<String> getTokens() {
-        return getFields(FieldType.TOKEN);
+        return getFields(TaskType.TOK);
     }
 
     public void setTokens(List<String> tokens) {
-        setFields(FieldType.TOKEN, tokens);
+        setFields(TaskType.TOK, tokens);
     }
 
     public List<Offset> getOffsets() {
-        return getFields(FieldType.OFFSET);
+        return getFields(TaskType.OFF);
     }
 
     public void setOffsets(List<Offset> offsets) {
-        setFields(FieldType.OFFSET, offsets);
+        setFields(TaskType.OFF, offsets);
     }
 
     public List<String> getLemmas() {
-        return getFields(FieldType.LEMMA);
+        return getFields(TaskType.LEM);
     }
 
     public void setLemmas(List<String> lemmas) {
-        setFields(FieldType.LEMMA, lemmas);
+        setFields(TaskType.LEM, lemmas);
     }
 
     public List<String> getPartOfSpeechTags() {
-        return getFields(FieldType.POS);
+        return getFields(TaskType.POS);
     }
 
     public void setPartOfSpeechTags(List<String> tags) {
-        setFields(FieldType.POS, tags);
+        setFields(TaskType.POS, tags);
     }
 
     public List<Chunk> getNamedEntityTags() {
-        return getFields(FieldType.NER);
+        return getFields(TaskType.NER);
     }
 
     public void setNamedEntityTags(List<Chunk> tags) {
-        setFields(FieldType.NER, tags);
+        setFields(TaskType.NER, tags);
     }
 
     public List<Arc> getDependencyRelations() {
-        return getFields(FieldType.DEP);
+        return getFields(TaskType.DEP);
     }
 
     public void setDependencyRelations(List<Arc> arcs) {
-        setFields(FieldType.DEP, arcs);
+        setFields(TaskType.DEP, arcs);
     }
 }
 

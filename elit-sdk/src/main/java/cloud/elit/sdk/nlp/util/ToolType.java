@@ -16,9 +16,8 @@
 
 package cloud.elit.sdk.nlp.util;
 
-public interface ModelType {
+public interface ToolType {
     String ELIT = "elit";
     String NLP4J = "nlp4j";
     String SPACY = "spacy";
-    String STANFORD = "stanford";
 }
