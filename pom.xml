@@ -3,9 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cloud.elit</groupId>
     <artifactId>elit</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
+    <name>ELIT: Evolution of Language and Information Technology</name>
+    <description>The ELIT project provides a cloud-based research platform for language and information technology.</description>
     <url>http://elit.cloud</url>
 
     <scm>

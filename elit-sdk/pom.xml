@@ -7,25 +7,8 @@
     <parent>
         <groupId>cloud.elit</groupId>
         <artifactId>elit</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <url>http://elit.cloud</url>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>jinho.choi</id>
-            <name>Jinho D. Choi</name>
-            <email>{id}@emory.edu</email>
-        </developer>
-    </developers>
 
     <dependencies>
         <dependency>
