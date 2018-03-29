@@ -21,6 +21,7 @@ import cloud.elit.nlp.component.token.SimpleTokenizer;
 import cloud.elit.nlp.component.token.SimpleTokenizerParameters;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -28,7 +29,7 @@ import static org.junit.Assert.assertEquals;
 public class SimpleTokenizerTest {
     @Test
     public void test() {
-        final String model_path = "src/test/resources/token";
+        final String model_path = "elit-component/src/test/resources/token";
         String s = "a b\tc d\ne";
 
         SimpleTokenizer tok = new SimpleTokenizer();
@@ -37,7 +38,7 @@ public class SimpleTokenizerTest {
         tok.load(model_path, new SimpleTokenizerParameters(0));
         assertEquals(List.of("a", "b", "c", "d", "e"), tok.decode(s).getSentence(0).getTokens());
 
-        tok.load(model_path, new SimpleTokenizerParameters(1));
+        tok = tok.factory(model_path, new SimpleTokenizerParameters(1));
         assertEquals(List.of("a b", "c d", "e"), tok.decode(s).getSentence(0).getTokens());
 
         s = "a\tb.\nc\td.\ne";

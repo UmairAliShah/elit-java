@@ -18,12 +18,20 @@ package cloud.elit.sdk;
 
 import java.util.List;
 
+/**
+ * This abstract class is inherited by components used for decoding, but not for training.
+ * @param <I>
+ * @param <O>
+ * @param <P>
+ */
 public abstract class DecodeComponent<I, O, P extends Parameters> extends Component<I, O, P> {
+    /** {@inheritDoc} */
     @Override
     public void save(String model_path, P params) {
         throw new UnsupportedOperationException();
     }
 
+    /** {@inheritDoc} */
     @Override
     public void train(List<I> trn_data, List<I> dev_data, P params) {
         throw new UnsupportedOperationException();
