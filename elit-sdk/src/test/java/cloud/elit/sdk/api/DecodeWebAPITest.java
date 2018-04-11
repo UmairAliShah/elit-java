@@ -1,15 +1,13 @@
 package cloud.elit.sdk.api;
 
-import cloud.elit.sdk.Component;
-import cloud.elit.sdk.nlp.util.ToolType;
-import cloud.elit.sdk.nlp.util.TaskType;
-import org.junit.Ignore;
+import cloud.elit.sdk.nlp.structure.util.TaskType;
+import cloud.elit.sdk.nlp.structure.util.ToolType;
 import org.junit.Test;
 
 
 public class DecodeWebAPITest {
     @Test
-    @Ignore
+//    @Ignore
     public void test()
     {
         Client api = new Client();

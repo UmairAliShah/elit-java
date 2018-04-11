@@ -15,86 +15,106 @@
  */
 package cloud.elit.sdk.nlp.structure;
 
-import cloud.elit.sdk.nlp.util.TaskType;
+import cloud.elit.sdk.nlp.structure.node.NLPNode;
+import cloud.elit.sdk.nlp.structure.node.NLPNodeList;
+import cloud.elit.sdk.nlp.structure.util.JSONField;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.StringJoiner;
+import java.util.function.Function;
 
-public class Sentence {
-    private Map<String, Object> field_map;
+public class Sentence extends NLPNodeList {
+    private int sen_id;
+    private NLPNode root;
+    private List<Chunk> ner_list;
 
-    //  =================================== Constructors ===================================
+//  =================================== Constructors ===================================
+
+    public Sentence(int sen_id, List<NLPNode> nodes) {
+        super(nodes);
+        setID(sen_id);
+        root = new NLPNode().toRoot();
+    }
+
+    public Sentence(List<NLPNode> nodes) {
+        this(-1, nodes);
+    }
 
     public Sentence() {
-        field_map = new HashMap<>();
+        this(new ArrayList<>());
     }
 
-    public Sentence(Sentence sentence) {
-        field_map = new HashMap<>(sentence.field_map);
+//  =================================== Getters and Setters ===================================
+
+    public int getID() {
+        return sen_id;
     }
 
-    public Sentence(List<String> tokens) {
-        this();
-        setTokens(tokens);
+    public void setID(int id) {
+        this.sen_id = id;
     }
 
-    //  =================================== Getters and setters ===================================
-
-    public <V>V getFields(String field) {
-        return (V)field_map.get(field);
+    public NLPNode getRoot() {
+        return root;
     }
 
-    public <V>void setFields(String field, V values) {
-        field_map.put(field, values);
+    public void setRoot(NLPNode node) {
+        this.root = node;
     }
 
-    public List<String> getTokens() {
-        return getFields(TaskType.TOK);
+    public Chunk getNamedEntity(int index) {
+        return ner_list.get(index);
     }
 
-    public void setTokens(List<String> tokens) {
-        setFields(TaskType.TOK, tokens);
+    public List<Chunk> getNamedEntities() {
+        return ner_list;
     }
 
-    public List<Offset> getOffsets() {
-        return getFields(TaskType.OFF);
+    public void setNamedEntities(List<Chunk> entities) {
+        this.ner_list = entities;
     }
 
-    public void setOffsets(List<Offset> offsets) {
-        setFields(TaskType.OFF, offsets);
+    public int numNamedEntities() {
+        return ner_list.size();
     }
 
-    public List<String> getLemmas() {
-        return getFields(TaskType.LEM);
+//  =================================== String ===================================
+
+    public String toString() {
+        StringJoiner joiner = new StringJoiner(",\n");
+        NLPNode node = nodes.get(0);
+
+        joiner.add(String.format("  \"%s\": %d", JSONField.SID, sen_id));
+        joiner.add(String.format("  \"%s\": %s", JSONField.TOK, fromStringList(NLPNode::getToken)));
+        if (node.getEndOffset() > 0) joiner.add(String.format("  \"%s\": %s", JSONField.OFF, fromOffsets()));
+        if (node.getLemma() != null) joiner.add(String.format("  \"%s\": %s", JSONField.LEM, fromStringList(NLPNode::getLemma)));
+        if (node.getPartOfSpeechTag() != null) joiner.add(String.format("  \"%s\": %s", JSONField.POS, fromStringList(NLPNode::getPartOfSpeechTag)));
+        if (ner_list != null) joiner.add(String.format("  \"%s\": %s", JSONField.NER, ner_list.toString()));
+        if (node.getParent() != null) joiner.add(String.format("  \"%s\": %s", JSONField.DEP, fromPrimaryDependencies()));
+
+        return "{\n" + joiner.toString() + "\n}";
     }
 
-    public void setLemmas(List<String> lemmas) {
-        setFields(TaskType.LEM, lemmas);
+    private String fromStringList(Function<NLPNode, String> f) {
+        StringJoiner joiner = new StringJoiner(", ");
+        for (NLPNode node : nodes)
+            joiner.add(String.format("\"%s\"", f.apply(node)));
+        return "["+joiner.toString()+"]";
     }
 
-    public List<String> getPartOfSpeechTags() {
-        return getFields(TaskType.POS);
+    private String fromOffsets() {
+        StringJoiner joiner = new StringJoiner(", ");
+        for (NLPNode node : nodes)
+            joiner.add(String.format("[%d, %d]", node.getBeginOffset(), node.getEndOffset()));
+        return "["+joiner.toString()+"]";
     }
 
-    public void setPartOfSpeechTags(List<String> tags) {
-        setFields(TaskType.POS, tags);
-    }
-
-    public List<Chunk> getNamedEntityTags() {
-        return getFields(TaskType.NER);
-    }
-
-    public void setNamedEntityTags(List<Chunk> tags) {
-        setFields(TaskType.NER, tags);
-    }
-
-    public List<Arc> getDependencyRelations() {
-        return getFields(TaskType.DEP);
-    }
-
-    public void setDependencyRelations(List<Arc> arcs) {
-        setFields(TaskType.DEP, arcs);
+    private String fromPrimaryDependencies() {
+        StringJoiner joiner = new StringJoiner(", ");
+        for (NLPNode node : nodes)
+            joiner.add(String.format("[%d, \"%s\"]", node.getParent().getTokenID(), node.getDependencyLabel()));
+        return "["+joiner.toString()+"]";
     }
 }
 

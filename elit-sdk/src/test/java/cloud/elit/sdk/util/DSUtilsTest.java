@@ -14,10 +14,17 @@
  * limitations under the License.
  */
 
-package cloud.elit.sdk.nlp.util;
+package cloud.elit.sdk.util;
 
-public interface ToolType {
-    String ELIT = "elit";
-    String NLP4J = "nlp4j";
-    String SPACY = "spacy";
+import org.junit.Test;
+
+import java.util.List;
+
+public class DSUtilsTest {
+    @Test
+    public void getFirstTest() {
+        List<Integer> l = List.of(3, 1, 4, 5, 2);
+        System.out.println(DSUtils.getFirst(l, n -> n==3));
+        System.out.println("LKJLJ");
+    }
 }

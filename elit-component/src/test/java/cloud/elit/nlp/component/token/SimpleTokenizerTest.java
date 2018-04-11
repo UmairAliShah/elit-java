@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
 public class SimpleTokenizerTest {
     @Test
     public void test() {
-        final String model_path = "elit-component/src/test/resources/token";
+        final String model_path = "src/test/resources/token";
         String s = "a b\tc d\ne";
 
         SimpleTokenizer tok = new SimpleTokenizer();

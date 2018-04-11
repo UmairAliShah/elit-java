@@ -16,21 +16,28 @@
 
 package cloud.elit.sdk.nlp.structure;
 
-public class Chunk extends Offset {
+import cloud.elit.sdk.nlp.structure.node.NLPNode;
+import cloud.elit.sdk.nlp.structure.node.NLPNodeList;
+import cloud.elit.sdk.util.DSUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Chunk extends NLPNodeList {
     private String label;
 
-    // ============================ Constructors ============================
-
-    public Chunk(int begin, int end, String label) {
-        super(begin, end);
+    public Chunk(List<NLPNode> nodes, String label) {
+        super(nodes);
         setLabel(label);
     }
 
-    public Chunk() {
-        this(-1, -1, null);
+    public Chunk(List<NLPNode> nodes) {
+        this(nodes, null);
     }
 
-    // ============================ Getters and Setters ============================
+    public Chunk() {
+        this(new ArrayList<>());
+    }
 
     public String getLabel() {
         return label;
@@ -38,5 +45,23 @@ public class Chunk extends Offset {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public String toString() {
+        StringBuilder build = new StringBuilder();
+
+        build.append("[");
+        build.append(DSUtils.getFirst(nodes).getTokenID());
+        build.append(", ");
+        build.append(DSUtils.getLast(nodes).getTokenID()+1);
+
+        if (label != null) {
+            build.append(", \"");
+            build.append(label);
+            build.append("\"");
+        }
+
+        build.append("]");
+        return build.toString();
     }
 }
