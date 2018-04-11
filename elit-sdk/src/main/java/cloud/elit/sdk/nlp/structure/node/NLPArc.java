@@ -16,6 +16,7 @@
 package cloud.elit.sdk.nlp.structure.node;
 
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
 /**
@@ -95,6 +96,6 @@ public class NLPArc implements Comparable<NLPArc>, Serializable {
 
     @Override
     public String toString() {
-        return node.getTokenID() + ":" + label + ":" + weight;
+        return String.format("[%d, \"%s\"]", node.getTokenID(), label);
     }
 }

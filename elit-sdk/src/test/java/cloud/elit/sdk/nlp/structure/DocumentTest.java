@@ -40,13 +40,14 @@ public class DocumentTest {
                     "\"lem\": [\"welcome\", \"to\", \"elit\", \".\"]," +
                     "\"pos\": [\"VBP\", \"IN\", \"NNP\", \".\"]," +
                     "\"ner\": [[2, 3, \"ORG\"]]," +
-                    "\"dep\": [[-1, \"root\"], [2, \"case\"], [0, \"nfmod\"], [0, \"punct\"]]" +
+                    "\"dep\": [[-1, \"root\"], [2, \"aux\"], [0, \"xcomp\"], [0, \"punct\"]]" +
                 "}]," +
                 "\"pipeline\": \"tok\"}";
 
-
-
         Document doc = new Document(json);
-        System.out.println(doc);
+        String s = doc.toString();
+
+        doc = new Document("{\"output\":"+s+"}");
+        assertEquals(s, doc.toString());
     }
 }

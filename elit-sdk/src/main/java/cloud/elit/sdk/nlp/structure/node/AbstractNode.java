@@ -19,6 +19,7 @@ package cloud.elit.sdk.nlp.structure.node;
 import cloud.elit.sdk.util.DSUtils;
 import org.magicwerk.brownies.collections.GapList;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -28,14 +29,14 @@ import java.util.stream.Stream;
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public abstract class AbstractNode<N extends AbstractNode<N>> {
+public abstract class AbstractNode<N extends AbstractNode<N>> implements Serializable {
     // fields
-    protected int     token_id;
-    protected String  token;
-    protected String  lemma;
-    protected String  syn_tag;
-    protected String  ner_tag;
-    protected FeatMap feat_map;
+    protected int token_id;
+    protected String token;
+    protected String lemma;
+    protected String syn_tag;
+    protected String ner_tag;
+    protected Map<String, String> feat_map;
 
     // primary dependencies
     protected N parent;
@@ -45,15 +46,7 @@ public abstract class AbstractNode<N extends AbstractNode<N>> {
 
 //  =================================== Constructors ===================================
 
-    public AbstractNode(int token_id, String token, String lemma, String syn_tag, String ner_tag, FeatMap feat_map) {
-        init(token_id, token, lemma, syn_tag, ner_tag, feat_map);
-    }
-
-    public AbstractNode() {
-        this(-1, null, null, null, null, new FeatMap());
-    }
-
-    public void init(int token_id, String token, String lemma, String syn_tag, String ner_tag, FeatMap feat_map) {
+    public AbstractNode(int token_id, String token, String lemma, String syn_tag, String ner_tag, Map<String, String> feat_map) {
         setTokenID(token_id);
         setToken(token);
         setLemma(lemma);
@@ -124,7 +117,7 @@ public abstract class AbstractNode<N extends AbstractNode<N>> {
         return feat_map;
     }
 
-    public void setFeatMap(FeatMap map) {
+    public void setFeatMap(Map<String, String> map) {
         this.feat_map = map;
     }
 
@@ -331,7 +324,7 @@ public abstract class AbstractNode<N extends AbstractNode<N>> {
     /**
      * @return the number of children.
      */
-    public int getChildrenSize() {
+    public int numChildren() {
         return children.size();
     }
 
@@ -348,7 +341,7 @@ public abstract class AbstractNode<N extends AbstractNode<N>> {
      * @return an immutable list of sub-children.
      */
     public List<N> getChildren(int fst_id) {
-        return children.subList(fst_id, getChildrenSize());
+        return children.subList(fst_id, numChildren());
     }
 
     /**
@@ -409,6 +402,38 @@ public abstract class AbstractNode<N extends AbstractNode<N>> {
         }
 
         return descendant;
+    }
+
+    /**
+     * @return the list of all descendents (excluding this node).
+     */
+    public List<N> getDescendants() {
+        return flatten().collect(Collectors.toList());
+    }
+
+    /**
+     * @param depth the level of the descendents to be retrieved (1: children, 2: childreNLPNode + grand-children, etc.).
+     * @return the list of descendents (excluding this node).
+     */
+    public List<N> getDescendants(int depth) {
+        List<N> list = new ArrayList<>();
+        return depth > 0 ? getDescendantListAux(depth-1, self(), list) : list;
+    }
+
+    private List<N> getDescendantListAux(int depth, N node, List<N> list) {
+        list.addAll(node.getChildren());
+
+        if (depth-- > 0) {
+            for (N dep : node.getChildren())
+                getDescendantListAux(depth, dep, list);
+        }
+
+        return list;
+    }
+
+    public void adaptDependents(N from) {
+        for (N d : new ArrayList<>(from.children))
+            d.setParent(self());
     }
     
     /**

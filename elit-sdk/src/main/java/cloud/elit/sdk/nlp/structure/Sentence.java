@@ -17,12 +17,13 @@ package cloud.elit.sdk.nlp.structure;
 
 import cloud.elit.sdk.nlp.structure.node.NLPNode;
 import cloud.elit.sdk.nlp.structure.node.NLPNodeList;
-import cloud.elit.sdk.nlp.structure.util.JSONField;
+import cloud.elit.sdk.nlp.structure.node.NLPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Sentence extends NLPNodeList {
     private int sen_id;
@@ -34,7 +35,7 @@ public class Sentence extends NLPNodeList {
     public Sentence(int sen_id, List<NLPNode> nodes) {
         super(nodes);
         setID(sen_id);
-        root = new NLPNode().toRoot();
+        root = NLPUtils.createRoot();
     }
 
     public Sentence(List<NLPNode> nodes) {
@@ -61,6 +62,10 @@ public class Sentence extends NLPNodeList {
 
     public void setRoot(NLPNode node) {
         this.root = node;
+    }
+
+    public List<String> getTokens() {
+        return nodes.stream().map(NLPNode::getToken).collect(Collectors.toList());
     }
 
     public Chunk getNamedEntity(int index) {

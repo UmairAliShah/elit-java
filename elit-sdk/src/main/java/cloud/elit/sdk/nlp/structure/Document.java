@@ -16,11 +16,11 @@
 package cloud.elit.sdk.nlp.structure;
 
 import cloud.elit.sdk.nlp.structure.node.NLPNode;
-import cloud.elit.sdk.nlp.structure.util.JSONField;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +32,7 @@ import java.util.stream.IntStream;
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public class Document
+public class Document implements Serializable
 {
     private List<Sentence> sentences;
 
