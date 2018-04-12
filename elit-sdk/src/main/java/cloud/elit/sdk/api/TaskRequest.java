@@ -66,7 +66,7 @@ public class TaskRequest {
         return dependencies;
     }
 
-    public void setDependencies(TaskDependency[] dependencies) {
+    public void setDependencies(TaskDependency... dependencies) {
         this.dependencies = dependencies;
     }
 
