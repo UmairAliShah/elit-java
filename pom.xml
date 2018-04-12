@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cloud.elit</groupId>
     <artifactId>elit</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>ELIT: Evolution of Language and Information Technology</name>
@@ -14,7 +14,7 @@
         <url>https://github.com/elitcloud/elit-java</url>
         <connection>scm:git:git://github.com/elitcloud/elit-java.git</connection>
         <developerConnection>scm:git:git@github.com:elitcloud/elit-java.git</developerConnection>
-      <tag>elit-0.0.2</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <modules>
