@@ -17,11 +17,8 @@
 package cloud.elit.nlp.component.token;
 
 import cloud.elit.sdk.nlp.structure.Document;
-import cloud.elit.nlp.component.token.SimpleTokenizer;
-import cloud.elit.nlp.component.token.SimpleTokenizerParameters;
 import org.junit.Test;
 
-import java.io.File;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -34,18 +31,18 @@ public class SimpleTokenizerTest {
         String s = "a b\tc d\ne";
 
         SimpleTokenizer tok = new SimpleTokenizer();
-        assertEquals(List.of("a", "b", "c", "d", "e"), tok.decode(s).getSentence(0).getTokens());
+        assertEquals(List.of("a", "b", "c", "d", "e"), tok.decode(s).get(0).getTokens());
 
         tok.load(model_path, new SimpleTokenizerParameters(0));
-        assertEquals(List.of("a", "b", "c", "d", "e"), tok.decode(s).getSentence(0).getTokens());
+        assertEquals(List.of("a", "b", "c", "d", "e"), tok.decode(s).get(0).getTokens());
 
         tok = tok.factory(model_path, new SimpleTokenizerParameters(1));
-        assertEquals(List.of("a b", "c d", "e"), tok.decode(s).getSentence(0).getTokens());
+        assertEquals(List.of("a b", "c d", "e"), tok.decode(s).get(0).getTokens());
 
         s = "a\tb.\nc\td.\ne";
         Document d = tok.decode(s);
-        assertEquals(List.of("a", "b."), d.getSentence(0).getTokens());
-        assertEquals(List.of("c", "d."), d.getSentence(1).getTokens());
-        assertEquals(List.of("e")      , d.getSentence(2).getTokens());
+        assertEquals(List.of("a", "b."), d.get(0).getTokens());
+        assertEquals(List.of("c", "d."), d.get(1).getTokens());
+        assertEquals(List.of("e")      , d.get(2).getTokens());
     }
 }

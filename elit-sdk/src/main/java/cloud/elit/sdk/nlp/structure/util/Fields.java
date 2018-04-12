@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-package cloud.elit.sdk.nlp.structure;
+package cloud.elit.sdk.nlp.structure.util;
 
-public interface JSONField {
-    /** NLP output. */
-    String OUTPUT = "output";
-    /** Pipeline of sub-tasks. */
-    String PIPELINE = "pipeline";
-
+public interface Fields {
     /** Sentence ID. */
     String SID = "sid";
     /** Linguistic token. */
@@ -34,7 +29,7 @@ public interface JSONField {
     String POS = "pos";
     /** Named entity tag. */
     String NER = "ner";
-    /** TaskDependency relation. */
+    /** Dependency relation. */
     String DEP = "dep";
     /** Coreference relation. */
     String REF = "ref";
@@ -42,8 +37,4 @@ public interface JSONField {
     /** All components in the pipeline. */
     String ALL = "all";
 
-    // Tools
-    String ELIT = "elit";
-    String NLP4J = "nlp4j";
-    String SPACY = "spacy";
 }

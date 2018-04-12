@@ -18,14 +18,18 @@ package cloud.elit.sdk.nlp.structure;
 import cloud.elit.sdk.nlp.structure.node.NLPNode;
 import cloud.elit.sdk.nlp.structure.node.NLPNodeList;
 import cloud.elit.sdk.nlp.structure.node.NLPUtils;
+import cloud.elit.sdk.nlp.structure.util.Fields;
+import org.w3c.dom.NodeList;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Sentence extends NLPNodeList {
+public class Sentence extends NLPNodeList implements Iterable<NLPNode> {
     private int sen_id;
     private NLPNode root;
     private List<Chunk> ner_list;
@@ -64,14 +68,6 @@ public class Sentence extends NLPNodeList {
         this.root = node;
     }
 
-    public List<String> getTokens() {
-        return nodes.stream().map(NLPNode::getToken).collect(Collectors.toList());
-    }
-
-    public Chunk getNamedEntity(int index) {
-        return ner_list.get(index);
-    }
-
     public List<Chunk> getNamedEntities() {
         return ner_list;
     }
@@ -84,19 +80,42 @@ public class Sentence extends NLPNodeList {
         return ner_list.size();
     }
 
+    public Chunk getNamedEntity(int index) {
+        return ner_list.get(index);
+    }
+
+    public List<String> getTokens() {
+        return nodes.stream().map(NLPNode::getToken).collect(Collectors.toList());
+    }
+
+    public List<String> getLemmas() {
+        return nodes.stream().map(NLPNode::getLemma).collect(Collectors.toList());
+    }
+
+    public List<String> getPartOfSpeechTags() {
+        return nodes.stream().map(NLPNode::getPartOfSpeechTag).collect(Collectors.toList());
+    }
+
+//  =================================== Iterator ===================================
+
+    @Override
+    public Iterator<NLPNode> iterator() {
+        return nodes.iterator();
+    }
+
 //  =================================== String ===================================
 
     public String toString() {
         StringJoiner joiner = new StringJoiner(",\n");
         NLPNode node = nodes.get(0);
 
-        joiner.add(String.format("  \"%s\": %d", JSONField.SID, sen_id));
-        joiner.add(String.format("  \"%s\": %s", JSONField.TOK, fromStringList(NLPNode::getToken)));
-        if (node.getEndOffset() > 0) joiner.add(String.format("  \"%s\": %s", JSONField.OFF, fromOffsets()));
-        if (node.getLemma() != null) joiner.add(String.format("  \"%s\": %s", JSONField.LEM, fromStringList(NLPNode::getLemma)));
-        if (node.getPartOfSpeechTag() != null) joiner.add(String.format("  \"%s\": %s", JSONField.POS, fromStringList(NLPNode::getPartOfSpeechTag)));
-        if (ner_list != null) joiner.add(String.format("  \"%s\": %s", JSONField.NER, ner_list.toString()));
-        if (node.getParent() != null) joiner.add(String.format("  \"%s\": %s", JSONField.DEP, fromPrimaryDependencies()));
+        joiner.add(String.format("  \"%s\": %d", Fields.SID, sen_id));
+        joiner.add(String.format("  \"%s\": %s", Fields.TOK, fromStringList(NLPNode::getToken)));
+        if (node.getEndOffset() > 0) joiner.add(String.format("  \"%s\": %s", Fields.OFF, fromOffsets()));
+        if (node.getLemma() != null) joiner.add(String.format("  \"%s\": %s", Fields.LEM, fromStringList(NLPNode::getLemma)));
+        if (node.getPartOfSpeechTag() != null) joiner.add(String.format("  \"%s\": %s", Fields.POS, fromStringList(NLPNode::getPartOfSpeechTag)));
+        if (ner_list != null) joiner.add(String.format("  \"%s\": %s", Fields.NER, ner_list.toString()));
+        if (node.getParent() != null) joiner.add(String.format("  \"%s\": %s", Fields.DEP, fromPrimaryDependencies()));
 
         return "{\n" + joiner.toString() + "\n}";
     }

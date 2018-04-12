@@ -42,31 +42,31 @@ public class NLPNodeList implements Serializable {
         this.nodes = nodes;
     }
 
-    public int numNodes() {
+    public int size() {
         return nodes.size();
     }
 
-    public NLPNode getNode(int index) {
+    public NLPNode get(int index) {
         return nodes.get(index);
     }
 
-    public boolean addNode(NLPNode node) {
+    public boolean add(NLPNode node) {
         return nodes.add(node);
     }
 
-    public void addNode(int index, NLPNode node) {
+    public void add(int index, NLPNode node) {
         nodes.add(index, node);
     }
 
-    public NLPNode setNode(int index, NLPNode node) {
+    public NLPNode set(int index, NLPNode node) {
         return nodes.set(index, node);
     }
 
-    public NLPNode removeNode(int index) {
+    public NLPNode remove(int index) {
         return nodes.remove(index);
     }
 
-    public boolean removeNode(NLPNode node) {
+    public boolean remove(NLPNode node) {
         return nodes.remove(node);
     }
 }

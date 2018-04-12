@@ -16,6 +16,7 @@
 package cloud.elit.sdk.nlp.structure;
 
 import cloud.elit.sdk.nlp.structure.node.NLPNode;
+import cloud.elit.sdk.nlp.structure.util.Fields;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -32,7 +33,7 @@ import java.util.stream.IntStream;
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public class Document implements Serializable
+public class Document implements Serializable, Iterable<Sentence>
 {
     private List<Sentence> sentences;
 
@@ -48,21 +49,21 @@ public class Document implements Serializable
 
         try {
             JsonNode top = mapper.readTree(json);
-            JsonNode output = top.findValue(JSONField.OUTPUT);
+            JsonNode output = top.findValue("output");
 
             for (JsonNode o : output) {
                 // required fields
-                int sen_id = o.findValue(JSONField.SID).asInt();
-                List<NLPNode> nodes = toNodeList(o.findValue(JSONField.TOK));
+                int sen_id = o.findValue(Fields.SID).asInt();
+                List<NLPNode> nodes = toNodeList(o.findValue(Fields.TOK));
                 Sentence sentence = new Sentence(sen_id, nodes);
-                addSentence(sentence);
+                add(sentence);
 
                 // optional fields
-                setOffsets(nodes, o.findValue(JSONField.OFF));
-                setStringList(nodes, o.findValue(JSONField.LEM), NLPNode::setLemma);
-                setStringList(nodes, o.findValue(JSONField.POS), NLPNode::setPartOfSpeechTag);
-                sentence.setNamedEntities(toEntityList(nodes, o.findValue(JSONField.NER)));
-                setPrimaryDependencies(sentence, o.findValue(JSONField.DEP));
+                setOffsets(nodes, o.findValue(Fields.OFF));
+                setStringList(nodes, o.findValue(Fields.LEM), NLPNode::setLemma);
+                setStringList(nodes, o.findValue(Fields.POS), NLPNode::setPartOfSpeechTag);
+                sentence.setNamedEntities(toEntityList(nodes, o.findValue(Fields.NER)));
+                setPrimaryDependencies(sentence, o.findValue(Fields.DEP));
             }
 
         } catch (IOException e) {
@@ -136,40 +137,47 @@ public class Document implements Serializable
 
 //  =================================== Getters and Setters ===================================
 
-    public List<Sentence> getSentences() {
+    public List<Sentence> get() {
         return sentences;
     }
 
-    public void setSentences(List<Sentence> sentences) {
+    public void set(List<Sentence> sentences) {
         this.sentences = sentences;
     }
 
-    public int numSentences() {
+    public int size() {
         return sentences.size();
     }
 
-    public Sentence getSentence(int index) {
+    public Sentence get(int index) {
         return sentences.get(index);
     }
 
-    public boolean addSentence(Sentence sentence) {
+    public boolean add(Sentence sentence) {
         return sentences.add(sentence);
     }
 
-    public void addSentence(int index, Sentence sentence) {
+    public void add(int index, Sentence sentence) {
         sentences.add(index, sentence);
     }
 
-    public Sentence setSentence(int index, Sentence sentence) {
+    public Sentence set(int index, Sentence sentence) {
         return sentences.set(index, sentence);
     }
 
-    public Sentence removeSentence(int index) {
+    public Sentence remove(int index) {
         return sentences.remove(index);
     }
 
-    public boolean removeSentence(Sentence sentence) {
+    public boolean remove(Sentence sentence) {
         return sentences.remove(sentence);
+    }
+
+//  =================================== Iterator ===================================
+
+    @Override
+    public Iterator<Sentence> iterator() {
+        return sentences.iterator();
     }
 
 //  =================================== String ===================================
