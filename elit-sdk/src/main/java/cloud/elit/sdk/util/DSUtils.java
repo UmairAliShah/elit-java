@@ -31,7 +31,7 @@ public class DSUtils {
     }
 
     /**
-     * e.g., getFirst(list, "VB", (n,s) -> AbstractNode::isSyntacticTag);
+     * e.g., getFirst(list, "VB", (n,s) - AbstractNode::isSyntacticTag);
      * @param matcher takes a node and the supplement, and returns true if its field matches to the specific predicate.
      * @return the first item in the list matching the condition if exists; otherwise, {@code null}.
      */
@@ -41,7 +41,7 @@ public class DSUtils {
     }
 
     /**
-     * e.g., getLast(list, "VB", (n,s) -> AbstractNode::isSyntacticTag);
+     * e.g., getLast(list, "VB", (n,s) - AbstractNode::isSyntacticTag);
      * @param matcher takes a node and the supplement, and returns true if its field matches to the specific predicate.
      * @return the last node in the list matching the condition.
      */
@@ -51,7 +51,7 @@ public class DSUtils {
     }
 
     /**
-     * e.g., getMatchedList(list, "VB", (n,s) -> AbstractNode::isSyntacticTag);
+     * e.g., getMatchedList(list, "VB", (n,s) - AbstractNode::isSyntacticTag);
      * @param matcher takes a node and the supplement, and returns true if its field matches to the specific predicate.
      * @return the sublist of the original list containing only matched items.
      */
@@ -61,7 +61,7 @@ public class DSUtils {
     }
 
     /**
-     * e.g., contains(list, "VB", (n,s) -> AbstractNode::isSyntacticTag);
+     * e.g., contains(list, "VB", (n,s) - AbstractNode::isSyntacticTag);
      * @param matcher takes a node and the supplement, and returns true if its field matches to the specific predicate.
      * @return true if the list contains any item matching the condition.
      */

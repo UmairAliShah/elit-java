@@ -146,7 +146,6 @@ public class NLPNode extends AbstractNode<NLPNode> implements Comparable<NLPNode
 
 //  ============================== Primary Dependencies ==============================
 
-    /** {@link #isChildOf(NLPNode, String)} && {@link #isDependencyLabel(String)}. */
     public boolean isChildOf(NLPNode node, String label) {
         return isChildOf(node) && isDependencyLabel(label);
     }
@@ -237,24 +236,24 @@ public class NLPNode extends AbstractNode<NLPNode> implements Comparable<NLPNode
     }
     
     /**
-     * @return "<"  if there is only one child oNLPNode the left-hand side,
-     *         "<<" if there are more thaNLPNode one child oNLPNode the left-hand side,
+     * @return "["  if there is only one child oNLPNode the left-hand side,
+     *         "[[" if there are more thaNLPNode one child oNLPNode the left-hand side,
      *         null if there is no child oNLPNode the left-hand side.
      */
     public String getLeftValency() {
-        if (getLeftMostChild(1) != null) return "<<";
-        if (getLeftMostChild()  != null) return "<";
+        if (getLeftMostChild(1) != null) return "[[";
+        if (getLeftMostChild()  != null) return "[";
         return null;
     }
     
     /**
-     * @return ">"  if there is only one child oNLPNode the right-hand side,
-     *         "<<" if there are more thaNLPNode one child oNLPNode the right-hand side,
+     * @return "]"  if there is only one child oNLPNode the right-hand side,
+     *         "]]" if there are more thaNLPNode one child oNLPNode the right-hand side,
      *         null if there is no child oNLPNode the right-hand side.
      */
     public String getRightValency() {
-        if (getRightMostChild(1) != null) return ">>";
-        if (getRightMostChild()  != null) return ">";
+        if (getRightMostChild(1) != null) return "]]";
+        if (getRightMostChild()  != null) return "]";
         return null;
     }
 

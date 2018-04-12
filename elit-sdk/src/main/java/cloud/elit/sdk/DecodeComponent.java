@@ -20,9 +20,6 @@ import java.util.List;
 
 /**
  * This abstract class is inherited by components used for decoding, but not for training.
- * @param <I>
- * @param <O>
- * @param <P>
  */
 public abstract class DecodeComponent<I, O, P extends Parameters> extends Component<I, O, P> {
     /** {@inheritDoc} */

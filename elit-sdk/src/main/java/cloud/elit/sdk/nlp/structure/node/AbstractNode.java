@@ -62,13 +62,22 @@ public abstract class AbstractNode<N extends AbstractNode<N>> implements Seriali
 
 //  =================================== Abstract ===================================
 
-    /** @return this node. */
+    /**
+     * @return this node.
+     */
     public abstract N self();
 
-    /** @return the index of the child. */
+    /**
+     * @param node
+     * @return the index of the child.
+     */
     public abstract int getChildIndex(N node);
 
-    /** @return the default index for add. */
+    /**
+     * @param list
+     * @param node
+     * @return the default index for add.
+     */
     protected abstract int getDefaultIndex(List<N> list, N node);
 
 //  =================================== Fields ===================================
