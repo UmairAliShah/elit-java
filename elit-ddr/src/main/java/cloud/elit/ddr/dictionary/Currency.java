@@ -54,9 +54,6 @@ public class Currency extends Dictionary {
         return s_currency.contains(lower);
     }
 
-    /**
-     * @return "US$1" -> ["US$", "1"].
-     */
     public String[] tokenize(String original, String lower, char[] lcs) {
         int i, len = original.length();
 

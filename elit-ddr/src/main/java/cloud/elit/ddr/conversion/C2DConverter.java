@@ -71,7 +71,6 @@ abstract public class C2DConverter
     
     /**
      * @return the head flag of the specific constituent node.
-     * @see EnglishC2DConverter#getHeadFlag(CTNode).
      */
     protected abstract int getHeadFlag(CTNode node);
     
