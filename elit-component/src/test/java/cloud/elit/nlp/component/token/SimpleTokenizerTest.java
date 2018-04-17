@@ -16,7 +16,7 @@
 
 package cloud.elit.nlp.component.token;
 
-import cloud.elit.sdk.nlp.structure.Document;
+import cloud.elit.sdk.structure.Document;
 import org.junit.Test;
 
 import java.util.List;
@@ -26,8 +26,8 @@ import static org.junit.Assert.assertEquals;
 public class SimpleTokenizerTest {
     @Test
     public void test() {
-//      final String model_path = "elit-component/src/test/resources/token";
-        final String model_path = "src/test/resources/token";
+//      final String model_path = "elit-component/src/test/resources/form";
+        final String model_path = "src/test/resources/form";
         String s = "a b\tc d\ne";
 
         SimpleTokenizer tok = new SimpleTokenizer();

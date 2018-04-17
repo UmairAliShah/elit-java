@@ -16,7 +16,7 @@
 
 package cloud.elit.nlp.component.token;
 
-import cloud.elit.sdk.Parameters;
+import cloud.elit.sdk.component.Parameters;
 
 public class SimpleTokenizerParameters implements Parameters {
     /** The name of the model file where regular expressions are saved. */

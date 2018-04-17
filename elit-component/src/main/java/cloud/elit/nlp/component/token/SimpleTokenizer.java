@@ -16,10 +16,10 @@
 
 package cloud.elit.nlp.component.token;
 
-import cloud.elit.sdk.nlp.component.Tokenizer;
-import cloud.elit.sdk.nlp.structure.Document;
-import cloud.elit.sdk.nlp.structure.Sentence;
-import cloud.elit.sdk.nlp.structure.node.NLPUtils;
+import cloud.elit.sdk.component.Tokenizer;
+import cloud.elit.sdk.structure.Document;
+import cloud.elit.sdk.structure.Sentence;
+import cloud.elit.sdk.structure.util.NLPUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

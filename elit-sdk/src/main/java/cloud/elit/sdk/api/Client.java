@@ -16,7 +16,6 @@
 
 package cloud.elit.sdk.api;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

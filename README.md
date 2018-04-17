@@ -29,9 +29,9 @@ The following code makes a HTTP request to retrieve NLP output for the input str
 ```java
 import cloud.elit.sdk.api.Client;
 import cloud.elit.sdk.api.TaskRequest;
-import cloud.elit.sdk.nlp.structure.Document;
-import cloud.elit.sdk.nlp.structure.util.Tools;
-import cloud.elit.sdk.nlp.structure.util.Fields;
+import Document;
+import Tools;
+import Fields;
 
 public class DecodeWebAPITest {
     static public void main(String[] args) {
@@ -79,12 +79,12 @@ Our SDK provides a convenient wrapper class to read the JSON output and convert 
 ```java
 import cloud.elit.sdk.api.Client;
 import cloud.elit.sdk.api.TaskRequest;
-import cloud.elit.sdk.nlp.structure.Document;
-import cloud.elit.sdk.nlp.structure.util.Tools;
-import cloud.elit.sdk.nlp.structure.util.Fields;
-import cloud.elit.sdk.nlp.structure.Document;
-import cloud.elit.sdk.nlp.structure.Sentence;
-import cloud.elit.sdk.nlp.structure.node.NLPNode;
+import Document;
+import Tools;
+import Fields;
+import Document;
+import Sentence;
+import NLPNode;
 
 public class DecodeWebAPITest {
     static public void main(String[] args) {

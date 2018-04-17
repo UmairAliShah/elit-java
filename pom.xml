@@ -19,6 +19,7 @@
 
     <modules>
         <module>elit-sdk</module>
+        <module>elit-ddr</module>
         <module>elit-component</module>
     </modules>
 
