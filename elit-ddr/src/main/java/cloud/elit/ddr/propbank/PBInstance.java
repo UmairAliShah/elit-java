@@ -15,14 +15,9 @@
  */
 package cloud.elit.ddr.propbank;
 
-import cloud.elit.sdk.nlp.structure.constituency.CTTree;
-import cloud.elit.ddr.util.Language;
-import cloud.elit.ddr.util.PBTag;
-import cloud.elit.ddr.util.PTBLib;
-import cloud.elit.ddr.util.DSUtils;
-import cloud.elit.ddr.util.PatternConst;
-import cloud.elit.ddr.util.StringConst;
-import cloud.elit.ddr.util.StringUtils;
+import cloud.elit.ddr.constituency.CTTree;
+import cloud.elit.ddr.util.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.*;
@@ -169,18 +164,11 @@ public class PBInstance implements Serializable, Comparable<PBInstance> {
      * Removes all argument with the specific label.
      */
     public void removeArguments(String label) {
-        Iterator<PBArgument> it = arguments.iterator();
-
-        while (it.hasNext()) {
-            PBArgument arg = it.next();
-
-            if (arg.isLabel(label))
-                it.remove();
-        }
+        arguments.removeIf(arg -> arg.isLabel(label));
     }
 
     public void sortArguments() {
-        arguments.forEach(a -> a.sortLocations());
+        arguments.forEach(PBArgument::sortLocations);
         Collections.sort(arguments);
     }
 
@@ -203,15 +191,11 @@ public class PBInstance implements Serializable, Comparable<PBInstance> {
      * @return {@link PBInstance#tree_path}+"_"+{@link PBInstance#tree_id}+"_"+{@code predicateID}.
      */
     public String getKey(int predicateID) {
-        StringBuilder build = new StringBuilder();
-
-        build.append(tree_path);
-        build.append(StringConst.UNDERSCORE);
-        build.append(tree_id);
-        build.append(StringConst.UNDERSCORE);
-        build.append(predicateID);
-
-        return build.toString();
+        return tree_path +
+                StringConst.UNDERSCORE +
+                tree_id +
+                StringConst.UNDERSCORE +
+                predicateID;
     }
 
     public void setTree(CTTree tree) {
@@ -289,7 +273,7 @@ public class PBInstance implements Serializable, Comparable<PBInstance> {
     }
 
     @Override
-    public int compareTo(PBInstance instance) {
+    public int compareTo(@NotNull PBInstance instance) {
         int cmp;
 
         if ((cmp = tree_path.compareTo(instance.tree_path)) != 0) return cmp;

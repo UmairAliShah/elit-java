@@ -39,8 +39,8 @@ public class HeadRule {
 
     static final private Pattern P_TAGSETS = PatternConst.SEMICOLON;
 
-    protected HeadTagSet[] tagsets;
-    protected boolean right_to_left;
+    protected final HeadTagSet[] tagsets;
+    protected final boolean right_to_left;
 
     public HeadRule(String dir) {
         this(dir, ".*");

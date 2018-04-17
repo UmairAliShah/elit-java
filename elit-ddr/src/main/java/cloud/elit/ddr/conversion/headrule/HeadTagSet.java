@@ -36,21 +36,23 @@ public class HeadTagSet {
      */
     static final public char PREFIX_FTAG = '-';
 
-    static final private Pattern P_TAGS = Pattern.compile("\\" + DELIM_TAGS);
+    static final private Pattern P_TAGS = Pattern.compile("\\|");
 
     /**
      * The regular expression of phrase/pos tags (e.g., {@code "^(NN.*|NP)$"}).
      */
-    private Pattern syntactic_tags;
+    private final Pattern syntactic_tags;
     /**
      * The set of function tags.
      */
-    private Set<String> function_tags;
+    private final Set<String> function_tags;
 
-    /** @param  "NN.*|-SBJ|-TPC|NP". */
+    /**
+     * "NN.*|-SBJ|-TPC|NP".
+     */
     public HeadTagSet(String tags) {
         StringBuilder pTags = new StringBuilder();
-        function_tags = new HashSet<String>();
+        function_tags = new HashSet<>();
 
         for (String tag : P_TAGS.split(tags)) {
             if (tag.charAt(0) == PREFIX_FTAG)
@@ -68,13 +70,7 @@ public class HeadTagSet {
      * @return {@code true} if the specific node matches any of the tags.
      */
     public boolean matches(CTNode node) {
-        if (syntactic_tags != null && node.isSyntacticTag(syntactic_tags))
-            return true;
-
-        if (node.isFunctionTag(function_tags))
-            return true;
-
-        return false;
+        return syntactic_tags != null && node.isSyntacticTag(syntactic_tags) || node.isFunctionTag(function_tags);
     }
 
     @Override

@@ -17,6 +17,7 @@ package cloud.elit.ddr.propbank.frameset;
 
 import cloud.elit.ddr.util.StringConst;
 import cloud.elit.ddr.util.XMLUtils;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -118,7 +119,7 @@ public class PBFPredicate implements Serializable, Comparable<PBFPredicate> {
     public String toString() {
         List<PBFRoleset> list = new ArrayList<>(getRolesets());
         StringBuilder build = new StringBuilder();
-        build.append("===== " + s_lemma + " =====");
+        build.append("===== ").append(s_lemma).append(" =====");
         Collections.sort(list);
 
         for (PBFRoleset roleset : list) {
@@ -130,7 +131,7 @@ public class PBFPredicate implements Serializable, Comparable<PBFPredicate> {
     }
 
     @Override
-    public int compareTo(PBFPredicate predicate) {
+    public int compareTo(@NotNull PBFPredicate predicate) {
         return s_lemma.compareTo(predicate.s_lemma);
     }
 }

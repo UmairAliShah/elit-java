@@ -57,12 +57,12 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         snd_parents = new ArrayList<>();
     }
 
-    public NLPNode(int token_id, String token, String lemma, String pos_tag) {
-        this(token_id, token, lemma, pos_tag, new HashMap<>());
+    public NLPNode(int token_id, String token, String pos_tag, Map<String, String> feat_map) {
+        this(token_id, token, null, pos_tag, feat_map);
     }
 
     public NLPNode(int token_id, String token, String pos_tag) {
-        this(token_id, token, null, pos_tag);
+        this(token_id, token, pos_tag, new HashMap<>());
     }
 
     public NLPNode(int token_id, String token) {

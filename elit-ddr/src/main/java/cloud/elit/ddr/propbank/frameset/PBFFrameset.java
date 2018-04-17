@@ -26,8 +26,6 @@ import java.util.*;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class PBFFrameset implements Serializable {
-    private static final long serialVersionUID = 8504121075121864972L;
-
     private Map<String, PBFPredicate> m_predicates;
     private String s_lemma;
 

@@ -17,6 +17,7 @@ package cloud.elit.ddr.propbank;
 
 import cloud.elit.ddr.util.DSUtils;
 import cloud.elit.ddr.util.StringConst;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.*;
@@ -107,7 +108,7 @@ public class PBArgument implements Serializable, Comparable<PBArgument> {
      * Adds the specific collection of locations to this argument.
      */
     public void addLocations(Collection<PBLocation> locations) {
-        locations.addAll(locations);
+        this.locations.addAll(locations);
     }
 
     public void setLabel(String label) {
@@ -122,15 +123,8 @@ public class PBArgument implements Serializable, Comparable<PBArgument> {
      * Removes all locations matching the specific terminal ID and height from this argument.
      */
     public void removeLocations(int terminalId, int height) {
-        Iterator<PBLocation> it = locations.iterator();
 
-        while (it.hasNext()) {
-            PBLocation loc = it.next();
-
-            if (loc.matches(terminalId, height))
-                it.remove();
-        }
-
+        locations.removeIf(loc -> loc.matches(terminalId, height));
         if (!this.locations.isEmpty()) this.locations.get(0).setType(StringConst.EMPTY);
     }
 
@@ -188,7 +182,7 @@ public class PBArgument implements Serializable, Comparable<PBArgument> {
     }
 
     @Override
-    public int compareTo(PBArgument arg) {
+    public int compareTo(@NotNull PBArgument arg) {
         return getLocation(0).compareTo(arg.getLocation(0));
     }
 }

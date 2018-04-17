@@ -19,6 +19,7 @@ import cloud.elit.ddr.util.PBLib;
 import cloud.elit.ddr.util.StringConst;
 import cloud.elit.ddr.util.StringUtils;
 import cloud.elit.ddr.util.XMLUtils;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -145,7 +146,7 @@ public class PBFRole implements Serializable, Comparable<PBFRole> {
     }
 
     @Override
-    public int compareTo(PBFRole role) {
+    public int compareTo(@NotNull PBFRole role) {
         int n = s_argumentNumber.compareTo(role.s_argumentNumber);
         return (n != 0) ? n : s_functionTag.compareTo(role.s_functionTag);
     }

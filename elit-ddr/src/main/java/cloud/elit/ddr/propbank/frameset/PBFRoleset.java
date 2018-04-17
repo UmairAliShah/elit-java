@@ -19,6 +19,7 @@ import cloud.elit.ddr.util.PBLib;
 import cloud.elit.ddr.util.StringConst;
 import cloud.elit.ddr.util.StringUtils;
 import cloud.elit.ddr.util.XMLUtils;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -118,13 +119,7 @@ public class PBFRoleset implements Serializable, Comparable<PBFRoleset> {
 
     private boolean isValidAnnotation(PBFRole role) {
         String n = role.getArgumentNumber();
-        if (n.length() != 1) return false;
-
-        if (StringUtils.containsDigitOnly(n)) return true;
-        if (role.isArgumentNumber("A")) return true;
-        if (role.isArgumentNumber("M") && !role.isFunctionTag(StringConst.EMPTY)) return true;
-
-        return false;
+        return n.length() == 1 && (StringUtils.containsDigitOnly(n) || role.isArgumentNumber("A") || role.isArgumentNumber("M") && !role.isFunctionTag(StringConst.EMPTY));
     }
 
     public void setID(String id) {
@@ -145,7 +140,7 @@ public class PBFRoleset implements Serializable, Comparable<PBFRoleset> {
             return true;
 
         String n = PBLib.getNumber(label);
-        return (n != null) ? m_roles.containsKey(n) : true;
+        return n == null || m_roles.containsKey(n);
     }
 
     @Override
@@ -174,7 +169,7 @@ public class PBFRoleset implements Serializable, Comparable<PBFRoleset> {
     }
 
     @Override
-    public int compareTo(PBFRoleset roleset) {
+    public int compareTo(@NotNull PBFRoleset roleset) {
         return s_id.compareTo(roleset.s_id);
     }
 }

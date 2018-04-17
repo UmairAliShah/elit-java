@@ -18,6 +18,7 @@ package cloud.elit.ddr.propbank;
 import cloud.elit.ddr.util.PatternConst;
 import cloud.elit.ddr.util.StringConst;
 import cloud.elit.ddr.util.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
@@ -26,8 +27,6 @@ import java.util.regex.Pattern;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class PBLocation implements Serializable, Comparable<PBLocation> {
-    private static final long serialVersionUID = -5141470453733767864L;
-
     static public final String DELIM = StringConst.COLON;
     static private final Pattern SPLIT = PatternConst.COLON;
 
@@ -125,18 +124,11 @@ public class PBLocation implements Serializable, Comparable<PBLocation> {
 
     @Override
     public String toString() {
-        StringBuilder build = new StringBuilder();
-
-        build.append(type);
-        build.append(terminal_id);
-        build.append(DELIM);
-        build.append(height);
-
-        return build.toString();
+        return type + terminal_id + DELIM + height;
     }
 
     @Override
-    public int compareTo(PBLocation loc) {
+    public int compareTo(@NotNull PBLocation loc) {
         return terminal_id == loc.terminal_id ? height - loc.height : terminal_id - loc.terminal_id;
     }
 }

@@ -32,7 +32,6 @@ import java.util.regex.Pattern;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class HeadRuleMap extends HashMap<String, HeadRule> {
-    private static final long serialVersionUID = -8495839532957709027L;
     /**
      * The delimiter between columns ({@code "\t"}).
      */
@@ -70,7 +69,7 @@ public class HeadRuleMap extends HashMap<String, HeadRule> {
     @Override
     public String toString() {
         StringBuilder build = new StringBuilder();
-        List<String> keys = new ArrayList<>();
+        List<String> keys = new ArrayList<>(super.keySet());
         Collections.sort(keys);
         HeadRule rule;
 

@@ -15,13 +15,10 @@
  */
 package cloud.elit.ddr.util;
 
-import cloud.elit.sdk.nlp.structure.constituency.CTReader;
-import cloud.elit.sdk.nlp.structure.constituency.CTTree;
-import cloud.elit.sdk.nlp.structure.propbank.PBInstance;
-import cloud.elit.sdk.nlp.structure.propbank.PBReader;
-import cloud.elit.sdk.nlp.util.PatternUtils;
-import cloud.elit.sdk.nlp.util.StringConst;
-import cloud.elit.sdk.nlp.util.StringUtils;
+import cloud.elit.ddr.constituency.CTReader;
+import cloud.elit.ddr.constituency.CTTree;
+import cloud.elit.ddr.propbank.PBInstance;
+import cloud.elit.ddr.propbank.PBReader;
 
 import java.io.BufferedOutputStream;
 import java.io.InputStream;

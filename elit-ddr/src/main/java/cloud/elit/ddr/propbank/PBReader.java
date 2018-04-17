@@ -15,8 +15,8 @@
  */
 package cloud.elit.ddr.propbank;
 
-import cloud.elit.sdk.nlp.structure.constituency.CTReader;
-import cloud.elit.sdk.nlp.structure.constituency.CTTree;
+import cloud.elit.ddr.constituency.CTReader;
+import cloud.elit.ddr.constituency.CTTree;
 import cloud.elit.ddr.util.StringConst;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
@@ -25,6 +25,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -72,7 +73,7 @@ public class PBReader {
     }
 
     public Int2ObjectMap<List<PBInstance>> getInstanceMap() {
-        Int2ObjectMap<List<PBInstance>> map = new Int2ObjectOpenHashMap<List<PBInstance>>();
+        Int2ObjectMap<List<PBInstance>> map = new Int2ObjectOpenHashMap<>();
         List<PBInstance> list;
         PBInstance instance;
 
@@ -99,7 +100,6 @@ public class PBReader {
 
     /**
      * @param treeDir   the Treebank directory path.
-     * @param normalize if {@code true}, calls {@link CTTree#normalizeIndices()}.
      * @return the sorted list of instances including constituent trees associated with them.
      */
     public List<PBInstance> getSortedInstanceList(String treeDir, boolean normalize) {
@@ -124,7 +124,7 @@ public class PBReader {
             for (; treeID < instance.getTreeID(); treeID++)
                 tree = reader.next();
 
-            if (normalize) tree.normalizeIndices();
+            if (normalize) Objects.requireNonNull(tree).normalizeIndices();
             instance.setTree(tree);
         }
 

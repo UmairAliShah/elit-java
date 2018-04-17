@@ -74,7 +74,6 @@ public class PBFMap implements Serializable {
         }
     }
 
-    /** @throws Exception */
     public void addFrameset(String filename) throws Exception {
         InputStream in = new BufferedInputStream(new FileInputStream(filename));
         filename = FileUtils.getBaseName(filename);

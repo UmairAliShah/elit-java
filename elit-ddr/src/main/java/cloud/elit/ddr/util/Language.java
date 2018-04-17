@@ -15,8 +15,6 @@
  */
 package cloud.elit.ddr.util;
 
-import cloud.elit.sdk.nlp.util.StringUtils;
-
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */

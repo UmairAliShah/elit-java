@@ -15,54 +15,48 @@
  */
 package cloud.elit.ddr.conversion;
 
-import edu.emory.mathcs.nlp.common.util.StringUtils;
-import edu.emory.mathcs.nlp.structure.constituency.CTNode;
-import edu.emory.mathcs.nlp.structure.constituency.CTTree;
-import edu.emory.mathcs.nlp.structure.conversion.headrule.HeadRule;
-import edu.emory.mathcs.nlp.structure.conversion.headrule.HeadRuleMap;
-import edu.emory.mathcs.nlp.structure.dependency.NLPGraph;
-import edu.emory.mathcs.nlp.structure.util.DDGTag;
+import cloud.elit.ddr.constituency.CTNode;
+import cloud.elit.ddr.constituency.CTTree;
+import cloud.elit.ddr.conversion.headrule.HeadRule;
+import cloud.elit.ddr.conversion.headrule.HeadRuleMap;
+import cloud.elit.ddr.util.DDGTag;
+import cloud.elit.ddr.util.StringUtils;
+import cloud.elit.sdk.structure.Sentence;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public class DefaultC2DConverter extends C2DConverter
-{
-	public DefaultC2DConverter(HeadRuleMap headrule_map)
-	{
-		super(headrule_map);
-	}
-	
-	@Override
-	public NLPGraph toDependencyGraph(CTTree tree)
-	{
-		setHead(tree.getRoot());
-		finalizeDependencies(tree.getRoot());
-		return createDependencyGraph(tree);
-	}
+public class DefaultC2DConverter extends C2DConverter {
+    public DefaultC2DConverter(HeadRuleMap headrule_map) {
+        super(headrule_map);
+    }
 
-	@Override
-	protected void findHead(CTNode node, HeadRule rule)
-	{
-		CTNode head = findHeadDefault(node.getChildren(), rule);
-		node.setPhraseHead(head);
-	}
+    @Override
+    public Sentence toDependencyGraph(CTTree tree) {
+        setHead(tree.getRoot());
+        finalizeDependencies(tree.getRoot());
+        return createDependencyGraph(tree);
+    }
 
-	@Override
-	protected int getHeadFlag(CTNode node)
-	{
-		if (node.hasPrimaryHead())
-			return -1;
-		
-		if (node.isEmptyCategoryPhrase() || (node.isTerminal() && StringUtils.containsPunctuationOnly(node.getForm())))
-			return 1;
-		
-		return 0;
-	}
+    @Override
+    protected void findHead(CTNode node, HeadRule rule) {
+        CTNode head = findHeadDefault(node.getChildren(), rule);
+        node.setPhraseHead(head);
+    }
 
-	@Override
-	protected String getDependencyLabel(CTNode curr, CTNode head)
-	{
-		return DDGTag.DEP;
-	}
+    @Override
+    protected int getHeadFlag(CTNode node) {
+        if (node.hasPrimaryHead())
+            return -1;
+
+        if (node.isEmptyCategoryPhrase() || (node.isTerminal() && StringUtils.containsPunctuationOnly(node.getForm())))
+            return 1;
+
+        return 0;
+    }
+
+    @Override
+    protected String getDependencyLabel(CTNode curr, CTNode head) {
+        return DDGTag.DEP;
+    }
 }
