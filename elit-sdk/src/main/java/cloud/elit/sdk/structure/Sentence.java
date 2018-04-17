@@ -42,6 +42,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
 
 //  =================================== Constructors ===================================
 
+    @SuppressWarnings("unchecked")
     public <N> Sentence(int sen_id, List<N> nodes) {
         setID(sen_id);
         setRoot(NLPUtils.createRoot());

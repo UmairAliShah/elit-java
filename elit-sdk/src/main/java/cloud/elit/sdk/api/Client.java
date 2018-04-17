@@ -26,9 +26,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
 public class Client {
-    private ObjectMapper mapper;
-    private HttpClient client;
-    private HttpPost post;
+    private final ObjectMapper mapper;
+    private final HttpClient client;
+    private final HttpPost post;
 
     public Client() {
         mapper = new ObjectMapper();

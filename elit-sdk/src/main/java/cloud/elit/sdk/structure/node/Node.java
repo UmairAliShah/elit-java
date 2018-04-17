@@ -32,7 +32,7 @@ public abstract class Node<N extends Node<N>> implements Serializable {
     protected N parent;
     protected N left_sibling;
     protected N right_sibling;
-    protected List<N> children;
+    protected final List<N> children;
 
 //  =================================== Constructors ===================================
 
@@ -487,6 +487,7 @@ public abstract class Node<N extends Node<N>> implements Serializable {
      * @param node the node.
      * @return {@code true} if this node is the parent of the specific node; otherwise, {@code false}.
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isParentOf(N node) {
         return node.isChildOf(self());
     }
@@ -645,7 +646,7 @@ public abstract class Node<N extends Node<N>> implements Serializable {
         N node = self();
 
         for (int i = 0; i < order; i++) {
-            if (node == null) return node;
+            if (node == null) return null;
             node = getter.apply(node);
         }
 
