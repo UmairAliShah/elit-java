@@ -19,7 +19,7 @@ package cloud.elit.nlp.component.tokenizer;
 import cloud.elit.sdk.component.Tokenizer;
 import cloud.elit.sdk.structure.Document;
 import cloud.elit.sdk.structure.Sentence;
-import cloud.elit.sdk.structure.util.NLPUtils;
+import cloud.elit.sdk.structure.util.ELITUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -61,13 +61,13 @@ public class SimpleTokenizer extends Tokenizer<SimpleTokenizerParameters> {
         for (int end = 0; end < tokens.length; end++) {
             String token = tokens[end];
             if (token.endsWith(".") || token.endsWith("?") || token.endsWith("!")) {
-                document.add(new Sentence(sen_id++, NLPUtils.toNLPNodes(tokens, begin, end + 1)));
+                document.add(new Sentence(sen_id++, ELITUtils.toNLPNodes(tokens, begin, end + 1)));
                 begin = end + 1;
             }
         }
 
         if (begin < tokens.length)
-            document.add(new Sentence(NLPUtils.toNLPNodes(tokens, begin, tokens.length)));
+            document.add(new Sentence(ELITUtils.toNLPNodes(tokens, begin, tokens.length)));
 
         return document;
     }

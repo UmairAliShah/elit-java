@@ -17,14 +17,11 @@ package cloud.elit.sdk.structure;
 
 import cloud.elit.sdk.structure.node.NLPNode;
 import cloud.elit.sdk.structure.util.Fields;
-import cloud.elit.sdk.structure.util.NLPUtils;
+import cloud.elit.sdk.structure.util.ELITUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -45,7 +42,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
     @SuppressWarnings("unchecked")
     public <N> Sentence(int sen_id, List<N> nodes) {
         setID(sen_id);
-        setRoot(NLPUtils.createRoot());
+        setRoot(ELITUtils.createRoot());
         setNamedEntities(new ArrayList<>());
 
         if (nodes == null || nodes.isEmpty())
@@ -193,6 +190,43 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
 
     private String toStringPrimaryDependencies() {
         return "[" + nodes.stream().map(n -> "[" + n.getParent().getTokenID() + ",\"" + n.getDependencyLabel() + "\"]").collect(Collectors.joining(",")) + "]";
+    }
+
+    public String toCoNLL() {
+        StringJoiner join = new StringJoiner("\n");
+
+        for (NLPNode node : nodes) {
+            List<String> cols = node.toCoNLL();
+        }
+
+        List<List<String>> conll = nodes.stream().map(NLPNode::toCoNLL).collect(toList());
+        int n = conll.get(0).size();
+
+        if (named_entities == null) {
+            for (List<String> c : conll)
+                c.add("_");
+        } else {
+            for (Chunk c : named_entities) {
+                int bidx = c.get(0).getTokenID();
+                int eidx = c.get(c.size() - 1).getTokenID();
+
+                if (bidx + 1 == eidx)
+                    conll.get(bidx).add("U-" + c.getLabel());
+                else {
+                    conll.get(bidx).add("B-" + c.getLabel());
+                    conll.get(eidx - 1).add("L-" + c.getLabel());
+                    for (int i = bidx + 1; i < eidx - 1; i++)
+                        conll.get(i).add("I-" + c.getLabel());
+                }
+            }
+
+            for (List<String> c : conll) {
+                if (c.size() < n)
+                    c.add("O");
+            }
+        }
+
+        return conll.stream().map(l -> l.stream().collect(Collectors.joining("\t"))).collect(Collectors.joining("\n"));
     }
 }
 

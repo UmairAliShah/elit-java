@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package cloud.elit.ddr.lemmatization;
+package cloud.elit.ddr.lemmatize.english;
 
 import cloud.elit.ddr.constituency.CTNode;
-import cloud.elit.ddr.lemmatization.english.EnglishAffixMatcherFactory;
-import cloud.elit.ddr.lemmatization.english.EnglishDerivation;
-import cloud.elit.ddr.lemmatization.english.EnglishInflection;
-import cloud.elit.ddr.lemmatization.util.AbstractAffixMatcher;
+import cloud.elit.ddr.lemmatize.Lemmatizer;
+import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
 import cloud.elit.ddr.util.*;
 import org.w3c.dom.Element;
 
@@ -37,7 +35,7 @@ import java.util.Set;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class EnglishLemmatizer extends Lemmatizer {
-    static public final String ROOT = "edu/emory/mathcs/nlp/component/morph/english/";
+    static public final String ROOT = "lemmatize/english/";
 
     final String INFLECTION_SUFFIX = ROOT + "inflection_suffix.xml";
     final String ABBREVIATOIN_RULE = ROOT + "abbreviation.rule";
@@ -139,7 +137,7 @@ public class EnglishLemmatizer extends Lemmatizer {
     }
 
     @Override
-    public String lemmatize(String form, String pos) {
+    public String getLemma(String form, String pos) {
         String lemma = StringUtils.toSimplifiedForm(form, true), t;
 
         if ((t = getAbbreviation(lemma, pos)) != null || (t = getBaseFormFromInflection(lemma, pos)) != null)
@@ -152,7 +150,7 @@ public class EnglishLemmatizer extends Lemmatizer {
     }
 
     public void setLemma(CTNode node) {
-        String lemma = lemmatize(node.getForm(), node.getSyntacticTag());
+        String lemma = getLemma(node.getForm(), node.getSyntacticTag());
 
         if (lemma.equals("'s")) {
             String m = PTBLib.getLemmaOfApostropheS(node);

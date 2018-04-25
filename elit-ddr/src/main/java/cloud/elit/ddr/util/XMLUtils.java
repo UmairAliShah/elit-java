@@ -135,10 +135,10 @@ public class XMLUtils {
 //	{
 //		List<String> contents = new ArrayList<>();
 //		NodeList list = element.getElementsByTagName(tagName);
-//		int i, len = list.getLength();
+//		int d, len = list.getLength();
 //		
-//		for (i=0; i<len; i++)
-//			contents.addToken(XmlUtils.getTrimmedTextContent((Element)list.item(i)));
+//		for (d=0; d<len; d++)
+//			contents.addToken(XmlUtils.getTrimmedTextContent((Element)list.item(d)));
 //		
 //		return contents;
 //	}

@@ -15,12 +15,12 @@
  */
 package cloud.elit.sdk.structure.node;
 
-
-import cloud.elit.sdk.structure.util.NLPUtils;
+import cloud.elit.sdk.structure.util.ELITUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -87,7 +87,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
 
     @Override
     protected int getDefaultIndex(List<NLPNode> list, NLPNode node) {
-        return NLPUtils.binarySearch(list, node);
+        return ELITUtils.binarySearch(list, node);
     }
 
 //  =================================== Fields ===================================
@@ -564,5 +564,43 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
     @Override
     public int compareTo(@NotNull NLPNode o) {
         return token_id - o.token_id;
+    }
+
+    public List<String> toCoNLL() {
+        List<String> list = new ArrayList<>();
+
+        list.add(Integer.toString(token_id + 1));
+        list.add(toCoNLL(token));
+        list.add(toCoNLL(lemma));
+        list.add(toCoNLL(pos_tag));
+        list.add(toCoNLLFeatMap());
+        toCoNLLDependency(list);
+        list.add(toCoNLL(snd_parents));
+
+        return list;
+    }
+
+    private String toCoNLL(String s) {
+        return (s == null) ? "_" : s;
+    }
+
+    private String toCoNLL(List<NLPArc> arcs) {
+        if (arcs == null || arcs.isEmpty()) return "_";
+        return arcs.stream().sorted().map(NLPArc::toCoNLL).collect(Collectors.joining("|"));
+    }
+
+    public String toCoNLLFeatMap() {
+        if (feat_map == null || feat_map.isEmpty()) return "_";
+        return feat_map.entrySet().stream().sorted().map(e -> e.getKey() + '=' + e.getValue()).collect(Collectors.joining("|"));
+    }
+
+    private void toCoNLLDependency(List<String> list) {
+        if (hasParent()) {
+            list.add(Integer.toString(parent.token_id + 1));
+            list.add(toCoNLL(dep_label));
+        } else {
+            list.add("_");
+            list.add("_");
+        }
     }
 }

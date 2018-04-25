@@ -13,11 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cloud.elit.ddr.lemmatization;
+package cloud.elit.ddr.util;
+
+import org.kohsuke.args4j.CmdLineException;
+import org.kohsuke.args4j.CmdLineParser;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public abstract class Lemmatizer {
-    public abstract String lemmatize(String form, String pos);
+public class BinUtils {
+    private BinUtils() {
+    }
+
+    /**
+     * Initializes arguments using args4j.
+     */
+    static public void initArgs(String[] args, Object bean) {
+        CmdLineParser cmd = new CmdLineParser(bean);
+
+        try {
+            cmd.parseArgument(args);
+        } catch (CmdLineException e) {
+            System.err.println(e.getMessage());
+            cmd.printUsage(System.err);
+            System.exit(1);
+        }
+    }
 }

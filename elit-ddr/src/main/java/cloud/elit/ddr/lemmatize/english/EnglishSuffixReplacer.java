@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cloud.elit.ddr.lemmatization.english;
+package cloud.elit.ddr.lemmatize.english;
 
-import cloud.elit.ddr.lemmatization.util.AbstractAffixReplacer;
+import cloud.elit.ddr.lemmatize.util.AbstractAffixReplacer;
 
 import java.util.Map;
 import java.util.Set;

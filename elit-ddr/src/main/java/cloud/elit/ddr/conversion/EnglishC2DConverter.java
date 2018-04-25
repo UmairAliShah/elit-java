@@ -21,7 +21,7 @@ import cloud.elit.ddr.constituency.CTTree;
 import cloud.elit.ddr.conversion.headrule.HeadRule;
 import cloud.elit.ddr.conversion.headrule.HeadRuleMap;
 import cloud.elit.ddr.dictionary.Emoticon;
-import cloud.elit.ddr.lemmatization.EnglishLemmatizer;
+import cloud.elit.ddr.lemmatize.english.EnglishLemmatizer;
 import cloud.elit.ddr.util.*;
 import cloud.elit.sdk.structure.Sentence;
 import cloud.elit.sdk.structure.node.NLPArc;
@@ -89,8 +89,8 @@ public class EnglishC2DConverter extends C2DConverter {
 //	======================== Constructors ========================
 
     public EnglishC2DConverter() {
-        this(new HeadRuleMap(IOUtils.getInputStreamsFromResource("edu/emory/mathcs/nlp/conversion/en-headrules.txt")),
-                IOUtils.readSet(IOUtils.getInputStreamsFromResource("edu/emory/mathcs/nlp/conversion/en-eventive-nouns.txt")));
+        this(new HeadRuleMap(IOUtils.getInputStreamsFromResource("conversion/en-headrules.txt")),
+                IOUtils.readSet(IOUtils.getInputStreamsFromResource("conversion/en-eventive-nouns.txt")));
     }
 
     public EnglishC2DConverter(HeadRuleMap headrules, Set<String> eventive_nouns) {
@@ -1337,16 +1337,16 @@ public class EnglishC2DConverter extends C2DConverter {
 //{
 //	CTNode curr, next;
 //	
-//	for (int i=0; i<auxs.size()-1; i++)
+//	for (int d=0; d<auxs.size()-1; d++)
 //	{
-//		curr = auxs.get(i);
-//		next = auxs.get(i+1);
+//		curr = auxs.get(d);
+//		next = auxs.get(d+1);
 //		
 //		if (curr.isLemma("go"))
 //		{
-//			if (0 < i)
+//			if (0 < d)
 //			{
-//				CTNode prev = auxs.get(i-1);
+//				CTNode prev = auxs.get(d-1);
 //				
 //				if (prev.isLemma("be") && next.isLemma("to"))
 //				{
@@ -1372,11 +1372,11 @@ public class EnglishC2DConverter extends C2DConverter {
 //	if (aux.isLemma("will") || aux.isLemma("shall"))
 //		return Tense.future;
 //	
-//	for (int i=1; i<auxs.size()-1; i++)
+//	for (int d=1; d<auxs.size()-1; d++)
 //	{
-//		aux = auxs.get(i);
-//		CTNode prev = auxs.get(i-1);
-//		CTNode next = auxs.get(i+1);
+//		aux = auxs.get(d);
+//		CTNode prev = auxs.get(d-1);
+//		CTNode next = auxs.get(d+1);
 //
 //		if (aux.isLemma("go") && prev.isLemma("be") && next.isLemma("to"))
 //		{
@@ -1449,9 +1449,9 @@ public class EnglishC2DConverter extends C2DConverter {
 //{
 //	Set<String> modals = new HashSet<>();
 //	
-//	for (int i=0; i<auxs.size(); i++)
+//	for (int d=0; d<auxs.size(); d++)
 //	{
-//		CTNode aux = auxs.get(i);
+//		CTNode aux = auxs.get(d);
 //		
 //		if (aux.isSyntacticTag(PTBTag.P_MD))
 //		{
@@ -1460,7 +1460,7 @@ public class EnglishC2DConverter extends C2DConverter {
 //		}
 //		else if (isSemiModal(aux))
 //		{
-//			if (i+1 < auxs.size() && auxs.get(i+1).isLemma("to"))
+//			if (d+1 < auxs.size() && auxs.get(d+1).isLemma("to"))
 //				modals.add(aux.getLemma());
 //		}
 //	}
@@ -1480,9 +1480,9 @@ public class EnglishC2DConverter extends C2DConverter {
 //	
 //	private void deepLabel(NLPNode[] tree)
 //	{
-//		for (int i=1; i<tree.length; i++)
+//		for (int d=1; d<tree.length; d++)
 //		{
-//			NLPNode node = tree[i];
+//			NLPNode node = tree[d];
 //			
 //			if (node.isDependencyLabel(DDGTag.ADV))
 //			{
@@ -1532,9 +1532,9 @@ public class EnglishC2DConverter extends C2DConverter {
 //				changeLabel(list.get(0), DDGTag.DAT);
 //		}
 //		
-//		for (int i=1; i<tree.length; i++)
+//		for (int d=1; d<tree.length; d++)
 //		{
-//			NLPNode node = tree[i];
+//			NLPNode node = tree[d];
 //			
 //			switch (node.getDependencyLabel())
 //			{
@@ -1570,7 +1570,7 @@ public class EnglishC2DConverter extends C2DConverter {
 //			return true;
 //		}
 //		// dative
-//		else if (PTBTag.F_BNF.equals(node.getFeat(NLPUtils.FEAT_SEM)))
+//		else if (PTBTag.F_BNF.equals(node.getFeat(ELITUtils.FEAT_SEM)))
 //		{
 //			NLPNode head = node.getParent();
 //			if (PTBLib.isVerb(head.getSyntacticTag()) && transfer_verbs.contains(head.getLemma()))
@@ -1589,7 +1589,7 @@ public class EnglishC2DConverter extends C2DConverter {
 //		NLPNode[] dTree = initDependencyGraph(cTree);
 //		addDEPHeads(dTree, cTree);
 //		
-//		if (NLPUtils.containsCycle(dTree))
+//		if (ELITUtils.containsCycle(dTree))
 //			throw new UnknownFormatConversionException("Cyclic depedency relation.");
 //
 //		addSecondaryCoord(dTree);
@@ -1613,23 +1613,23 @@ public class EnglishC2DConverter extends C2DConverter {
 //
 //	private boolean findHeadHyphen(CTNode node)
 //	{
-//		int i, size = node.numChildren();
+//		int d, size = node.numChildren();
 //		CTNode prev, hyph, next;
 //		boolean isFound = false;
 //		boolean isVP = node.isSyntacticTag(PTBTag.C_VP);
 //		
-//		for (i=0; i<size-2; i++)
+//		for (d=0; d<size-2; d++)
 //		{
-//			prev = node.getChild(i);
-//			hyph = node.getChild(i+1);
-//			next = node.getChild(i+2);
+//			prev = node.getChild(d);
+//			hyph = node.getChild(d+1);
+//			next = node.getChild(d+2);
 //			
 //			if (hyph.isSyntacticTag(PTBTag.P_HYPH))
 //			{
 //				prev.setPrimaryHead(next, DDGTag.COM);
 //				hyph.setPrimaryHead(next, DDGTag.P);
 //				isFound = true;
-//				i++;
+//				d++;
 //			}
 //		}
 //		
@@ -1651,10 +1651,10 @@ public class EnglishC2DConverter extends C2DConverter {
 //		}
 //		
 //		if ((feat = getFunctionTags(cNode, SEM_TAGS)) != null)
-//			cNode.getC2DInfo().putFeat(NLPUtils.FEAT_SEM, feat);
+//			cNode.getC2DInfo().putFeat(ELITUtils.FEAT_SEM, feat);
 //		
 //		if ((feat = getFunctionTags(cNode, SYN_TAGS)) != null)
-//			cNode.getC2DInfo().putFeat(NLPUtils.FEAT_SYN, feat);
+//			cNode.getC2DInfo().putFeat(ELITUtils.FEAT_SYN, feat);
 //
 //		for (CTNode child : cNode.getChildren())
 //			addFeats(dTree, cTree, child);
@@ -1694,9 +1694,9 @@ public class EnglishC2DConverter extends C2DConverter {
 //			
 //		addEditedTokensAux(cTree.getRoot(), set);
 //			
-//		for (int i=1; i<dTree.length; i++)
+//		for (int d=1; d<dTree.length; d++)
 //		{
-//			NLPNode node = dTree[i];
+//			NLPNode node = dTree[d];
 //			
 //			if (!set.contains(node.getTokenID()))
 //			{
@@ -1707,7 +1707,7 @@ public class EnglishC2DConverter extends C2DConverter {
 //			}
 //		}
 //		
-//		return (nodes.size() > 0) ? NLPUtils.toDependencyTree(nodes, NLPNode::new) : null;
+//		return (nodes.size() > 0) ? ELITUtils.toDependencyTree(nodes, NLPNode::new) : null;
 //	}
 //		
 //	/** Called by {@link #getDEPTreeWithoutEdited(CTTree, DEPTree)}. */
@@ -1757,7 +1757,7 @@ public class EnglishC2DConverter extends C2DConverter {
 //		if (dNode != null)
 //		{
 //			if (cNode.isPredicate())
-//				dNode.putFeat(NLPUtils.FEAT_PREDICATE, cNode.getFrameID());
+//				dNode.putFeat(ELITUtils.FEAT_PREDICATE, cNode.getFrameID());
 //			
 //			NLPNode sHead, d;
 //			String  label;

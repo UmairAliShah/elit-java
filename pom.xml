@@ -21,6 +21,7 @@
         <module>elit-sdk</module>
         <module>elit-ddr</module>
         <module>elit-component</module>
+        <module>elit-vsm</module>
     </modules>
 
     <licenses>

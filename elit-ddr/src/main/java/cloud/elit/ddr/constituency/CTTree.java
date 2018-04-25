@@ -198,17 +198,17 @@ public class CTTree {
 //	
 //	public boolean compareBrackets(CTTree tree)
 //	{
-//		int i, size = terminals.size();
+//		int d, size = terminals.size();
 //		
 //		if (size != tree.getTerminals().size())
 //			return false;
 //		
 //		CTNode node1, node2;
 //		
-//		for (i=0; i<size; i++)
+//		for (d=0; d<size; d++)
 //		{
-//			node1 = getTerminal(i);
-//			node2 = tree.getTerminal(i);
+//			node1 = getTerminal(d);
+//			node2 = tree.getTerminal(d);
 //			
 //			if (node1.distanceToTop() != node2.distanceToTop())
 //				return false;

@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cloud.elit.sdk.structure.node;
 
-/**
- * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
- */
-public class NLPArc extends Arc<NLPNode> {
-    public NLPArc(NLPNode node, String label) {
-        super(node, label);
+package cloud.elit.vsm.morphology;
+
+public enum AffixType {
+    PREFIX(-1),
+    SUFFIX(1),
+    INFIX(0);
+
+    private int direction;
+
+    AffixType(int direction) {
+        this.direction = direction;
     }
 
-    @Override
-    public String toString() {
-        return "[" + node.getTokenID() + ",\"" + label + "\"]";
-    }
-
-    public String toCoNLL() {
-        return node.getTokenID() + ":" + label;
+    public int getDirection() {
+        return direction;
     }
 }

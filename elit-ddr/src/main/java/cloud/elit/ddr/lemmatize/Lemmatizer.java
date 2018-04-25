@@ -13,26 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cloud.elit.ddr.dictionary;
-
-import cloud.elit.ddr.util.CharUtils;
+package cloud.elit.ddr.lemmatize;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public abstract class Dictionary {
-    static public final String ROOT = "dictionary/";
-
-    public String[] tokenize(String s) {
-        char[] lcs = s.toCharArray();
-        String lower = CharUtils.toLowerCase(lcs) ? new String(lcs) : s;
-        return tokenize(s, lower, lcs);
-    }
-
-    /**
-     * @param original the original string.
-     * @param lower    the lowercase of the original string.
-     * @param lcs      the lowercase character array of the original string.
-     */
-    abstract public String[] tokenize(String original, String lower, char[] lcs);
+public abstract class Lemmatizer {
+    public abstract String getLemma(String form, String pos);
 }

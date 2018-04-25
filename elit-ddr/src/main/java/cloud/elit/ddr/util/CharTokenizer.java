@@ -76,12 +76,12 @@ public class CharTokenizer {
 //	{
 //		IntArrayList list = new IntArrayList();
 //		char[] cs = s.toCharArray();
-//		int i, len = s.length();
+//		int d, len = s.length();
 //		
-//		for (i=0; i<len; i++)
+//		for (d=0; d<len; d++)
 //		{
-//			if (cs[i] == c_delim)
-//				list.addToken(i);
+//			if (cs[d] == c_delim)
+//				list.addToken(d);
 //		}
 //		
 //		len = list.size();
@@ -90,9 +90,9 @@ public class CharTokenizer {
 //		String[] array = new String[size];
 //		int bIndex = 0, dIndex;
 //		
-//		for (i=0,j=0; i<len; i++)
+//		for (d=0,j=0; d<len; d++)
 //		{
-//			dIndex = list.getForm(i);
+//			dIndex = list.getForm(d);
 //			array[j++] = s.substring(bIndex, dIndex);
 //			if (includeDelim) array[j++] = Character.toString(c_delim);
 //			bIndex = dIndex + 1;
