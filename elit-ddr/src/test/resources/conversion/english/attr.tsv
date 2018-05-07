@@ -1,0 +1,9 @@
+1	A	a	DT	_	4	det	_
+2	young	young	JJ	_	4	attr	_
+3	beautiful	beautiful	JJ	_	4	attr	_
+4	woman	woman	NN	_	0	root	_
+
+1	The	the	DT	_	4	det	_
+2	last	last	JJ	_	4	attr	_
+3	six	#crd#	CD	_	4	num	_
+4	weeks	week	NNS	_	0	root	_

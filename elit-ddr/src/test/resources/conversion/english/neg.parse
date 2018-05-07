@@ -1,0 +1,19 @@
+(TOP (SBARQ (WHADVP-1 (WRB Why))
+            (SQ (VBP are)
+                (NP-SBJ (PRP they))
+                (RB not)
+                (VP (VBG studying)))))
+
+(TOP (S (NP-SBJ (PRP They))
+        (ADVP-TMP (RB never))
+        (VP (VB study))))
+
+(TOP (S (NP-SBJ (PRP It))
+        (VP (VBZ 's)
+            (RB no)
+            (ADJP-PRD (JJ good)))))
+
+(TOP (S (NP-SBJ (PRP They))
+        (ADVP-TMP (RB no)
+                  (RB longer))
+        (VP (VBP study))))

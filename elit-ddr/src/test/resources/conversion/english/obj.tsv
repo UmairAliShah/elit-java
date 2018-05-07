@@ -1,0 +1,31 @@
+1	John	john	NNP	_	2	nsbj	_
+2	bought	buy	VBD	_	0	root	_
+3	a	a	DT	_	4	det	_
+4	book	book	NN	_	2	obj	_
+
+1	A	a	DT	_	2	det	_
+2	book	book	NN	_	4	obj	_
+3	was	be	VBD	_	4	aux	_
+4	bought	buy	VBN	_	0	root	_
+5	by	by	IN	_	6	case	_
+6	John	john	NNP	_	4	nsbj	_
+
+1	A	a	DT	_	2	det	_
+2	book	book	NN	_	7	nsbj	3:obj
+3	bought	buy	VBN	_	2	acl	_
+4	by	by	IN	_	5	case	_
+5	John	john	NNP	_	3	nsbj	_
+6	was	be	VBD	_	7	cop	_
+7	new	new	JJ	_	0	root	_
+
+1	John	john	NNP	_	3	nsbj	_
+2	is	be	VBZ	_	3	cop	_
+3	in	in	IN	sem=loc	0	root	_
+4	Atlanta	atlanta	NNP	_	3	obj	_
+
+1	I	I	PRP	_	2	nsbj	_
+2	named	name	VBD	_	0	root	_
+3	John	john	NNP	_	2	obj	4:nsbj
+4	after	after	IN	sem=clr	2	comp	_
+5	the	the	DT	_	6	det	_
+6	baptist	baptist	NN	_	4	obj	_

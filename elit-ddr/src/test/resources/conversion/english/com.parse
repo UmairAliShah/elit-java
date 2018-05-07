@@ -1,0 +1,21 @@
+(TOP (QP (CD 1)
+         (CD hundred)
+         (TO to)
+         (CD 2)
+         (NNS hundreds)))
+
+(TOP (QP (CD 100)
+         (HYPH -)
+         (CD 200)))
+
+
+(TOP (NP (NNP Mr.)
+          (NNP al)
+          (HYPH -)
+          (NNP Rubaie)))
+
+(TOP (NP (DT A)
+         (NML (NN radio)
+              (NN talk)
+              (NN show))
+         (NN host)))

@@ -1,0 +1,9 @@
+(TOP (NP (DT A)
+         (JJ young)
+         (JJ beautiful)
+         (NN woman)))
+
+(TOP (NP (DT The)
+         (JJ last)
+         (CD six)
+         (NNS weeks)))

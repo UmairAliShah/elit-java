@@ -1,0 +1,22 @@
+1	I	I	PRP	_	3	nsbj	_
+2	was	be	VBD	_	3	cop	_
+3	sure	sure	JJ	_	0	root	_
+4	that	that	IN	_	6	mark	_
+5	John	john	PRP	_	6	nsbj	_
+6	studied	study	VBD	_	3	comp	_
+
+1	I	I	PRP	_	4	nsbj	_
+2	was	be	VBD	_	4	cop	_
+3	not	not	RB	_	4	neg	_
+4	sure	sure	JJ	_	0	root	_
+5	whether	whether	IN	_	7	mark	_
+6	John	john	PRP	_	7	nsbj	_
+7	studied	study	VBD	_	4	comp	_
+
+1	I	I	PRP	_	4	nsbj	_
+2	was	be	VBD	_	4	cop	_
+3	not	not	RB	_	4	neg	_
+4	sure	sure	JJ	_	0	root	_
+5	if	if	IN	_	7	mark	_
+6	John	john	PRP	_	7	nsbj	_
+7	studied	study	VBD	_	4	comp	_

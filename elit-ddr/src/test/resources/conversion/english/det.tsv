@@ -1,0 +1,15 @@
+1	John	john	NNP	_	2	nsbj	_
+2	helped	help	VBD	_	0	root	_
+3	quite	quite	PDT	_	5	det	_
+4	a	a	DT	_	5	det	_
+5	bit	bit	NN	sem=ext	2	advnp	_
+
+1	All	all	PDT	_	3	det	_
+2	that	that	DT	_	3	det	_
+3	help	help	NN	_	0	root	_
+
+1	What	what	WP	_	3	det	_
+2	a	a	DT	_	3	det	_
+3	difference	difference	NN	_	0	root	_
+4	he	he	PRP	_	3	nsbj	_
+5	made	make	VBD	_	3	lv	_

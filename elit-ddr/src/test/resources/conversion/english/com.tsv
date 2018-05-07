@@ -1,0 +1,20 @@
+1	1	0	CD	_	2	com	_
+2	hundred	#crd#	CD	_	0	root	_
+3	to	to	TO	_	2	cc	_
+4	2	0	CD	_	5	com	_
+5	hundreds	#crd#	CD	_	2	conj	_
+
+1	100	0	CD	_	3	com	_
+2	-	-	HYPH	_	3	p	_
+3	200	0	CD	_	0	root	_
+
+1	Mr.	mr.	NNP	_	4	com	_
+2	al	al	NNP	_	4	com	_
+3	-	-	HYPH	_	4	p	_
+4	Rubaie	rubaie	NNP	_	0	root	_
+
+1	A	a	DT	_	5	det	_
+2	radio	radio	NN	_	4	com	_
+3	talk	talk	NN	_	4	com	_
+4	show	show	NN	_	5	com	_
+5	host	host	NN	_	0	root	_

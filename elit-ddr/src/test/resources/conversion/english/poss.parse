@@ -1,0 +1,16 @@
+(TOP (NP (PRP$ His)
+         (NN book)))
+
+(TOP (NP (NP (NNP John)
+             (POS 's))
+         (NN book)))
+
+(TOP (NP (NP (NNP Denis)
+             (POS '))
+         (NN book)))
+
+(TOP (NP (NP (PRP$ My)
+             (NN son)
+             (POS 's))
+         (NN dad)))
+  

@@ -1,0 +1,13 @@
+1	John	john	NNP	_	4	voc	_
+2	,	,	,	_	4	p	_
+3	I	I	PRP	_	4	nsbj	_
+4	studied	study	VBD	_	0	root	_
+
+1	Come	come	VB	_	0	root	_
+2	on	on	RP	_	1	prt	_
+3	,	,	,	_	1	p	_
+4	guys	guy	NNS	_	1	voc	_
+
+1	Thanks	thanks	UH	_	0	root	_
+2	,	,	,	_	1	p	_
+3	John	john	NNP	_	1	voc	_

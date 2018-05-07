@@ -1,0 +1,18 @@
+1	If	if	IN	_	3	mark	_
+2	you	you	PRP	_	3	nsbj	_
+3	go	go	VBP	_	6	advcl	_
+4	,	,	,	_	6	p	_
+5	I	I	PRP	_	6	nsbj	_
+6	go	go	VBP	_	0	root	_
+
+1	I	I	PRP	_	2	nsbj	_
+2	go	go	VBP	_	0	root	_
+3	where	where	WRB	sem=dir	5	adv	_
+4	you	you	PRP	_	5	nsbj	_
+5	go	go	VBP	sem=loc	2	advcl	_
+
+1	You	you	NNP	_	2	nsbj	4:nsbj
+2	came	come	VBD	_	0	root	_
+3	to	to	TO	_	4	aux	_
+4	see	see	VB	sem=prp	2	advcl	_
+5	me	me	PRP	_	4	obj	_

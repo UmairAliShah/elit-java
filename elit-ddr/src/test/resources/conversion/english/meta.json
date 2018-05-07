@@ -1,0 +1,1 @@
+[{"sid":0,"tok":["First","Sam",",","Second","John",",","and","Third",",","Sarah"],"lem":["#ord#","sam",",","#ord#","john",",","and","#ord#",",","sarah"],"pos":["LS","NNP",",","LS","NNP",",","CC","LS",",","NNP"],"dep":[[1,"meta"],[-1,"root"],[1,"p"],[4,"meta"],[1,"conj"],[4,"p"],[4,"cc"],[9,"meta"],[9,"p"],[1,"conj"]]}]

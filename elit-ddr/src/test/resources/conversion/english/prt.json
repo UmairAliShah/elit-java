@@ -1,0 +1,1 @@
+[{"sid":0,"tok":["He","threw","away","the","book"],"lem":["he","throw","away","the","book"],"pos":["PRP","VBD","RP","DT","NN"],"dep":[[1,"nsbj"],[-1,"root"],[1,"prt"],[4,"det"],[1,"obj"]]},{"sid":1,"tok":["He","threw","the","book","away"],"lem":["he","throw","the","book","away"],"pos":["PRP","VBD","DT","NN","RP"],"dep":[[1,"nsbj"],[-1,"root"],[3,"det"],[1,"obj"],[1,"prt"]]}]

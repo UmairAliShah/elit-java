@@ -1,0 +1,53 @@
+1	I	I	PRP	_	3	nsbj	_
+2	will	will	MD	_	3	modal	_
+3	study	study	VB	_	0	root	_
+
+1	Should	should	MD	_	3	modal	_
+2	I	I	PRP	_	3	nsbj	_
+3	study	study	VB	_	0	root	_
+
+1	I	I	PRP	_	4	nsbj	_
+2	need	need	MD	_	4	modal	_
+3	not	not	RB	_	4	neg	_
+4	study	study	VB	_	0	root	_
+
+1	I	I	PRP	_	5	nsbj	_
+2	am	be	VBP	_	5	aux	_
+3	willing	willing	JJ	_	5	modal	_
+4	to	to	TO	_	5	aux	_
+5	study	study	VB	_	0	root	_
+
+1	I	I	PRP	_	6	nsbj	_
+2	would	would	MD	_	6	modal	_
+3	be	be	VB	_	6	aux	_
+4	able	able	JJ	_	6	modal	_
+5	to	to	TO	_	6	aux	_
+6	study	study	VB	_	0	root	_
+
+1	I	I	PRP	_	5	nsbj	_
+2	am	be	VBP	_	5	aux	_
+3	about	about	JJ	_	5	modal	_
+4	to	to	TO	_	5	aux	_
+5	study	study	VB	_	0	root	_
+
+1	Am	be	VBP	_	5	aux	_
+2	I	I	PRP	_	5	nsbj	_
+3	about	about	JJ	_	5	modal	_
+4	to	to	TO	_	5	aux	_
+5	study	study	VB	_	0	root	_
+
+1	This	this	DT	_	2	det	_
+2	book	book	NN	_	4	nsbj	_
+3	is	be	VBZ	_	4	cop	_
+4	easy	easy	JJ	_	0	root	_
+5	to	to	TO	_	6	aux	_
+6	read	read	VB	_	4	comp	_
+
+1	This	this	DT	_	2	det	_
+2	book	book	NN	_	4	nsbj	_
+3	is	be	VBZ	_	4	cop	_
+4	easy	easy	JJ	_	0	root	_
+5	for	for	IN	_	8	mark	_
+6	me	me	PRP	_	8	nsbj	_
+7	to	to	TO	_	8	aux	_
+8	read	read	VB	_	4	comp	_

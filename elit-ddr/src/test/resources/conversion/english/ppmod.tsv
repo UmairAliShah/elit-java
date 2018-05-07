@@ -1,0 +1,23 @@
+1	Emory	emory	NNP	_	2	com	_
+2	University	university	NNP	_	0	root	_
+3	in	in	IN	_	4	case	_
+4	Atlanta	atlanta	NNP	sem=loc	2	ppmod	_
+
+1	The	the	DT	_	2	det	_
+2	result	result	NN	_	0	root	_
+3	of	of	IN	_	4	case	_
+4	studying	study	VBG	_	2	ppmod	_
+5	hard	hard	RB	sem=mnr	4	adv	_
+
+1	I	I	PRP	_	2	nsbj	_
+2	studied	study	VBD	_	0	root	_
+3	for	for	IN	_	5	case	_
+4	two	#crd#	CD	_	5	num	_
+5	days	days	NN	sem=tmp	2	ppmod	_
+
+1	I	I	PRP	_	2	nsbj	_
+2	moved	move	VBD	_	0	root	_
+3	from	from	IN	_	4	case	_
+4	Athens	athens	NNP	sem=dir	2	ppmod	_
+5	to	to	IN	_	6	case	_
+6	Atlanta	atlanta	NNP	sem=dir	2	ppmod	_

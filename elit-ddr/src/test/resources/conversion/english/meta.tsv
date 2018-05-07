@@ -1,0 +1,10 @@
+1	First	#ord#	LS	_	2	meta	_
+2	Sam	sam	NNP	_	0	root	_
+3	,	,	,	_	2	p	_
+4	Second	#ord#	LS	_	5	meta	_
+5	John	john	NNP	_	2	conj	_
+6	,	,	,	_	5	p	_
+7	and	and	CC	_	5	cc	_
+8	Third	#ord#	LS	_	10	meta	_
+9	,	,	,	_	10	p	_
+10	Sarah	sarah	NNP	_	2	conj	_

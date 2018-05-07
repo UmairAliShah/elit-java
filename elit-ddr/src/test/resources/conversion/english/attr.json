@@ -1,0 +1,1 @@
+[{"sid":0,"tok":["A","young","beautiful","woman"],"lem":["a","young","beautiful","woman"],"pos":["DT","JJ","JJ","NN"],"dep":[[3,"det"],[3,"attr"],[3,"attr"],[-1,"root"]]},{"sid":1,"tok":["The","last","six","weeks"],"lem":["the","last","#crd#","week"],"pos":["DT","JJ","CD","NNS"],"dep":[[3,"det"],[3,"attr"],[3,"num"],[-1,"root"]]}]

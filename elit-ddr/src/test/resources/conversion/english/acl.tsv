@@ -1,0 +1,21 @@
+1	I	I	PRP	_	2	nsbj	_
+2	have	have	VBP	_	0	root	_
+3	homework	homework	NN	_	2	obj	_
+4	to	to	TO	_	5	aux	_
+5	do	do	VB	_	3	acl	_
+
+1	The	the	DT	_	2	det	_
+2	homework	homework	NN	_	7	nsbj	3:obj
+3	assigned	assign	VBN	_	2	acl	_
+4	by	by	IN	_	5	case	_
+5	John	john	NNS	_	3	nsbj	_
+6	was	be	VBD	_	7	cop	_
+7	hard	hard	JJ	_	0	root	_
+
+1	I	I	PRP	_	2	nsbj	_
+2	found	find	VBD	_	0	root	_
+3	an	an	DT	_	4	det	_
+4	evidence	evidence	NN	_	2	obj	_
+5	that	that	IN	_	7	mark	_
+6	John	john	NN	_	7	nsbj	_
+7	studied	study	VBD	_	4	acl	_

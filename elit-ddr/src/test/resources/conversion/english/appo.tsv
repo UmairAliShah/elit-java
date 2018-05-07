@@ -1,0 +1,26 @@
+1	John	john	NNP	_	0	root	_
+2	,	,	,	_	1	p	_
+3	the	the	DT	_	4	det	_
+4	baptist	baptist	NN	_	1	appo	_
+
+1	John	john	NNP	_	0	root	_
+2	(	-lrb-	-LRB-	_	1	p	_
+3	the	the	DT	_	4	det	_
+4	baptist	baptist	NN	_	1	appo	_
+5	)	-rrb-	-RRB-	_	1	p	_
+
+1	The	the	DT	_	2	det	_
+2	year	year	NN	sem=tmp	0	root	_
+3	2016	0	CD	_	2	appo	_
+
+1	John	john	NNP	_	3	nsbj	_
+2	himself	himself	PRP	_	1	appo	_
+3	baptized	baptize	VBD	_	0	root	_
+4	Jesus	jesus	NNP	_	3	obj	_
+
+1	John	john	NNP	_	0	root	_
+2	,	,	,	_	1	p	_
+3	by	by	IN	_	4	case	_
+4	now	now	RB	sem=tmp	6	ppmod	_
+5	a	a	DT	_	6	det	_
+6	baptist	baptist	NN	_	1	appo	_

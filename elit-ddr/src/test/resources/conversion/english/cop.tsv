@@ -1,0 +1,55 @@
+1	John	john	NNP	_	4	nsbj	_
+2	is	be	VBZ	_	4	cop	_
+3	a	a	DT	_	4	det	_
+4	student	student	NN	_	0	root	_
+
+1	John	john	NNP	_	3	nsbj	_
+2	is	be	VBZ	_	3	cop	_
+3	smart	smart	JJ	_	0	root	_
+
+1	John	john	NNP	_	3	nsbj	_
+2	is	be	VBZ	_	3	cop	_
+3	back	back	RB	_	0	root	_
+
+1	John	john	NNP	_	3	nsbj	_
+2	is	be	VBZ	_	3	cop	_
+3	in	in	IN	sem=loc	0	root	_
+4	Atlanta	atlanta	NNP	_	3	obj	_
+
+1	John	john	NNP	_	3	nsbj	_
+2	is	be	VBZ	_	3	cop	_
+3	like	like	IN	_	0	root	_
+4	who	who	WP	_	6	obj	_
+5	I	I	PRP	_	6	nsbj	_
+6	imagined	imagine	VBD	_	3	comp	_
+
+1	John	john	NNP	_	4	nsbj	_
+2	is	be	VBZ	_	4	cop	_
+3	all	all	RB	_	4	adv	_
+4	about	about	IN	_	0	root	_
+5	studying	study	VBG	_	4	comp	_
+6	hard	hard	RB	_	5	adv	_
+
+1	John	john	NNP	_	4	nsbj	_
+2	becomes	become	VBZ	_	4	cop	_
+3	a	a	DT	_	4	det	_
+4	student	student	NN	_	0	root	_
+
+1	John	john	NNP	_	3	nsbj	_
+2	remains	remain	VBZ	_	3	cop	_
+3	smart	smart	JJ	_	0	root	_
+
+1	The	the	DT	_	2	det	_
+2	fact	fact	NN	_	3	nsbj	_
+3	is	be	VBZ	_	0	root	_
+4	that	that	IN	_	6	mark	_
+5	John	john	NNP	_	6	nsbj	_
+6	studies	study	VBZ	_	3	comp	_
+7	hard	hard	RB	sem=mnr	6	adv	_
+
+1	My	my	PRP$	_	2	poss	_
+2	goal	goal	NN	_	3	nsbj	_
+3	is	be	VBZ	_	0	root	_
+4	to	to	TO	_	5	aux	_
+5	study	study	VB	_	3	comp	_
+6	hard	hard	RB	sem=mnr	5	adv	_

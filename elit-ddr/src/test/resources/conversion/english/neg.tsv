@@ -1,0 +1,19 @@
+1	Why	why	WRB	_	5	adv	_
+2	are	be	VBP	_	5	aux	_
+3	they	they	PRP	_	5	nsbj	_
+4	not	not	RB	_	5	neg	_
+5	studying	study	VBG	_	0	root	_
+
+1	They	they	PRP	_	3	nsbj	_
+2	never	never	RB	sem=tmp	3	neg	_
+3	study	study	VB	_	0	root	_
+
+1	It	it	PRP	_	4	nsbj	_
+2	's	be	VBZ	_	4	cop	_
+3	no	no	RB	_	4	neg	_
+4	good	good	JJ	_	0	root	_
+
+1	They	they	PRP	_	4	nsbj	_
+2	no	no	RB	_	3	com	_
+3	longer	longer	RB	sem=tmp	4	neg	_
+4	study	study	VBP	_	0	root	_

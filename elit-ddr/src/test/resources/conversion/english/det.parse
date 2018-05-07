@@ -1,0 +1,16 @@
+(TOP (S (NP-SBJ (NNP John))
+     (VP (VBD helped)
+         (NP-EXT (PDT quite)
+                 (DT a)
+                 (NN bit)))))
+
+ (TOP (NP (PDT All)
+          (DT that)
+          (NN help)))
+
+(TOP (SBAR (WHNP-1 (WP What)
+                   (DT a)
+                   (NN difference))
+           (S (NP-SBJ (PRP he))
+              (VP (VBD made)
+                  (NP (-NONE- *T*-1))))))

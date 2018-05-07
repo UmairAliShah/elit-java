@@ -1,0 +1,16 @@
+1	Two	#crd#	CD	_	5	num	_
+2	-	-	HYPH	_	5	p	_
+3	tenth	#ord#	CD	_	5	num	_
+4	of	of	IN	_	5	case	_
+5	one	#crd#	CD	_	6	num	_
+6	percent	percent	NN	_	0	root	_
+
+1	A	a	DT	_	5	det	_
+2	hundred	#crd#	CD	_	5	com	_
+3	thirty	#crd#	CD	_	5	com	_
+4	nine	#crd#	CD	_	5	com	_
+5	thousand	#crd#	CD	_	9	num	_
+6	or	or	CC	_	5	cc	_
+7	so	so	RB	_	5	conj	_
+8	US	us	NNP	_	9	com	_
+9	troops	troop	NNS	_	0	root	_
