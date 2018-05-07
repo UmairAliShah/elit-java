@@ -15,13 +15,17 @@
  */
 package cloud.elit.sdk.structure;
 
+import cloud.elit.sdk.structure.node.NLPArc;
 import cloud.elit.sdk.structure.node.NLPNode;
-import cloud.elit.sdk.structure.util.Fields;
 import cloud.elit.sdk.structure.util.ELITUtils;
+import cloud.elit.sdk.structure.util.Fields;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -99,7 +103,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
     }
 
     public NLPNode get(int index) {
-        return nodes.get(index);
+        return index < 0 ? root : nodes.get(index);
     }
 
     public boolean add(NLPNode node) {
@@ -138,6 +142,10 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         return named_entities.get(index);
     }
 
+    public void addNamedEntity(Chunk entity) {
+        named_entities.add(entity);
+    }
+
     public List<String> getTokens() {
         return nodes.stream().map(NLPNode::getToken).collect(toList());
     }
@@ -172,16 +180,27 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         joiner.add("\"" + Fields.TOK + "\":" + toStringList(NLPNode::getToken));
         if (node.getEndOffset() > 0) joiner.add("\"" + Fields.OFF + "\":" + toStringOffsets());
         if (node.getLemma() != null) joiner.add("\"" + Fields.LEM + "\":" + toStringList(NLPNode::getLemma));
+
         if (node.getPartOfSpeechTag() != null)
             joiner.add("\"" + Fields.POS + "\":" + toStringList(NLPNode::getPartOfSpeechTag));
-        if (named_entities != null) joiner.add("\"" + Fields.NER + "\":" + named_entities.toString());
-        if (node.getDependencyLabel() != null) joiner.add("\"" + Fields.DEP + "\":" + toStringPrimaryDependencies());
+
+        if (named_entities != null && !named_entities.isEmpty())
+            joiner.add("\"" + Fields.NER + "\":" + named_entities.toString());
+
+        if (node.getDependencyLabel() != null)
+            joiner.add("\"" + Fields.DEP + "\":" + toStringPrimaryDependencies());
+
+        String s = toStringSecondaryDependencies();
+        if (s != null) joiner.add("\"" + Fields.DEP2 + "\":" + s);
+
+        s = toStringSemanticTags();
+        if (s != null) joiner.add("\"" + Fields.SEM + "\":" + s);
 
         return "{" + joiner.toString() + "}";
     }
 
     private String toStringList(Function<NLPNode, String> f) {
-        return "[" + nodes.stream().map(n -> "\"" + f.apply(n) + "\"").collect(Collectors.joining(",")) + "]";
+        return "[" + nodes.stream().map(n -> "\"" + f.apply(n).replace("\"", "\\\"") + "\"").collect(Collectors.joining(",")) + "]";
     }
 
     private String toStringOffsets() {
@@ -192,14 +211,36 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         return "[" + nodes.stream().map(n -> "[" + n.getParent().getTokenID() + ",\"" + n.getDependencyLabel() + "\"]").collect(Collectors.joining(",")) + "]";
     }
 
-    public String toCoNLL() {
+    private String toStringSecondaryDependencies() {
+        StringJoiner join = new StringJoiner(",");
+
+        for (NLPNode node : nodes) {
+            String s = node.getSecondaryParents().stream().map(a -> "["+node.getTokenID()+","+a.getNode().getTokenID()+",\""+a.getLabel()+"\"]").collect(Collectors.joining(","));
+            if (s.length() > 0) join.add(s);
+        }
+
+        return join.length() > 0 ? "[" + join.toString() + "]" : null;
+    }
+
+    private String toStringSemanticTags() {
+        StringJoiner join = new StringJoiner(",");
+
+        for (NLPNode node : nodes) {
+            String s = node.getFeat(Fields.SEM);
+            if (s != null) join.add("[" + node.getTokenID() + ",\"" + s + "\"]");
+        }
+
+        return join.length() > 0 ? "[" + join.toString() + "]" : null;
+    }
+
+    public String toTSV() {
         StringJoiner join = new StringJoiner("\n");
 
         for (NLPNode node : nodes) {
-            List<String> cols = node.toCoNLL();
+            List<String> cols = node.toTSV();
         }
 
-        List<List<String>> conll = nodes.stream().map(NLPNode::toCoNLL).collect(toList());
+        List<List<String>> conll = nodes.stream().map(NLPNode::toTSV).collect(toList());
         int n = conll.get(0).size();
 
         if (named_entities == null) {

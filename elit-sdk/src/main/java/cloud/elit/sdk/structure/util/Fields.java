@@ -45,9 +45,17 @@ public interface Fields {
      */
     String NER = "ner";
     /**
-     * Dependency relation.
+     * Primary dependency.
      */
     String DEP = "dep";
+    /**
+     * Secondary dependency.
+     */
+    String DEP2 = "dep2";
+    /**
+     * Semantic tags.
+     */
+    String SEM = "sem";
     /**
      * Coreference relation.
      */

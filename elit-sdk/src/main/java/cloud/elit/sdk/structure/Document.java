@@ -189,4 +189,10 @@ public class Document implements Serializable, Iterable<Sentence> {
         for (Sentence s : sentences) joiner.add(s.toString());
         return "[" + joiner.toString() + "]";
     }
+
+    public String toTSV() {
+        StringJoiner joiner = new StringJoiner("\n\n");
+        for (Sentence s : sentences) joiner.add(s.toTSV());
+        return joiner.toString();
+    }
 }

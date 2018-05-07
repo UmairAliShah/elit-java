@@ -28,7 +28,7 @@ public class NLPArc extends Arc<NLPNode> {
         return "[" + node.getTokenID() + ",\"" + label + "\"]";
     }
 
-    public String toCoNLL() {
-        return node.getTokenID() + ":" + label;
+    public String toTSV() {
+        return node.getTokenID()+1 + ":" + label;
     }
 }

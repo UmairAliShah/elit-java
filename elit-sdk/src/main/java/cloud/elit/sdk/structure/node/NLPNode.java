@@ -566,38 +566,38 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         return token_id - o.token_id;
     }
 
-    public List<String> toCoNLL() {
+    public List<String> toTSV() {
         List<String> list = new ArrayList<>();
 
         list.add(Integer.toString(token_id + 1));
-        list.add(toCoNLL(token));
-        list.add(toCoNLL(lemma));
-        list.add(toCoNLL(pos_tag));
-        list.add(toCoNLLFeatMap());
-        toCoNLLDependency(list);
-        list.add(toCoNLL(snd_parents));
+        list.add(toTSV(token));
+        list.add(toTSV(lemma));
+        list.add(toTSV(pos_tag));
+        list.add(toTSVFeatMap());
+        toTSVDependency(list);
+        list.add(toTSV(snd_parents));
 
         return list;
     }
 
-    private String toCoNLL(String s) {
+    private String toTSV(String s) {
         return (s == null) ? "_" : s;
     }
 
-    private String toCoNLL(List<NLPArc> arcs) {
+    private String toTSV(List<NLPArc> arcs) {
         if (arcs == null || arcs.isEmpty()) return "_";
-        return arcs.stream().sorted().map(NLPArc::toCoNLL).collect(Collectors.joining("|"));
+        return arcs.stream().sorted().map(NLPArc::toTSV).collect(Collectors.joining("|"));
     }
 
-    public String toCoNLLFeatMap() {
+    public String toTSVFeatMap() {
         if (feat_map == null || feat_map.isEmpty()) return "_";
         return feat_map.entrySet().stream().sorted().map(e -> e.getKey() + '=' + e.getValue()).collect(Collectors.joining("|"));
     }
 
-    private void toCoNLLDependency(List<String> list) {
+    private void toTSVDependency(List<String> list) {
         if (hasParent()) {
             list.add(Integer.toString(parent.token_id + 1));
-            list.add(toCoNLL(dep_label));
+            list.add(toTSV(dep_label));
         } else {
             list.add("_");
             list.add("_");
