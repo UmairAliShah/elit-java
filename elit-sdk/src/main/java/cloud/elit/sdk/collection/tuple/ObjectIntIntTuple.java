@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cloud.elit.sdk.collection.pair;
+package cloud.elit.sdk.collection.tuple;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,24 +23,31 @@ import java.util.Objects;
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-public class ObjectIntPair<T extends Comparable<T>> implements Serializable, Comparable<ObjectIntPair<T>> {
+public class ObjectIntIntTuple<T extends Comparable<T>> implements Serializable, Comparable<ObjectIntIntTuple<T>> {
 
     public T o;
-    public int i;
+    public int i1;
+    public int i2;
 
-    public ObjectIntPair(T o, int i) {
-        set(o, i);
+    public ObjectIntIntTuple(T o, int i1, int i2) {
+        set(o, i1, i2);
     }
 
-    public void set(T o, int i) {
+    public void set(T o, int i1, int i2) {
         this.o = o;
-        this.i = i;
+        this.i1 = i1;
+        this.i2 = i2;
     }
 
     @Override
-    public int compareTo(@NotNull ObjectIntPair<T> p) {
+    public int compareTo(@NotNull ObjectIntIntTuple<T> p) {
         int diff = this.o.compareTo(p.o);
-        return diff != 0 ? diff : this.i - p.i;
+        if (diff != 0) return diff;
+
+        diff = this.i1 - p.i1;
+        if (diff != 0) return diff;
+
+        return this.i2 - p.i2;
     }
 
     @Override
@@ -48,9 +55,9 @@ public class ObjectIntPair<T extends Comparable<T>> implements Serializable, Com
         if (obj == this)
             return true;
 
-        if (obj instanceof ObjectIntPair) {
-            ObjectIntPair p = (ObjectIntPair)obj;
-            return this.o.equals(p.o) && this.i == p.i;
+        if (obj instanceof ObjectIntIntTuple) {
+            ObjectIntIntTuple p = (ObjectIntIntTuple)obj;
+            return this.o.equals(p.o) && this.i1 == p.i1 && this.i2 == p.i2;
         }
 
         return false;
@@ -58,6 +65,6 @@ public class ObjectIntPair<T extends Comparable<T>> implements Serializable, Com
 
     @Override
     public int hashCode() {
-        return Objects.hash(o, i);
+        return Objects.hash(o, i1, i2);
     }
 }

@@ -152,7 +152,7 @@ public class PTBLib implements PTBTag {
     }
 
     static private boolean fixPRD(CTNode node) {
-        if (isClause(node) || (node.isSyntacticTag(C_ADVP) && node.numChildren() == 1 && node.getFirstChild().getForm().equalsIgnoreCase("so"))) {
+        if (isClause(node) || (node.isSyntacticTag(C_ADVP) && node.numChildren() == 1 && node.getFirstChild().isFormIgnoreCase("so"))) {
             node.removeFunctionTag(F_PRD);
             return true;
         }
@@ -407,7 +407,7 @@ public class PTBLib implements PTBTag {
      * @return {@code true} if the specific node is et cetera (e.g., etc).
      */
     static public boolean isEtc(CTNode node) {
-        return node.isFunctionTag(F_ETC) || node.getFirstTerminal().getForm().equalsIgnoreCase("etc.");
+        return node.isFunctionTag(F_ETC) || node.getFirstTerminal().isFormIgnoreCase("etc.");
     }
 
     /**
@@ -501,7 +501,7 @@ public class PTBLib implements PTBTag {
     }
 
     static public String getLemmaOfApostropheS(CTNode node) {
-        if (node.isSyntacticTag(PTBTag.P_VBZ) && node.getForm().equalsIgnoreCase("'s")) {
+        if (node.isSyntacticTag(PTBTag.P_VBZ) && node.isFormIgnoreCase("'s")) {
             CTNode vp = node.getRightNearestSibling(n -> n.isSyntacticTag(PTBTag.C_VP));
 
             if (vp != null && vp.containsChild(n -> n.isSyntacticTag(P_VBN)) && (vp.numChildren() < 2 || !isPassiveNull(vp.getFirstChild(1).getFirstTerminal())))

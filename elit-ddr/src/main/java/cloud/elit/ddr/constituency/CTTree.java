@@ -69,8 +69,11 @@ public class CTTree {
                     int index = Integer.parseInt(form.substring(idx + 1));
                     node.setCoIndex(index);
                     node.setForm(form.substring(0, idx));
-                    empty_category_map.computeIfAbsent(index, i -> new ArrayList<>()).add(node);
                 }
+
+                if (node.hasCoIndex())
+                    empty_category_map.computeIfAbsent(node.getCoIndex(), i -> new ArrayList<>()).add(node);
+
             } else {
                 node.setTokenID(tokens.size());
                 tokens.add(node);
@@ -271,6 +274,7 @@ public class CTTree {
 
         int[] lastIndex = {coIndex};
         remapGapIndices(m_new, lastIndex, root);
+        init();
     }
 
     /**

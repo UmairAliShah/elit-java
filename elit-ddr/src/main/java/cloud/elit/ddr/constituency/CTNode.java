@@ -110,6 +110,10 @@ public class CTNode extends Node<CTNode> implements Comparable<CTNode> {
         return form;
     }
 
+    public boolean isFormIgnoreCase(String f) {
+        return form != null && form.equalsIgnoreCase(f);
+    }
+
     public void setForm(String form) {
         this.form = form;
     }

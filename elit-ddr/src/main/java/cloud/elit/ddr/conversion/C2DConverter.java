@@ -225,7 +225,7 @@ public abstract class C2DConverter {
 
         for (CTNode token : tokens) {
             id = token.getTokenID();
-            form = PatternUtils.revertSymbols(token.getForm());
+            form = token.getForm();
             lemma = token.getLemma();
             pos = token.getSyntacticTag();
             graph.add(new NLPNode(id, form, lemma, pos, token.getFeatMap()));

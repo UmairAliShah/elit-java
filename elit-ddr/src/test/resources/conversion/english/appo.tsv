@@ -4,10 +4,10 @@
 4	baptist	baptist	NN	_	1	appo	_
 
 1	John	john	NNP	_	0	root	_
-2	(	-lrb-	-LRB-	_	1	p	_
+2	(	(	-LRB-	_	1	p	_
 3	the	the	DT	_	4	det	_
 4	baptist	baptist	NN	_	1	appo	_
-5	)	-rrb-	-RRB-	_	1	p	_
+5	)	)	-RRB-	_	1	p	_
 
 1	The	the	DT	_	2	det	_
 2	year	year	NN	sem=tmp	0	root	_

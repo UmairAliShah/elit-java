@@ -215,7 +215,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         StringJoiner join = new StringJoiner(",");
 
         for (NLPNode node : nodes) {
-            String s = node.getSecondaryParents().stream().map(a -> "["+node.getTokenID()+","+a.getNode().getTokenID()+",\""+a.getLabel()+"\"]").collect(Collectors.joining(","));
+            String s = node.getSecondaryParents().stream().map(a -> "[" + node.getTokenID() + "," + a.getNode().getTokenID() + ",\"" + a.getLabel() + "\"]").collect(Collectors.joining(","));
             if (s.length() > 0) join.add(s);
         }
 
@@ -235,39 +235,30 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
 
     public String toTSV() {
         StringJoiner join = new StringJoiner("\n");
-
-        for (NLPNode node : nodes) {
-            List<String> cols = node.toTSV();
-        }
-
         List<List<String>> conll = nodes.stream().map(NLPNode::toTSV).collect(toList());
-        int n = conll.get(0).size();
+        if (named_entities != null) toTSVNamedEntities(conll);
+        return conll.stream().map(l -> l.stream().collect(Collectors.joining("\t"))).collect(Collectors.joining("\n"));
+    }
 
-        if (named_entities == null) {
-            for (List<String> c : conll)
-                c.add("_");
-        } else {
-            for (Chunk c : named_entities) {
-                int bidx = c.get(0).getTokenID();
-                int eidx = c.get(c.size() - 1).getTokenID();
+    private void toTSVNamedEntities(List<List<String>> conll) {
+        for (Chunk c : named_entities) {
+            int bidx = c.get(0).getTokenID();
+            int eidx = c.get(c.size() - 1).getTokenID();
 
-                if (bidx + 1 == eidx)
-                    conll.get(bidx).add("U-" + c.getLabel());
-                else {
-                    conll.get(bidx).add("B-" + c.getLabel());
-                    conll.get(eidx - 1).add("L-" + c.getLabel());
-                    for (int i = bidx + 1; i < eidx - 1; i++)
-                        conll.get(i).add("I-" + c.getLabel());
-                }
-            }
-
-            for (List<String> c : conll) {
-                if (c.size() < n)
-                    c.add("O");
+            if (bidx == eidx)
+                conll.get(bidx).add("U-" + c.getLabel());
+            else {
+                conll.get(bidx).add("B-" + c.getLabel());
+                conll.get(eidx).add("L-" + c.getLabel());
+                for (int i = bidx + 1; i < eidx; i++)
+                    conll.get(i).add("I-" + c.getLabel());
             }
         }
 
-        return conll.stream().map(l -> l.stream().collect(Collectors.joining("\t"))).collect(Collectors.joining("\n"));
+        for (List<String> c : conll) {
+            if (c.size() < 9)
+                c.add("O");
+        }
     }
 }
 

@@ -89,8 +89,11 @@ public class EnglishC2DConverterTest {
         Document doc = new Document();
         CTTree ctree;
 
-        while ((ctree = reader.next()) != null)
-            doc.add(ddg.toDependencyGraph(ctree));
+        while ((ctree = reader.next()) != null) {
+            Sentence dtree = ddg.toDependencyGraph(ctree);
+            dtree.setNamedEntities(null);
+            doc.add(dtree);
+        }
 
         String actual = doc.toTSV();
 

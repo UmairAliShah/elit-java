@@ -196,8 +196,10 @@ public class EnglishC2DConverter extends C2DConverter {
     }
 
     public void lemmatize(CTTree tree) {
-        for (CTNode token : tree.getTokens())
+        for (CTNode token : tree.getTokens()) {
+            token.setForm(PatternUtils.revertSymbols(token.getForm()));
             analyzer.setLemma(token);
+        }
     }
 
     private void preprocess(CTTree tree, CTNode node) {
@@ -663,13 +665,13 @@ public class EnglishC2DConverter extends C2DConverter {
             CTNode curr = node.getChild(i - 1);
 
             if (curr.isSyntacticTag(PTBTag.P_JJR, PTBTag.P_RBR)) {
-                if (next.getForm().equalsIgnoreCase("than"))
+                if (next.isLemma("than"))
                     next.setPrimaryHead(curr, DDGTag.COM);
             } else if (curr.isSyntacticTag(PTBTag.P_JJ)) {
-                if (next.getForm().equalsIgnoreCase("to"))
+                if (next.isLemma("to"))
                     next.setPrimaryHead(curr, DDGTag.COM);
             } else if (curr.isSyntacticTag(PTBTag.P_NN)) {
-                if (next.getForm().equalsIgnoreCase("like"))
+                if (next.isLemma("like"))
                     next.setPrimaryHead(curr, DDGTag.COM);
             } else if (curr.isSyntacticTag(PTBTag.P_IN)) {
                 if (next.isSyntacticTag(PTBTag.P_TO))
@@ -793,7 +795,7 @@ public class EnglishC2DConverter extends C2DConverter {
     }
 
     private boolean isEXPL(CTNode node, CTNode d) {
-        return node.isFunctionTag(DDGTag.EXPL) || node.getFirstTerminal().isSyntacticTag(PTBTag.P_EX) || (d != null && d.getForm().equalsIgnoreCase("there"));
+        return node.isFunctionTag(DDGTag.EXPL) || node.getFirstTerminal().isSyntacticTag(PTBTag.P_EX) || (d != null && d.isLemma("there"));
     }
 
     private String getObjectLabel(CTNode node, CTNode d) {
