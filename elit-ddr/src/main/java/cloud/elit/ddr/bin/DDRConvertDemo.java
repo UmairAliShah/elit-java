@@ -16,12 +16,9 @@
 
 package cloud.elit.ddr.bin;
 
-import cloud.elit.ddr.constituency.CTTree;
 import cloud.elit.ddr.conversion.C2DConverter;
 import cloud.elit.ddr.conversion.EnglishC2DConverter;
 import cloud.elit.ddr.util.Language;
-import cloud.elit.sdk.structure.Document;
-import cloud.elit.sdk.structure.Sentence;
 
 public class DDRConvertDemo {
     public static void main(String[] args) {

@@ -15,11 +15,11 @@
  */
 package cloud.elit.ddr.bin;
 
-import cloud.elit.ddr.util.*;
 import cloud.elit.ddr.constituency.CTReader;
 import cloud.elit.ddr.constituency.CTTree;
 import cloud.elit.ddr.conversion.C2DConverter;
 import cloud.elit.ddr.conversion.EnglishC2DConverter;
+import cloud.elit.ddr.util.*;
 import cloud.elit.sdk.collection.tuple.ObjectIntIntTuple;
 import cloud.elit.sdk.structure.Chunk;
 import cloud.elit.sdk.structure.Sentence;
@@ -28,7 +28,9 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import org.kohsuke.args4j.Option;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 

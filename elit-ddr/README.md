@@ -15,27 +15,21 @@ Add the following dependency to your maven project:
 </dependency>
 ```
 
-* Download the conversion script: [nlp4j-ddr.jar](http://nlp.mathcs.emory.edu/nlp4j/nlp4j-ddr.jar).
-* Make sure [Java 8 or above](http://www.oracle.com/technetwork/java/javase/downloads) is installed on your machine:
+## Command Line
 
-   ```
-$ java -version
-java version "1.8.x"
-Java(TM) SE Runtime Environment (build 1.8.x)
-...
-   ```
+Run the following command:
 
-* Run the following command:
-
-   ```
-java edu.emory.mathcs.nlp.bin.DDGConvert -i <filepath> [ -r -n -pe <string> -oe <string>]
-   ```
+```
+java cloud.elit.ddr.bin.DDRConvert -i <filepath> [ -r -n -pe <string> -oe <string>]
+```
    
-   * `-i`: the path to the parse file or a directory containing the parse files to convert.
-   * `-r`: if set, process all files with the extension in the subdirectories of the input directory recursively.
-   * `-n`: if set, normalize the parse trees before the conversion.
-   * `-pe`: the extension of the parse files; required if the input path indicates a directory (default: `parse`).
-   * `-oe`: the extension of the output files (default: `ddg`).
+* `-i`: the path to the parse file or a directory containing the parse files to convert.
+* `-r`: if set, process all files with the extension in the subdirectories of the input directory recursively.
+* `-n`: if set, normalize the parse trees before the conversion.
+* `-pe`: the extension of the parse files; required if the input path indicates a directory (default: `parse`).
+* `-oe`: the extension of the output files (default: `tsv`).
+
+For instance, the following command read constituency trees from [relcl.parse]()
 
 ## Corpora
 
