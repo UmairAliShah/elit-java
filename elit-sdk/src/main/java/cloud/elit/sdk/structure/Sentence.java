@@ -15,7 +15,6 @@
  */
 package cloud.elit.sdk.structure;
 
-import cloud.elit.sdk.structure.node.NLPArc;
 import cloud.elit.sdk.structure.node.NLPNode;
 import cloud.elit.sdk.structure.util.ELITUtils;
 import cloud.elit.sdk.structure.util.Fields;
@@ -256,8 +255,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         }
 
         for (List<String> c : conll) {
-            if (c.size() < 9)
-                c.add("O");
+            if (c.size() < 9) c.add("O");
         }
     }
 }

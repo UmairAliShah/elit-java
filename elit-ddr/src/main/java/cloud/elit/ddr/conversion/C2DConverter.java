@@ -219,7 +219,7 @@ public abstract class C2DConverter {
     protected Sentence createDependencyGraph(CTTree tree) {
         List<CTNode> tokens = tree.getTokens();
         Sentence graph = new Sentence();
-        String form, pos, lemma, nament;
+        String form, pos, lemma;
         NLPNode node, head;
         int id;
 

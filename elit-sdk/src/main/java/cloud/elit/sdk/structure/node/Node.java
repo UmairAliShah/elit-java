@@ -152,6 +152,7 @@ public abstract class Node<N extends Node<N>> implements Serializable {
      * @param node  the node.
      * @return the previously index'th node if added; otherwise, {@code null}.
      */
+    @SuppressWarnings("UnusedReturnValue")
     public N setChild(int index, N node) {
         if (!isParentOf(node)) {
             if (node.hasParent())
@@ -173,6 +174,7 @@ public abstract class Node<N extends Node<N>> implements Serializable {
      * @param node the node.
      * @return the removed child if exists; otherwise, {@code null}.
      */
+    @SuppressWarnings("UnusedReturnValue")
     public N removeChild(N node) {
         return removeChild(indexOf(node));
     }
