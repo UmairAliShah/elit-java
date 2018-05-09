@@ -16,8 +16,8 @@
 
 package cloud.elit.ddr.bin;
 
-import cloud.elit.ddr.conversion.C2DConverter;
 import cloud.elit.ddr.conversion.EnglishC2DConverter;
+import cloud.elit.ddr.conversion.C2DConverter;
 import cloud.elit.ddr.util.Language;
 
 public class DDRConvertDemo {

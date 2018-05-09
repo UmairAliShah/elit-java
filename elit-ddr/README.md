@@ -29,92 +29,67 @@ java cloud.elit.ddr.bin.DDRConvert -i <filepath> [ -r -n -pe <string> -oe <strin
 * `-pe`: the extension of the parse files; required if the input path indicates a directory (default: `parse`).
 * `-oe`: the extension of the output files (default: `tsv`).
 
-For instance, the following command read constituency trees from [relcl.parse]()
+The following command reads constituency trees from [relcl.parse](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/relcl.parse) and generates deep dependency graphs to [relcl.parse.tsv](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/tsv):
 
-## Corpora
+```
+java cloud.elit.ddr.bin.DDRConvert -i relcl.parse -oe tsv
+```
 
-DDG conversion has been tested on the following corpora. Some of these corpora require you to be a member of the [Linguistic Data Consortium](https://www.ldc.upenn.edu) (LDC). Retrieve the corpora from LDC and run the following command for each corpus to generate DDG.
+The following command reads all parse files (`*.parse`) under the [english](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english) directory and generates the TSV files (`*.tsv`):
 
-* [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19):
+```
+java cloud.elit.ddr.bin.DDRConvert -i english -pe parse -oe tsv
+```
 
-   ```
-java -cp nlp4j-ddr.jar edu.emory.mathcs.nlp.bin.DDGConvert -r -i ontonotes-release-5.0/data/files/data/english/annotations
-   ```
+## Java API
 
-* [English Web Treebank](https://catalog.ldc.upenn.edu/LDC2012T13):
+The following code reads constituency trees from [relcl.parse](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/relcl.parse) and generates deep dependency graphs to [relcl.tsv](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/tsv):
 
-   ```
-java -cp nlp4j-ddr.jar edu.emory.mathcs.nlp.bin.DDGConvert -r -i eng_web_tbk/data -pe tree
-   ```
+```java
+import cloud.elit.ddr.conversion.EnglishC2DConverter;
+import cloud.elit.ddr.conversion.C2DConverter;
+import cloud.elit.ddr.util.Language;
 
-* [QuestionBank with Manually Revised Treebank Annotation 1.0](https://catalog.ldc.upenn.edu/LDC2012R121):
-
-   ```
-java -cp nlp4j-ddr.jar edu.emory.mathcs.nlp.bin.DDGConvert -i QB-revised.tree
-   ```
-
-## Merge
-
-We have internally updated these corpora to reduce annotation errors and produce a richer representation. If you want to take advantage of our latest updates, merge the original annotation with our annotation. You still need to retrieve the original corpora from LDC.
-
-* Clone this repository:
-
-   ```
-git clone https://github.com/emorynlp/ddr.git
-   ```
-
-* Run the following command:
-
-   ```
-java -cp nlp4j-ddr.jar edu.emory.mathcs.nlp.bin.DDGMerge <source path> <target path> <parse ext>
-   ```
-
-   * `<source path>`: the path to the original corpus.
-   * `<target path>`: the path to our annotation.
-   * `<parse ext`>: the extension of the parse files.
-
-
-* [OntoNotes Release 5.0](https://catalog.ldc.upenn.edu/LDC2013T19):
-
-   ```
-java -cp nlp4j-ddr.jar edu.emory.mathcs.nlp.bin.DDGMerge ontonotes-release-5.0/data/files/data/english/annotations ddr/english/ontonotes parse
-   ```
-
-* [English Web Treebank](https://catalog.ldc.upenn.edu/LDC2012T13):
-
-   ```
-java -cp nlp4j-ddr.jar edu.emory.mathcs.nlp.bin.DDGMerge eng_web_tbk/data ddr/english/google/ewt tree
-   ```
-
-* [QuestionBank with Manually Revised Treebank Annotation 1.0](https://catalog.ldc.upenn.edu/LDC2012R121):
-
-   ```
-java -cp nlp4j-ddr.jar edu.emory.mathcs.nlp.bin.DDGMerge QB-revised.tree ddr/english/google/qb/QB-revised.tree.skel tree
-   ```
-
+public class DDRConvertDemo {
+    public static void main(String[] args) {
+        final String parseFile = "relcl.parse";
+        final String tsvFile = "relcl.tsv";
+        C2DConverter converter = new EnglishC2DConverter();
+        DDRConvert ddr = new DDRConvert();
+        ddr.convert(converter, Language.ENGLISH, parseFile, tsvFile, false);
+    }
+}
+```
 
 ## Format
 
-DDG is represented in the tab separated values format (TSV), where each column represents a different field. The semantic roles are indicated in the `feats` column with the key, `sem`.
+The converted deep dependency graphs are represented in the Tab Separated Values format (TSV), where each column represents a distinct field.
+Sentences are delimited by empty lines.
+The semantic tags are indicated in the `feats` column with the key, `sem`.
 
-```
-1   You        you        PRP  _        3   nsbj   7:nsbj  O
-2   can        can        MD   _        3   modal  _       O
-3   ascend     ascend     VB   _        0   root   _       O
-4   Victoria   victoria   NNP  _        5   com    _       B-LOC
-5   Peak       peak       NNP  _        3   obj    _       L-LOC
-6   to         to         TO   _        7   aux    _       O
-7   get        get        VB   sem=prp  3   advcl  _       O
-8   a          a          DT   _        10  det    _       O
-9   panoramic  panoramic  JJ   _        10  attr   _       O
-10  view       view       NN   _        7   obj    _       O
-11  of         of         IN   _        16  case   _       O
-12  Victoria   victoria   NNP  _        13  com    _       B-LOC
-13  Harbor     harbor     NNP  _        16  poss   _       I-LOC
-14  's         's         POS  _        13  case   _       L-LOC
-15  beautiful  beautiful  JJ   _        16  attr   _       O
-16  scenery    scenery    NN   _        10  ppmod  _       O
-17  .          .          .    _        3   p      _       O
+```tsv
+1	I	I	PRP	_	2	nsbj	_
+2	have	have	VBP	_	0	root	_
+3	homework	homework	NN	_	2	obj	_
+4	to	to	TO	_	5	aux	_
+5	do	do	VB	_	3	acl	_
+
+1	The	the	DT	_	2	det	_
+2	homework	homework	NN	_	7	nsbj	3:obj
+3	assigned	assign	VBN	_	2	acl	_
+4	by	by	IN	_	5	case	_
+5	John	john	NNS	_	3	nsbj	_
+6	was	be	VBD	_	7	cop	_
+7	hard	hard	JJ	_	0	root	_
+
+1	I	I	PRP	_	2	nsbj	_
+2	found	find	VBD	_	0	root	_
+3	an	an	DT	_	4	det	_
+4	evidence	evidence	NN	_	2	obj	_
+5	that	that	IN	_	7	mark	_
+6	John	john	NN	_	7	nsbj	_
+7	studied	study	VBD	_	4	acl	_
+
 ```
 
 * `id`: current token ID (starting at 1).
@@ -124,5 +99,5 @@ DDG is represented in the tab separated values format (TSV), where each column r
 * `feats`: extra features; different features are delimited by `|`, keys and values are delimited by `=` (`_` indicates no feature).
 * `headId`: head token ID.
 * `deprel`: dependency label.
-* `sheads`: secondary heads (`_` indicates no secondary head).
-* `nament`: named entity tags in the `BILOU` notation if the annotation is available.
+* `sheads`: secondary heads; multiple heads are delimited by `|` (`_` indicates no secondary head).
+* `nament`: named entity tags in the `BILOU` notation if available.
