@@ -101,3 +101,7 @@ The semantic tags are indicated in the `feats` column with the key, `sem`.
 * `deprel`: dependency label.
 * `sheads`: secondary heads; multiple heads are delimited by `|` (`_` indicates no secondary head).
 * `nament`: named entity tags in the `BILOU` notation if available.
+
+## Visualization
+
+Use our web-based tool to visualize deep dependency graphs: https://emorynlp.github.io/ddr/viz/
