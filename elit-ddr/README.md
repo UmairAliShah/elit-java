@@ -31,19 +31,19 @@ java cloud.elit.ddr.bin.DDRConvert -i <filepath> [ -r -n -pe <string> -oe <strin
 
 The following command reads constituency trees from [relcl.parse](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/relcl.parse) and generates deep dependency graphs to [relcl.parse.tsv](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/tsv):
 
-```
+```bash
 java cloud.elit.ddr.bin.DDRConvert -i relcl.parse -oe tsv
 ```
 
-The following command reads all parse files (`*.parse`) under the [english](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english) directory and generates the TSV files (`*.tsv`):
+The following command reads all parse files under the [english](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english) directory (`*.parse`) and generates the TSV files accordingly (`*.tsv`):
 
-```
+```bash
 java cloud.elit.ddr.bin.DDRConvert -i english -pe parse -oe tsv
 ```
 
 ## Java API
 
-The following code reads constituency trees from [relcl.parse](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/relcl.parse) and generates deep dependency graphs to [relcl.tsv](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/tsv):
+The following code reads constituency trees from [relcl.parse](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/relcl.parse) and generates deep dependency graphs to [relcl.tsv](https://github.com/elitcloud/elit-java/blob/master/elit-ddr/src/test/resources/conversion/english/relcl.tsv):
 
 ```java
 import cloud.elit.ddr.conversion.EnglishC2DConverter;
