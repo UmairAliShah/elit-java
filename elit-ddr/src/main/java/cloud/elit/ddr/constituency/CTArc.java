@@ -21,6 +21,8 @@ import cloud.elit.sdk.structure.node.Arc;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class CTArc extends Arc<CTNode> {
+    private static final long serialVersionUID = 4991513922821419879L;
+
     public CTArc(CTNode node, String label) {
         super(node, label);
     }

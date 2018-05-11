@@ -16,14 +16,11 @@
 
 package cloud.elit.sdk.structure.util;
 
-import cloud.elit.sdk.structure.node.NLPNode;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import cloud.elit.sdk.structure.node.NLPNode;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -64,18 +61,5 @@ public class ELITUtils {
     static public <T extends Comparable<T>> int binarySearch(List<T> list, T key) {
         int index = Collections.binarySearch(list, key);
         return (index < 0) ? -(index + 1) : index + 1;
-    }
-
-    static public String getModulePath(String path, String dir) {
-        File f = new File(path);
-
-        try {
-            String p = f.getCanonicalPath();
-            if (!p.endsWith(dir)) path += "/" + dir;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return path;
     }
 }

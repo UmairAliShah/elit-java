@@ -15,17 +15,24 @@
  */
 package cloud.elit.ddr.propbank.frameset;
 
-import cloud.elit.ddr.util.StringConst;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
-import java.io.Serializable;
-import java.util.*;
+import cloud.elit.ddr.util.StringConst;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class PBFFrameset implements Serializable {
+    private static final long serialVersionUID = -8666640228746988293L;
     private Map<String, PBFPredicate> m_predicates;
     private String s_lemma;
 

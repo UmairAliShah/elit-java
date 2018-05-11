@@ -15,15 +15,15 @@
  */
 package cloud.elit.sdk.structure.node;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class Arc<N extends Comparable<N>> implements Comparable<Arc<N>>, Serializable {
+    private static final long serialVersionUID = -5463365667122231165L;
     protected N node;
     protected String label;
 

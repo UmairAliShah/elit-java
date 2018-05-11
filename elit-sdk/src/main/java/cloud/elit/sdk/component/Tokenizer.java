@@ -18,6 +18,4 @@ package cloud.elit.sdk.component;
 
 import cloud.elit.sdk.structure.Document;
 
-public abstract class Tokenizer<P extends Parameters> extends Component<String, Document, P> {
-
-}
+public abstract class Tokenizer<P extends Parameters> extends Component<String, Document, P> {}

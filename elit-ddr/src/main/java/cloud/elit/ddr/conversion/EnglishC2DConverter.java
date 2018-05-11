@@ -15,6 +15,18 @@
  */
 package cloud.elit.ddr.conversion;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.function.Predicate;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import cloud.elit.ddr.constituency.CTArc;
 import cloud.elit.ddr.constituency.CTNode;
 import cloud.elit.ddr.constituency.CTTree;
@@ -22,17 +34,21 @@ import cloud.elit.ddr.conversion.headrule.HeadRule;
 import cloud.elit.ddr.conversion.headrule.HeadRuleMap;
 import cloud.elit.ddr.dictionary.Emoticon;
 import cloud.elit.ddr.lemmatize.english.EnglishLemmatizer;
-import cloud.elit.ddr.util.*;
+import cloud.elit.ddr.util.DDGTag;
+import cloud.elit.ddr.util.DSUtils;
+import cloud.elit.ddr.util.ENUtils;
+import cloud.elit.ddr.util.IOUtils;
+import cloud.elit.ddr.util.Joiner;
+import cloud.elit.ddr.util.MetaConst;
+import cloud.elit.ddr.util.PTBLib;
+import cloud.elit.ddr.util.PTBTag;
+import cloud.elit.ddr.util.PatternConst;
+import cloud.elit.ddr.util.PatternUtils;
+import cloud.elit.ddr.util.StringUtils;
 import cloud.elit.sdk.structure.Sentence;
 import cloud.elit.sdk.structure.node.NLPArc;
 import cloud.elit.sdk.structure.node.NLPNode;
 import cloud.elit.sdk.structure.node.Node;
-
-import java.util.*;
-import java.util.Map.Entry;
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -130,7 +146,6 @@ public class EnglishC2DConverter extends C2DConverter {
 
     @Override
     public Sentence toDependencyGraph(CTTree tree) {
-        CTNode node = tree.getNode(0, 1);
         if (tree.containsOnlyEmptyCategories()) return null;
         preprocess(tree);
         setHead(tree.getRoot());

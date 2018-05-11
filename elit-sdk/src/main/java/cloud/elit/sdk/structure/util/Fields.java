@@ -20,50 +20,36 @@ package cloud.elit.sdk.structure.util;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public interface Fields {
-    /**
-     * Sentence ID.
-     */
+    /** Sentence ID. */
     String SID = "sid";
-    /**
-     * Linguistic form.
-     */
+    
+    /** Linguistic token. */
     String TOK = "tok";
-    /**
-     * Character-level offset of each form w.r.t. the original text.
-     */
+    
+    /** Character-level offset of each form w.r.t. the original text. */
     String OFF = "off";
-    /**
-     * Lemma.
-     */
+    
+    /** Lemma. */
     String LEM = "lem";
-    /**
-     * Part-of-speech tag.
-     */
+    
+    /** Part-of-speech tag. */
     String POS = "pos";
-    /**
-     * Named entity tag.
-     */
+    
+    /** Named entity tag. */
     String NER = "ner";
-    /**
-     * Primary dependency.
-     */
+    
+    /** Primary dependency. */
     String DEP = "dep";
-    /**
-     * Secondary dependency.
-     */
+    
+    /** Secondary dependency. */
     String DEP2 = "dep2";
-    /**
-     * Semantic tags.
-     */
+    
+    /** Semantic tags. */
     String SEM = "sem";
-    /**
-     * Coreference relation.
-     */
+    
+    /** Coreference relation. */
     String REF = "ref";
 
-    /**
-     * All components in the pipeline.
-     */
+    /** All components in the pipeline. */
     String ALL = "all";
-
 }

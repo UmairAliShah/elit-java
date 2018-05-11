@@ -15,13 +15,12 @@
  */
 package cloud.elit.ddr.conversion.headrule;
 
-import cloud.elit.ddr.constituency.CTNode;
-import cloud.elit.ddr.util.PatternUtils;
-import cloud.elit.ddr.util.StringConst;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
+import cloud.elit.ddr.constituency.CTNode;
+import cloud.elit.ddr.util.PatternUtils;
+import cloud.elit.ddr.util.StringConst;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

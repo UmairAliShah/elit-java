@@ -15,8 +15,6 @@
  */
 package cloud.elit.ddr.dictionary;
 
-import cloud.elit.ddr.util.*;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +22,11 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
+import cloud.elit.ddr.util.IOUtils;
+import cloud.elit.ddr.util.PatternConst;
+import cloud.elit.ddr.util.Splitter;
+import cloud.elit.ddr.util.StringConst;
+import cloud.elit.ddr.util.StringUtils;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

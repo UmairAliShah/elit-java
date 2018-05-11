@@ -16,19 +16,23 @@
 
 package cloud.elit.ddr.conversion;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import org.junit.Assert;
+import org.junit.Test;
 import cloud.elit.ddr.constituency.CTReader;
 import cloud.elit.ddr.constituency.CTTree;
 import cloud.elit.ddr.util.IOUtils;
 import cloud.elit.sdk.structure.Document;
 import cloud.elit.sdk.structure.Sentence;
-import cloud.elit.sdk.structure.util.ELITUtils;
-import org.junit.Assert;
-import org.junit.Test;
-
-import java.io.*;
 
 public class EnglishC2DConverterTest {
-    final String ROOT = ELITUtils.getModulePath(".", "elit-ddr") + "/src/test/resources/conversion/english/";
+    final String ROOT = "src/test/resources/conversion/english/";
     EnglishC2DConverter ddg = new EnglishC2DConverter();
 
     @Test
@@ -98,9 +102,11 @@ public class EnglishC2DConverterTest {
         String actual = doc.toTSV();
 
         try {
-            BufferedReader fin = new BufferedReader(new InputStreamReader(new FileInputStream(ROOT + filename + ".tsv")));
+            BufferedReader fin = new BufferedReader(new InputStreamReader(new FileInputStream(ROOT + filename
+                    + ".tsv")));
             char[] buff = new char[actual.length()];
             fin.read(buff);
+            fin.close();
             Assert.assertEquals(new String(buff), actual);
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,7 +125,8 @@ public class EnglishC2DConverterTest {
         }
 
         try {
-            PrintStream fout = new PrintStream(new BufferedOutputStream(new FileOutputStream(ROOT + filename + ".json")));
+            PrintStream fout = new PrintStream(new BufferedOutputStream(new FileOutputStream(ROOT + filename
+                    + ".json")));
             fout.println(doc.toString());
             fout.close();
 

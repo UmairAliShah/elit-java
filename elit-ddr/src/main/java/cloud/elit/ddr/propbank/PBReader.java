@@ -15,17 +15,21 @@
  */
 package cloud.elit.ddr.propbank;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import cloud.elit.ddr.constituency.CTReader;
 import cloud.elit.ddr.constituency.CTTree;
 import cloud.elit.ddr.util.StringConst;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

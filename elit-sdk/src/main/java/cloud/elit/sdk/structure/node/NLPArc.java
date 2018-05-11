@@ -19,6 +19,8 @@ package cloud.elit.sdk.structure.node;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class NLPArc extends Arc<NLPNode> {
+    private static final long serialVersionUID = -6749976400106210275L;
+
     public NLPArc(NLPNode node, String label) {
         super(node, label);
     }
@@ -29,6 +31,6 @@ public class NLPArc extends Arc<NLPNode> {
     }
 
     public String toTSV() {
-        return node.getTokenID()+1 + ":" + label;
+        return node.getTokenID() + 1 + ":" + label;
     }
 }

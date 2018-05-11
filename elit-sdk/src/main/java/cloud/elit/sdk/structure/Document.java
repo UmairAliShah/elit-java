@@ -15,12 +15,6 @@
  */
 package cloud.elit.sdk.structure;
 
-import cloud.elit.sdk.structure.node.NLPNode;
-import cloud.elit.sdk.structure.util.Fields;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,14 +24,20 @@ import java.util.StringJoiner;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import org.jetbrains.annotations.NotNull;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import cloud.elit.sdk.structure.node.NLPNode;
+import cloud.elit.sdk.structure.util.Fields;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class Document implements Serializable, Iterable<Sentence> {
+    private static final long serialVersionUID = -8475007755272655436L;
     private List<Sentence> sentences;
 
-//  =================================== Constructors ===================================
+    //  =================================== Constructors ===================================
 
     public Document() {
         sentences = new ArrayList<>();
@@ -135,7 +135,7 @@ public class Document implements Serializable, Iterable<Sentence> {
         }
     }
 
-//  =================================== Getters and Setters ===================================
+    //  =================================== Getters and Setters ===================================
 
     public List<Sentence> get() {
         return sentences;
@@ -173,7 +173,7 @@ public class Document implements Serializable, Iterable<Sentence> {
         return sentences.remove(sentence);
     }
 
-//  =================================== Iterator ===================================
+    //  =================================== Iterator ===================================
 
     @NotNull
     @Override
@@ -181,18 +181,20 @@ public class Document implements Serializable, Iterable<Sentence> {
         return sentences.iterator();
     }
 
-//  =================================== String ===================================
+    //  =================================== String ===================================
 
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(",");
-        for (Sentence s : sentences) joiner.add(s.toString());
+        for (Sentence s : sentences)
+            joiner.add(s.toString());
         return "[" + joiner.toString() + "]";
     }
 
     public String toTSV() {
         StringJoiner joiner = new StringJoiner("\n\n");
-        for (Sentence s : sentences) joiner.add(s.toTSV());
+        for (Sentence s : sentences)
+            joiner.add(s.toTSV());
         return joiner.toString();
     }
 }

@@ -15,12 +15,15 @@
  */
 package cloud.elit.ddr.propbank;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.StringTokenizer;
+import org.jetbrains.annotations.NotNull;
 import cloud.elit.ddr.util.DSUtils;
 import cloud.elit.ddr.util.StringConst;
-import org.jetbrains.annotations.NotNull;
-
-import java.io.Serializable;
-import java.util.*;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

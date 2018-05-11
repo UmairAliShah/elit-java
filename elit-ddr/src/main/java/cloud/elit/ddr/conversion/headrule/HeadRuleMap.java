@@ -15,10 +15,6 @@
  */
 package cloud.elit.ddr.conversion.headrule;
 
-import cloud.elit.ddr.util.IOUtils;
-import cloud.elit.ddr.util.PatternConst;
-import cloud.elit.ddr.util.StringConst;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,16 +23,17 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
+import cloud.elit.ddr.util.IOUtils;
+import cloud.elit.ddr.util.PatternConst;
+import cloud.elit.ddr.util.StringConst;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class HeadRuleMap extends HashMap<String, HeadRule> {
-    /**
-     * The delimiter between columns ({@code "\t"}).
-     */
+    private static final long serialVersionUID = -7249041186112355229L;
+    /** The delimiter between columns ({@code "\t"}). */
     static final public String DELIM_COLUMN = StringConst.TAB;
-
     static final private Pattern P_COLUMN = PatternConst.TAB;
 
     public HeadRuleMap() {

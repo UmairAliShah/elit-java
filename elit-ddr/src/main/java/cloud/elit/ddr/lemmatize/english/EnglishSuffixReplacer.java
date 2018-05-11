@@ -15,10 +15,9 @@
  */
 package cloud.elit.ddr.lemmatize.english;
 
-import cloud.elit.ddr.lemmatize.util.AbstractAffixReplacer;
-
 import java.util.Map;
 import java.util.Set;
+import cloud.elit.ddr.lemmatize.util.AbstractAffixReplacer;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

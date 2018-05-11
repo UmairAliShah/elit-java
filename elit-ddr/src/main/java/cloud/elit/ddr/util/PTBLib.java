@@ -16,16 +16,14 @@
 
 package cloud.elit.ddr.util;
 
-import cloud.elit.ddr.constituency.CTNode;
-import cloud.elit.ddr.constituency.CTTree;
-
 import java.util.List;
 import java.util.Set;
+import cloud.elit.ddr.constituency.CTNode;
+import cloud.elit.ddr.constituency.CTTree;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
-@SuppressWarnings("UnusedReturnValue")
 public class PTBLib implements PTBTag {
 //	static final public Predicate<CTNode> M_S_SBAR      = matchCo(DSUtils.toHashSet(C_S, C_SBAR));
 //	static final public Predicate<CTNode> M_IN_DT_TO    = matchCo(DSUtils.toHashSet(PTBTag.P_IN, PTBTag.P_DT, PTBTag.P_TO));

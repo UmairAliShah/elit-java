@@ -15,12 +15,11 @@
  */
 package cloud.elit.ddr.lemmatize.english;
 
-import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
-import cloud.elit.ddr.lemmatize.util.AbstractAffixReplacer;
-
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
+import cloud.elit.ddr.lemmatize.util.AbstractAffixReplacer;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

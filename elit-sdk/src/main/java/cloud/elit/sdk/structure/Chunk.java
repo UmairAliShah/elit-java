@@ -16,22 +16,22 @@
 
 package cloud.elit.sdk.structure;
 
-import cloud.elit.sdk.structure.node.NLPNode;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import cloud.elit.sdk.structure.node.NLPNode;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class Chunk implements Serializable, Iterable<NLPNode> {
+    private static final long serialVersionUID = -3591145394490284849L;
     private List<NLPNode> nodes;
     private String label;
 
-//  =================================== Constructors ===================================
+    //  =================================== Constructors ===================================
 
     public Chunk(List<NLPNode> nodes, String label) {
         setNodes(nodes);
@@ -46,7 +46,7 @@ public class Chunk implements Serializable, Iterable<NLPNode> {
         this(new ArrayList<>());
     }
 
-//  =================================== Getters, Setters ===================================
+    //  =================================== Getters, Setters ===================================
 
     public List<NLPNode> getNodes() {
         return nodes;
@@ -100,7 +100,7 @@ public class Chunk implements Serializable, Iterable<NLPNode> {
         return label.equals(this.label);
     }
 
-//  =================================== Helpers ===================================
+    //  =================================== Helpers ===================================
 
     public String toString() {
         if (nodes.isEmpty()) return "[]";

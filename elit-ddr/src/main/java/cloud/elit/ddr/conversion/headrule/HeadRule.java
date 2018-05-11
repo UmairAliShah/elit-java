@@ -15,10 +15,9 @@
  */
 package cloud.elit.ddr.conversion.headrule;
 
+import java.util.regex.Pattern;
 import cloud.elit.ddr.util.PatternConst;
 import cloud.elit.ddr.util.StringConst;
-
-import java.util.regex.Pattern;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

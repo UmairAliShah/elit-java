@@ -15,16 +15,15 @@
  */
 package cloud.elit.sdk.collection.tuple;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class ObjectIntPair<T extends Comparable<T>> implements Serializable, Comparable<ObjectIntPair<T>> {
-
+    private static final long serialVersionUID = -1160437295145348656L;
     public T o;
     public int i;
 
@@ -44,12 +43,12 @@ public class ObjectIntPair<T extends Comparable<T>> implements Serializable, Com
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        if (obj == this)
-            return true;
+        if (obj == this) return true;
 
         if (obj instanceof ObjectIntPair) {
-            ObjectIntPair p = (ObjectIntPair)obj;
+            ObjectIntPair<T> p = (ObjectIntPair<T>) obj;
             return this.o.equals(p.o) && this.i == p.i;
         }
 

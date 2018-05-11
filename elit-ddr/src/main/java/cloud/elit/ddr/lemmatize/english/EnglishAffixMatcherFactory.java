@@ -15,17 +15,16 @@
  */
 package cloud.elit.ddr.lemmatize.english;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
 import cloud.elit.ddr.lemmatize.util.AbstractAffixReplacer;
 import cloud.elit.ddr.util.Splitter;
 import cloud.elit.ddr.util.StringConst;
 import cloud.elit.ddr.util.XMLUtils;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

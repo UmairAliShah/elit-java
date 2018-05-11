@@ -15,24 +15,23 @@
  */
 package cloud.elit.ddr.constituency;
 
-import cloud.elit.ddr.propbank.PBArgument;
-import cloud.elit.ddr.propbank.PBInstance;
-import cloud.elit.ddr.propbank.PBLocation;
-import cloud.elit.ddr.util.PBLib;
-import cloud.elit.ddr.util.PTBLib;
-import cloud.elit.ddr.util.DSUtils;
-import cloud.elit.ddr.util.Joiner;
-import cloud.elit.ddr.util.StringConst;
-import it.unimi.dsi.fastutil.ints.Int2IntMap;
-import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import cloud.elit.ddr.propbank.PBArgument;
+import cloud.elit.ddr.propbank.PBInstance;
+import cloud.elit.ddr.propbank.PBLocation;
+import cloud.elit.ddr.util.DSUtils;
+import cloud.elit.ddr.util.Joiner;
+import cloud.elit.ddr.util.PBLib;
+import cloud.elit.ddr.util.PTBLib;
+import cloud.elit.ddr.util.StringConst;
+import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 /**
  * Constituent tree.

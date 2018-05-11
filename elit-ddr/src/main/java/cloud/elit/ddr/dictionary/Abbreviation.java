@@ -15,11 +15,10 @@
  */
 package cloud.elit.ddr.dictionary;
 
-import cloud.elit.ddr.util.DSUtils;
-import cloud.elit.ddr.util.IOUtils;
-
 import java.io.InputStream;
 import java.util.Set;
+import cloud.elit.ddr.util.DSUtils;
+import cloud.elit.ddr.util.IOUtils;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

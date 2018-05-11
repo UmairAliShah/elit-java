@@ -15,11 +15,10 @@
  */
 package cloud.elit.ddr.lemmatize.english;
 
-import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

@@ -345,7 +345,6 @@ public class StringUtils {
         return false;
     }
 
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean containsPunctuationOnly(String s) {
         return CharUtils.containsPunctuationOnly(s.toCharArray());
     }

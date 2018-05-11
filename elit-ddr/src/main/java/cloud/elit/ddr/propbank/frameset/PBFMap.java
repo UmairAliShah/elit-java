@@ -15,10 +15,6 @@
  */
 package cloud.elit.ddr.propbank.frameset;
 
-import cloud.elit.ddr.util.FileUtils;
-import cloud.elit.ddr.util.XMLUtils;
-import org.w3c.dom.Element;
-
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -26,6 +22,9 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.w3c.dom.Element;
+import cloud.elit.ddr.util.FileUtils;
+import cloud.elit.ddr.util.XMLUtils;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

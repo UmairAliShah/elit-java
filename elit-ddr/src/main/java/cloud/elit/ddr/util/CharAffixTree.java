@@ -15,9 +15,8 @@
  */
 package cloud.elit.ddr.util;
 
-import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
-
 import java.util.Collection;
+import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
@@ -55,7 +54,6 @@ public class CharAffixTree {
             add(s);
     }
 
-    @SuppressWarnings("Duplicates")
     public void add(String s) {
         int i, beginIndex, direction, len = s.length();
         char[] cs = s.toCharArray();
@@ -85,7 +83,6 @@ public class CharAffixTree {
         curr.setEndState(true);
     }
 
-    @SuppressWarnings("Duplicates")
     public int getAffixIndex(String s, boolean minimum) {
         int i, beginIndex, direction, index = -1, len = s.length();
         char[] cs = s.toCharArray();

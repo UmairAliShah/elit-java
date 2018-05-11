@@ -15,11 +15,14 @@
  */
 package cloud.elit.ddr.dictionary;
 
-import cloud.elit.ddr.util.*;
-
 import java.io.InputStream;
 import java.util.Set;
 import java.util.regex.Matcher;
+import cloud.elit.ddr.util.CharAffixTree;
+import cloud.elit.ddr.util.DSUtils;
+import cloud.elit.ddr.util.IOUtils;
+import cloud.elit.ddr.util.MetaUtils;
+import cloud.elit.ddr.util.StringUtils;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

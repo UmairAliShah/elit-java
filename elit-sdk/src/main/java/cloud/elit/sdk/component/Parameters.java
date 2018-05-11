@@ -19,5 +19,4 @@ package cloud.elit.sdk.component;
 /**
  * This interface is inherited by all classes used to configure parameters for components.
  */
-public interface Parameters {
-}
+public interface Parameters {}

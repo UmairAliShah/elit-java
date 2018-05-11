@@ -16,19 +16,24 @@
 
 package cloud.elit.sdk.structure.node;
 
-import org.magicwerk.brownies.collections.GapList;
-
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.magicwerk.brownies.collections.GapList;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public abstract class Node<N extends Node<N>> implements Serializable {
+    private static final long serialVersionUID = -1715035082077903409L;
+    
     protected N parent;
     protected N left_sibling;
     protected N right_sibling;
@@ -152,7 +157,6 @@ public abstract class Node<N extends Node<N>> implements Serializable {
      * @param node  the node.
      * @return the previously index'th node if added; otherwise, {@code null}.
      */
-    @SuppressWarnings("UnusedReturnValue")
     public N setChild(int index, N node) {
         if (!isParentOf(node)) {
             if (node.hasParent())
@@ -174,7 +178,6 @@ public abstract class Node<N extends Node<N>> implements Serializable {
      * @param node the node.
      * @return the removed child if exists; otherwise, {@code null}.
      */
-    @SuppressWarnings("UnusedReturnValue")
     public N removeChild(N node) {
         return removeChild(indexOf(node));
     }
@@ -489,7 +492,6 @@ public abstract class Node<N extends Node<N>> implements Serializable {
      * @param node the node.
      * @return {@code true} if this node is the parent of the specific node; otherwise, {@code false}.
      */
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean isParentOf(N node) {
         return node.isChildOf(self());
     }

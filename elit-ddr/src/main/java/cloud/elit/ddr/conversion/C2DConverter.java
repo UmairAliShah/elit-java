@@ -15,6 +15,9 @@
  */
 package cloud.elit.ddr.conversion;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import cloud.elit.ddr.constituency.CTArc;
 import cloud.elit.ddr.constituency.CTNode;
 import cloud.elit.ddr.constituency.CTTag;
@@ -24,13 +27,8 @@ import cloud.elit.ddr.conversion.headrule.HeadRuleMap;
 import cloud.elit.ddr.conversion.headrule.HeadTagSet;
 import cloud.elit.ddr.util.DDGTag;
 import cloud.elit.ddr.util.DSUtils;
-import cloud.elit.ddr.util.PatternUtils;
 import cloud.elit.sdk.structure.Sentence;
 import cloud.elit.sdk.structure.node.NLPNode;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

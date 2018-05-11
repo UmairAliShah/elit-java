@@ -15,21 +15,30 @@
  */
 package cloud.elit.ddr.constituency;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 import cloud.elit.ddr.util.DSUtils;
 import cloud.elit.ddr.util.Joiner;
 import cloud.elit.ddr.util.StringConst;
 import cloud.elit.ddr.util.StringUtils;
 import cloud.elit.sdk.structure.node.Node;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.*;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class CTNode extends Node<CTNode> implements Comparable<CTNode> {
+    private static final long serialVersionUID = 3990683340995779832L;
     static final String DELIM_CO_INDEX = "-";
     static final String DELIM_GAP_INDEX = "=";
     static final String DELIM_FUNCTION_TAG = "-";
@@ -212,7 +221,6 @@ public class CTNode extends Node<CTNode> implements Comparable<CTNode> {
     /**
      * @return true if this node has any function tag; otherwise, false.
      */
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public boolean hasFunctionTag() {
         return !function_tags.isEmpty();
     }

@@ -22,6 +22,7 @@ import java.util.Objects;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class ObjectDoublePair<T extends Serializable> implements Serializable {
+    private static final long serialVersionUID = -697353066619579906L;
     public T o;
     public double d;
 
@@ -35,12 +36,12 @@ public class ObjectDoublePair<T extends Serializable> implements Serializable {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        if (obj == this)
-            return true;
+        if (obj == this) return true;
 
         if (obj instanceof ObjectDoublePair) {
-            ObjectDoublePair p = (ObjectDoublePair) obj;
+            ObjectDoublePair<T> p = (ObjectDoublePair<T>) obj;
             return this.o.equals(p.o) && this.d == p.d;
         }
 

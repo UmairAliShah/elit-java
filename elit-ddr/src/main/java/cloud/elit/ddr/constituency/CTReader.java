@@ -15,12 +15,20 @@
  */
 package cloud.elit.ddr.constituency;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
+import java.util.StringTokenizer;
 import cloud.elit.ddr.util.Language;
 import cloud.elit.ddr.util.PTBLib;
 import cloud.elit.ddr.util.StringConst;
-
-import java.io.*;
-import java.util.*;
 
 /**
  * Constituent tree reader.

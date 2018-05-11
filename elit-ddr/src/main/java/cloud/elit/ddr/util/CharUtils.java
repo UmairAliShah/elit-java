@@ -107,7 +107,6 @@ public class CharUtils {
 
 //	----------------------------------- Alphabet -----------------------------------	
 
-    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean isWhiteSpace(char c) {
         return c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\f' || c == '\u00A0' || c == '\u2028' || c == '\u2029';
     }

@@ -41,14 +41,12 @@ public class DecodeWebAPITest {
 
         for (Sentence sen : doc) {
             for (NLPNode node : sen)
-                System.out.println(String.format("%s(%s, %s)",
-                        node.getDependencyLabel(),
-                        node.getToken(),
-                        node.getParent().getToken()));
+                System.out.println(String.format("%s(%s, %s)", node.getDependencyLabel(), node.getToken(), node
+                        .getParent().getToken()));
             System.out.println();
         }
 
-        r = new TaskRequest(input, Fields.DEP, Tools.SPACY);
+        r = new TaskRequest(input, Fields.DEP, Tools.NLP4J);
         r.setDependencies(new TaskDependency(Fields.TOK, Tools.ELIT), new TaskDependency(Fields.POS, Tools.NLP4J));
         String s = api.decode(r);
         System.out.println(s);

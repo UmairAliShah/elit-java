@@ -15,17 +15,24 @@
  */
 package cloud.elit.sdk.structure.node;
 
-import cloud.elit.sdk.structure.util.ELITUtils;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
+import cloud.elit.sdk.structure.util.ELITUtils;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
+    private static final long serialVersionUID = 6123650092347331770L;
+    
     // fields
     private int token_id;
     private String token;
@@ -41,7 +48,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
     // secondary dependencies
     protected List<NLPArc> snd_parents;
 
-//  ============================== Constructors ==============================
+    //  ============================== Constructors ==============================
 
     public NLPNode(int token_id, String token, String lemma, String pos_tag, Map<String, String> feat_map) {
         setTokenID(token_id);
@@ -73,7 +80,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         this(-1, token);
     }
 
-//  ============================== Abstract Methods ==============================
+    //  ============================== Abstract Methods ==============================
 
     @Override
     public NLPNode self() {
@@ -90,7 +97,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         return ELITUtils.binarySearch(list, node);
     }
 
-//  =================================== Fields ===================================
+    //  =================================== Fields ===================================
 
     public int getTokenID() {
         return token_id;
@@ -233,7 +240,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         return feat_map.containsKey(key);
     }
 
-//  ============================== Primary Dependencies ==============================
+    //  ============================== Primary Dependencies ==============================
 
     public boolean isChildOf(NLPNode node, String label) {
         return isChildOf(node) && isDependencyLabel(label);
@@ -370,7 +377,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         setDependencyLabel(label);
     }
 
-//  ============================== Secondary Dependencies ==============================
+    //  ============================== Secondary Dependencies ==============================
 
     /**
      * @return a list of all semantic head arc of the node.
@@ -386,8 +393,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         List<NLPArc> list = new ArrayList<>();
 
         for (NLPArc arc : snd_parents) {
-            if (arc.isLabel(label))
-                list.add(arc);
+            if (arc.isLabel(label)) list.add(arc);
         }
 
         return list;
@@ -398,8 +404,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
      */
     public NLPArc getSecondaryParent(NLPNode node) {
         for (NLPArc arc : snd_parents) {
-            if (arc.isNode(node))
-                return arc;
+            if (arc.isNode(node)) return arc;
         }
 
         return null;
@@ -410,8 +415,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
      */
     public NLPArc getSecondaryParent(NLPNode node, String label) {
         for (NLPArc arc : snd_parents) {
-            if (arc.equals(node, label))
-                return arc;
+            if (arc.equals(node, label)) return arc;
         }
 
         return null;
@@ -422,8 +426,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
      */
     public NLPArc getSecondaryParent(NLPNode node, Pattern pattern) {
         for (NLPArc arc : snd_parents) {
-            if (arc.equals(node, pattern))
-                return arc;
+            if (arc.equals(node, pattern)) return arc;
         }
 
         return null;
@@ -434,8 +437,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
      */
     public NLPArc getFirstSecondaryParent(String label) {
         for (NLPArc arc : snd_parents) {
-            if (arc.isLabel(label))
-                return arc;
+            if (arc.isLabel(label)) return arc;
         }
 
         return null;
@@ -446,8 +448,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
      */
     public NLPArc getFirstSecondaryParent(Pattern pattern) {
         for (NLPArc arc : snd_parents) {
-            if (arc.isLabel(pattern))
-                return arc;
+            if (arc.isLabel(pattern)) return arc;
         }
 
         return null;
@@ -487,8 +488,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
      */
     public boolean removeSecondaryParent(NLPNode node) {
         for (NLPArc arc : snd_parents) {
-            if (arc.isNode(node))
-                return snd_parents.remove(arc);
+            if (arc.isNode(node)) return snd_parents.remove(arc);
         }
 
         return false;
@@ -559,7 +559,7 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
         return getSecondaryParent(node, pattern) != null;
     }
 
-//  ============================== HELPERS ==============================
+    //  ============================== HELPERS ==============================
 
     @Override
     public int compareTo(@NotNull NLPNode o) {
@@ -591,7 +591,8 @@ public class NLPNode extends Node<NLPNode> implements Comparable<NLPNode> {
 
     public String toTSVFeatMap() {
         if (feat_map == null || feat_map.isEmpty()) return "_";
-        return feat_map.entrySet().stream().sorted().map(e -> e.getKey() + '=' + e.getValue()).collect(Collectors.joining("|"));
+        return feat_map.entrySet().stream().sorted().map(e -> e.getKey() + '=' + e.getValue()).collect(Collectors
+                .joining("|"));
     }
 
     private void toTSVDependency(List<String> list) {

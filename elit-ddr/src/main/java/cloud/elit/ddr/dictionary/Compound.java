@@ -15,16 +15,15 @@
  */
 package cloud.elit.ddr.dictionary;
 
-import cloud.elit.ddr.util.IOUtils;
-import cloud.elit.ddr.util.Language;
-import cloud.elit.ddr.util.Splitter;
-import cloud.elit.ddr.util.StringUtils;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import cloud.elit.ddr.util.IOUtils;
+import cloud.elit.ddr.util.Language;
+import cloud.elit.ddr.util.Splitter;
+import cloud.elit.ddr.util.StringUtils;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

@@ -15,16 +15,15 @@
  */
 package cloud.elit.sdk.collection.tuple;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class ObjectIntIntTuple<T extends Comparable<T>> implements Serializable, Comparable<ObjectIntIntTuple<T>> {
-
+    private static final long serialVersionUID = 6433419518317733243L;
     public T o;
     public int i1;
     public int i2;
@@ -51,12 +50,12 @@ public class ObjectIntIntTuple<T extends Comparable<T>> implements Serializable,
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object obj) {
-        if (obj == this)
-            return true;
+        if (obj == this) return true;
 
         if (obj instanceof ObjectIntIntTuple) {
-            ObjectIntIntTuple p = (ObjectIntIntTuple)obj;
+            ObjectIntIntTuple<T> p = (ObjectIntIntTuple<T>) obj;
             return this.o.equals(p.o) && this.i1 == p.i1 && this.i2 == p.i2;
         }
 

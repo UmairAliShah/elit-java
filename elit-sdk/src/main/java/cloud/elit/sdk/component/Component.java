@@ -107,8 +107,11 @@ public abstract class Component<I, O, P extends Parameters> {
 
     /**
      * Calls {@link #factory(String, Parameters)}, where {@code params = null}.
-     * @param model_path the path to the directory where the model is saved.
-     * @param <C>        the type of the subclass.
+     * 
+     * @param model_path
+     *            the path to the directory where the model is saved.
+     * @param <C>
+     *            the type of the subclass.
      * @return the object of the subclass.
      */
     public <C extends Component<I, O, P>> C factory(String model_path) {

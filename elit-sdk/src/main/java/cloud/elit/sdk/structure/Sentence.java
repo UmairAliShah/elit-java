@@ -15,11 +15,7 @@
  */
 package cloud.elit.sdk.structure;
 
-import cloud.elit.sdk.structure.node.NLPNode;
-import cloud.elit.sdk.structure.util.ELITUtils;
-import cloud.elit.sdk.structure.util.Fields;
-import org.jetbrains.annotations.NotNull;
-
+import static java.util.stream.Collectors.toList;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,19 +24,22 @@ import java.util.StringJoiner;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.toList;
+import org.jetbrains.annotations.NotNull;
+import cloud.elit.sdk.structure.node.NLPNode;
+import cloud.elit.sdk.structure.util.ELITUtils;
+import cloud.elit.sdk.structure.util.Fields;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NLPNode> {
+    private static final long serialVersionUID = -731632653624195711L;
     private int sen_id;
     private NLPNode root;
     private List<NLPNode> nodes;
     private List<Chunk> named_entities;
 
-//  =================================== Constructors ===================================
+    //  =================================== Constructors ===================================
 
     @SuppressWarnings("unchecked")
     public <N> Sentence(int sen_id, List<N> nodes) {
@@ -48,18 +47,15 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         setRoot(ELITUtils.createRoot());
         setNamedEntities(new ArrayList<>());
 
-        if (nodes == null || nodes.isEmpty())
-            setNodes(new ArrayList<>());
+        if (nodes == null || nodes.isEmpty()) setNodes(new ArrayList<>());
         else {
             N node = nodes.get(0);
 
             if (node instanceof String) {
                 List<String> ns = (List<String>) nodes;
                 setNodes(IntStream.range(0, nodes.size()).mapToObj(i -> new NLPNode(i, ns.get(i))).collect(toList()));
-            } else if (node instanceof NLPNode)
-                setNodes((List<NLPNode>) nodes);
-            else
-                throw new IllegalArgumentException("The node type must be either String or NLPNode");
+            } else if (node instanceof NLPNode) setNodes((List<NLPNode>) nodes);
+            else throw new IllegalArgumentException("The node type must be either String or NLPNode");
         }
     }
 
@@ -71,7 +67,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         this(new ArrayList<>());
     }
 
-//  =================================== Getters, Setters ===================================
+    //  =================================== Getters, Setters ===================================
 
     public int getID() {
         return sen_id;
@@ -157,7 +153,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         return nodes.stream().map(NLPNode::getPartOfSpeechTag).collect(toList());
     }
 
-//  =================================== Helpers ===================================
+    //  =================================== Helpers ===================================
 
     @NotNull
     @Override
@@ -180,14 +176,13 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         if (node.getEndOffset() > 0) joiner.add("\"" + Fields.OFF + "\":" + toStringOffsets());
         if (node.getLemma() != null) joiner.add("\"" + Fields.LEM + "\":" + toStringList(NLPNode::getLemma));
 
-        if (node.getPartOfSpeechTag() != null)
-            joiner.add("\"" + Fields.POS + "\":" + toStringList(NLPNode::getPartOfSpeechTag));
+        if (node.getPartOfSpeechTag() != null) joiner.add("\"" + Fields.POS + "\":" + toStringList(
+                NLPNode::getPartOfSpeechTag));
 
-        if (named_entities != null && !named_entities.isEmpty())
-            joiner.add("\"" + Fields.NER + "\":" + named_entities.toString());
+        if (named_entities != null && !named_entities.isEmpty()) joiner.add("\"" + Fields.NER + "\":" + named_entities
+                .toString());
 
-        if (node.getDependencyLabel() != null)
-            joiner.add("\"" + Fields.DEP + "\":" + toStringPrimaryDependencies());
+        if (node.getDependencyLabel() != null) joiner.add("\"" + Fields.DEP + "\":" + toStringPrimaryDependencies());
 
         String s = toStringSecondaryDependencies();
         if (s != null) joiner.add("\"" + Fields.DEP2 + "\":" + s);
@@ -199,22 +194,26 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
     }
 
     private String toStringList(Function<NLPNode, String> f) {
-        return "[" + nodes.stream().map(n -> "\"" + f.apply(n).replace("\"", "\\\"") + "\"").collect(Collectors.joining(",")) + "]";
+        return "[" + nodes.stream().map(n -> "\"" + f.apply(n).replace("\"", "\\\"") + "\"").collect(Collectors.joining(
+                ",")) + "]";
     }
 
     private String toStringOffsets() {
-        return "[" + nodes.stream().map(n -> "[" + n.getBeginOffset() + "," + n.getEndOffset() + "]").collect(Collectors.joining(",")) + "]";
+        return "[" + nodes.stream().map(n -> "[" + n.getBeginOffset() + "," + n.getEndOffset() + "]").collect(Collectors
+                .joining(",")) + "]";
     }
 
     private String toStringPrimaryDependencies() {
-        return "[" + nodes.stream().map(n -> "[" + n.getParent().getTokenID() + ",\"" + n.getDependencyLabel() + "\"]").collect(Collectors.joining(",")) + "]";
+        return "[" + nodes.stream().map(n -> "[" + n.getParent().getTokenID() + ",\"" + n.getDependencyLabel() + "\"]")
+                .collect(Collectors.joining(",")) + "]";
     }
 
     private String toStringSecondaryDependencies() {
         StringJoiner join = new StringJoiner(",");
 
         for (NLPNode node : nodes) {
-            String s = node.getSecondaryParents().stream().map(a -> "[" + node.getTokenID() + "," + a.getNode().getTokenID() + ",\"" + a.getLabel() + "\"]").collect(Collectors.joining(","));
+            String s = node.getSecondaryParents().stream().map(a -> "[" + node.getTokenID() + "," + a.getNode()
+                    .getTokenID() + ",\"" + a.getLabel() + "\"]").collect(Collectors.joining(","));
             if (s.length() > 0) join.add(s);
         }
 
@@ -233,7 +232,6 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
     }
 
     public String toTSV() {
-        StringJoiner join = new StringJoiner("\n");
         List<List<String>> conll = nodes.stream().map(NLPNode::toTSV).collect(toList());
         if (named_entities != null) toTSVNamedEntities(conll);
         return conll.stream().map(l -> l.stream().collect(Collectors.joining("\t"))).collect(Collectors.joining("\n"));
@@ -244,8 +242,7 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
             int bidx = c.get(0).getTokenID();
             int eidx = c.get(c.size() - 1).getTokenID();
 
-            if (bidx == eidx)
-                conll.get(bidx).add("U-" + c.getLabel());
+            if (bidx == eidx) conll.get(bidx).add("U-" + c.getLabel());
             else {
                 conll.get(bidx).add("B-" + c.getLabel());
                 conll.get(eidx).add("L-" + c.getLabel());
@@ -259,4 +256,3 @@ public class Sentence implements Serializable, Comparable<Sentence>, Iterable<NL
         }
     }
 }
-

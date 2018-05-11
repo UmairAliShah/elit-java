@@ -15,18 +15,18 @@
  */
 package cloud.elit.ddr.propbank;
 
+import java.io.Serializable;
+import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
 import cloud.elit.ddr.util.PatternConst;
 import cloud.elit.ddr.util.StringConst;
 import cloud.elit.ddr.util.StringUtils;
-import org.jetbrains.annotations.NotNull;
-
-import java.io.Serializable;
-import java.util.regex.Pattern;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class PBLocation implements Serializable, Comparable<PBLocation> {
+    private static final long serialVersionUID = -4360802182878074026L;
     static public final String DELIM = StringConst.COLON;
     static private final Pattern SPLIT = PatternConst.COLON;
 

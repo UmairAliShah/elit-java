@@ -16,12 +16,6 @@
 
 package cloud.elit.ddr.lemmatize.english;
 
-import cloud.elit.ddr.constituency.CTNode;
-import cloud.elit.ddr.lemmatize.Lemmatizer;
-import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
-import cloud.elit.ddr.util.*;
-import org.w3c.dom.Element;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +24,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.w3c.dom.Element;
+import cloud.elit.ddr.constituency.CTNode;
+import cloud.elit.ddr.lemmatize.Lemmatizer;
+import cloud.elit.ddr.lemmatize.util.AbstractAffixMatcher;
+import cloud.elit.ddr.util.DSUtils;
+import cloud.elit.ddr.util.IOUtils;
+import cloud.elit.ddr.util.MetaConst;
+import cloud.elit.ddr.util.PTBLib;
+import cloud.elit.ddr.util.Splitter;
+import cloud.elit.ddr.util.StringConst;
+import cloud.elit.ddr.util.StringUtils;
+import cloud.elit.ddr.util.XMLUtils;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

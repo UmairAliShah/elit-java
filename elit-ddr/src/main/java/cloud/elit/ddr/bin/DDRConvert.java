@@ -15,24 +15,27 @@
  */
 package cloud.elit.ddr.bin;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
+import org.kohsuke.args4j.Option;
 import cloud.elit.ddr.constituency.CTReader;
 import cloud.elit.ddr.constituency.CTTree;
 import cloud.elit.ddr.conversion.C2DConverter;
 import cloud.elit.ddr.conversion.EnglishC2DConverter;
-import cloud.elit.ddr.util.*;
+import cloud.elit.ddr.util.BinUtils;
+import cloud.elit.ddr.util.FileUtils;
+import cloud.elit.ddr.util.IOUtils;
+import cloud.elit.ddr.util.Language;
+import cloud.elit.ddr.util.Splitter;
 import cloud.elit.sdk.collection.tuple.ObjectIntIntTuple;
 import cloud.elit.sdk.structure.Chunk;
 import cloud.elit.sdk.structure.Sentence;
 import cloud.elit.sdk.structure.node.NLPNode;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import org.kohsuke.args4j.Option;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DDRConvert {
     @Option(name = "-d", usage = "input path (required)", required = true, metaVar = "<filepath>")

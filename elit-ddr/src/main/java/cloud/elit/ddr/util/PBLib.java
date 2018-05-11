@@ -15,17 +15,16 @@
  */
 package cloud.elit.ddr.util;
 
-import cloud.elit.ddr.constituency.CTReader;
-import cloud.elit.ddr.constituency.CTTree;
-import cloud.elit.ddr.propbank.PBInstance;
-import cloud.elit.ddr.propbank.PBReader;
-
 import java.io.BufferedOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.regex.Pattern;
+import cloud.elit.ddr.constituency.CTReader;
+import cloud.elit.ddr.constituency.CTTree;
+import cloud.elit.ddr.propbank.PBInstance;
+import cloud.elit.ddr.propbank.PBReader;
 
 /**
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})

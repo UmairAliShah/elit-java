@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.elit.tokenizer;
 
-package cloud.elit.ddr.bin;
+import cloud.elit.sdk.component.Component;
+import cloud.elit.sdk.component.Parameters;
+import cloud.elit.sdk.structure.Document;
 
-
-public class DDRLambdaRequestHandler {
-
-
-}
+public abstract class Tokenizer<P extends Parameters> extends Component<String, Document, P> {}
