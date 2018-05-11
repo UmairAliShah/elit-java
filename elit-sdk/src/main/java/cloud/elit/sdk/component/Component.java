@@ -20,51 +20,57 @@ import java.util.List;
 
 /**
  * The abstract class to be inherited by all components.
+ * 
  * @param <I> the type of input data.
  * @param <O> the type of output data.
  * @param <P> the type of custom parameters.
  */
 public abstract class Component<I, O, P extends Parameters> {
 
-//  =================================== Load ===================================
+    // =================================== Load ===================================
 
     /**
      * Loads a model from the specific directory to initialize this component.
+     * 
      * @param model_path the path to the directory where the model is saved.
-     * @param params     custom parameters.
+     * @param params custom parameters.
      */
     public abstract void load(String model_path, P params);
 
     /**
      * Calls {@link #load(String, Parameters)}, where {@code params = null}.
+     * 
      * @param model_path the path to the directory where the model is saved.
      */
     public void load(String model_path) {
         load(model_path, null);
     }
 
-//  =================================== Save ===================================
+    // =================================== Save ===================================
 
     /**
      * Saves a trained model to the specific directory for this component.
+     * 
      * @param model_path the path to the directory where the model is saved.
-     * @param params     custom parameters.
+     * @param params custom parameters.
      */
     public abstract void save(String model_path, P params);
 
     /**
      * Calls {@link #save(String, Parameters)}, where {@code params = null}.
+     * 
      * @param model_path the path to the directory where the model is saved.
      */
     public void save(String model_path) {
         save(model_path, null);
     }
 
-//  =================================== Decode ===================================
+    // =================================== Decode ===================================
 
     /**
      * Decodes input data.
-     * @param input  the input data.
+     * 
+     * @param input the input data.
      * @param params custom parameters.
      * @return the output of the decoding.
      */
@@ -72,6 +78,7 @@ public abstract class Component<I, O, P extends Parameters> {
 
     /**
      * Calls {@link #decode(Object, Parameters)} with {@code params = null}.
+     * 
      * @param input the input data.
      * @return the output of the decoding.
      */
@@ -79,24 +86,25 @@ public abstract class Component<I, O, P extends Parameters> {
         return decode(input, null);
     }
 
-//  =================================== Train ===================================
+    // =================================== Train ===================================
 
     /**
-     * Trains a model using the training and the development data.
-     * It is also responsible to setToken this component with the final model so it can be saved by {@link #save(String, Parameters)}.
+     * Trains a model using the training and the development data. It is also responsible to setToken this component with the final model so it can be saved by {@link #save(String, Parameters)}.
+     * 
      * @param trn_data the training data (required).
      * @param dev_data the development data (optional).
-     * @param params   custom parameters.
+     * @param params custom parameters.
      */
     public abstract void train(List<I> trn_data, List<I> dev_data, P params);
 
-//  =================================== Factory ===================================
+    // =================================== Factory ===================================
 
     /**
      * Calls {@link #load(String, Parameters)}.
+     * 
      * @param model_path the path to the directory where the model is saved.
-     * @param params     custom parameters.
-     * @param <C>        the type of the subclass.
+     * @param params custom parameters.
+     * @param <C> the type of the subclass.
      * @return the object of the subclass.
      */
     @SuppressWarnings("unchecked")
@@ -108,10 +116,8 @@ public abstract class Component<I, O, P extends Parameters> {
     /**
      * Calls {@link #factory(String, Parameters)}, where {@code params = null}.
      * 
-     * @param model_path
-     *            the path to the directory where the model is saved.
-     * @param <C>
-     *            the type of the subclass.
+     * @param model_path the path to the directory where the model is saved.
+     * @param <C> the type of the subclass.
      * @return the object of the subclass.
      */
     public <C extends Component<I, O, P>> C factory(String model_path) {

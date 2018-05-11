@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package cloud.elit.sdk.component;
 
 /**
- * This interface is inherited by all classes used to configure parameters for components.
+ * This interface is inherited by all classes that configure parameters for components. 
+ * @author Jinho D. Choi (jinho.choi@emory.edu)
  */
 public interface Parameters {}

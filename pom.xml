@@ -20,7 +20,6 @@
     <modules>
         <module>elit-sdk</module>
         <module>elit-ddr</module>
-        <module>elit-tokenizer</module>
   </modules>
 
     <licenses>
