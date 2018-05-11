@@ -27,27 +27,27 @@ import java.util.Set;
  */
 @SuppressWarnings("UnusedReturnValue")
 public class PTBLib implements PTBTag {
-//	static final public Predicate<CTNode> M_S_SBAR      = matchCo(Set.of(C_S, C_SBAR));
-//	static final public Predicate<CTNode> M_IN_DT_TO    = matchCo(Set.of(PTBTag.P_IN, PTBTag.P_DT, PTBTag.P_TO));
+//	static final public Predicate<CTNode> M_S_SBAR      = matchCo(DSUtils.toHashSet(C_S, C_SBAR));
+//	static final public Predicate<CTNode> M_IN_DT_TO    = matchCo(DSUtils.toHashSet(PTBTag.P_IN, PTBTag.P_DT, PTBTag.P_TO));
 //	static final public Predicate<CTNode> M_VP_OR_PRD   = matchCoF(C_VP, F_PRD);
 
     // clause-level
-    static final public Set<String> MAIN_CLAUSE = Set.of(C_S, C_SQ, C_SINV);
+    static final public Set<String> MAIN_CLAUSE = DSUtils.toHashSet(C_S, C_SQ, C_SINV);
 
     // phrase-level
-    static final public Set<String> LGS_PHRASE = Set.of(C_PP, C_SBAR);
-    static final public Set<String> EDITED_PHRASE = Set.of(C_EDITED, C_EMBED);
-    static final public Set<String> NOMINAL_PHRASE = Set.of(C_NP, C_NML, C_NX, C_NAC);
-    static final public Set<String> WH_LINK = Set.of(C_WHNP, C_WHPP, C_WHADVP);
-    static final public Set<String> SEPARATOR = Set.of(P_COMMA, P_COLON);
-    static final public Set<String> CONJUNCTION = Set.of(P_CC, C_CONJP);
-    static final public Set<String> PUNCTUATION = Set.of(P_COLON, P_COMMA, P_PERIOD, P_LQ, P_RQ, P_LRB, P_RRB, P_HYPH, P_NFP, P_SYM, P_PUNC);
-    static final public Set<String> RELATIVIZER = Set.of(P_WDT, P_WP, P_WPS, P_WRB);
+    static final public Set<String> LGS_PHRASE = DSUtils.toHashSet(C_PP, C_SBAR);
+    static final public Set<String> EDITED_PHRASE = DSUtils.toHashSet(C_EDITED, C_EMBED);
+    static final public Set<String> NOMINAL_PHRASE = DSUtils.toHashSet(C_NP, C_NML, C_NX, C_NAC);
+    static final public Set<String> WH_LINK = DSUtils.toHashSet(C_WHNP, C_WHPP, C_WHADVP);
+    static final public Set<String> SEPARATOR = DSUtils.toHashSet(P_COMMA, P_COLON);
+    static final public Set<String> CONJUNCTION = DSUtils.toHashSet(P_CC, C_CONJP);
+    static final public Set<String> PUNCTUATION = DSUtils.toHashSet(P_COLON, P_COMMA, P_PERIOD, P_LQ, P_RQ, P_LRB, P_RRB, P_HYPH, P_NFP, P_SYM, P_PUNC);
+    static final public Set<String> RELATIVIZER = DSUtils.toHashSet(P_WDT, P_WP, P_WPS, P_WRB);
 
     // more
-    static final public Set<String> VBD_VBN = Set.of(P_VBD, P_VBN);
-    static final public Set<String> VP_RRC_UCP = Set.of(C_VP, C_RRC, C_UCP);
-    static final public Set<String> NP_NML_WHNP = Set.of(C_NP, C_NML, C_WHNP);
+    static final public Set<String> VBD_VBN = DSUtils.toHashSet(P_VBD, P_VBN);
+    static final public Set<String> VP_RRC_UCP = DSUtils.toHashSet(C_VP, C_RRC, C_UCP);
+    static final public Set<String> NP_NML_WHNP = DSUtils.toHashSet(C_NP, C_NML, C_WHNP);
 
     private PTBLib() {
     }

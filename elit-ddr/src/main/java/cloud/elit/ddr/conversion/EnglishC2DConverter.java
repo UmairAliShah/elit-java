@@ -38,33 +38,33 @@ import java.util.stream.Collectors;
  * @author Jinho D. Choi ({@code jinho.choi@emory.edu})
  */
 public class EnglishC2DConverter extends C2DConverter {
-    private final Set<String> COMPP = Set.of(PTBTag.C_VP, PTBTag.C_SINV, PTBTag.C_SQ, PTBTag.C_PP, PTBTag.C_WHPP);
-    private final Set<String> CCOMP = Set.of(PTBTag.C_S, PTBTag.C_SQ, PTBTag.C_SINV, PTBTag.C_SBARQ);
-    private final Set<String> ADVCL = Set.of(PTBTag.C_S, PTBTag.C_SBAR, PTBTag.C_SINV);
-    private final Set<String> ADVNP = Set.of(PTBTag.C_NML, PTBTag.C_NP, PTBTag.C_QP);
-    private final Set<String> META = Set.of(PTBTag.C_LST, PTBTag.P_CODE, PTBTag.C_CAPTION, PTBTag.C_CIT, PTBTag.C_HEADING, PTBTag.C_TITLE, PTBTag.P_DOLLAR);
-    private final Set<String> POSS = Set.of(PTBTag.P_PRPS, PTBTag.P_WPS);
-    private final Set<String> INTJ = Set.of(PTBTag.C_INTJ, PTBTag.P_UH);
-    private final Set<String> PRT = Set.of(PTBTag.C_PRT, PTBTag.P_RP);
-    private final Set<String> DET = Set.of(PTBTag.P_DT, PTBTag.P_WDT, PTBTag.P_WP, PTBTag.P_PDT);
-    private final Set<String> NP = Set.of(PTBTag.C_NP, PTBTag.C_NML);
-    private final Set<String> PP = Set.of(PTBTag.C_PP, PTBTag.C_WHPP);
-    private final Set<String> ADVP = Set.of(PTBTag.C_ADJP, PTBTag.C_ADVP, PTBTag.C_PP);
-    private final Set<String> PREP = Set.of(PTBTag.P_IN, PTBTag.P_TO);
-    private final Set<String> ACOMPP = Set.of(PTBTag.C_ADJP, PTBTag.C_ADVP);
-    private final Set<String> PREP_DET = Set.of(PTBTag.P_IN, PTBTag.P_DT);
-    private final Set<String> NMOD_PARENT = Set.of(PTBTag.C_NML, PTBTag.C_NP, PTBTag.C_NX, PTBTag.C_WHNP);
-    private final Set<String> POSS_PARENT = Set.of(PTBTag.C_NP, PTBTag.C_NML, PTBTag.C_WHNP, PTBTag.C_QP, PTBTag.C_ADJP);
-    private final Set<String> MARK = Set.of(PTBTag.P_IN, PTBTag.P_DT, PTBTag.P_TO);
-    private final Set<String> MD_VBx = Set.of(PTBTag.P_MD, PTBTag.P_VB, PTBTag.P_VBP, PTBTag.P_VBZ, PTBTag.P_VBD, PTBTag.P_VBG, PTBTag.P_VBN);
+    private final Set<String> COMPP = DSUtils.toHashSet(PTBTag.C_VP, PTBTag.C_SINV, PTBTag.C_SQ, PTBTag.C_PP, PTBTag.C_WHPP);
+    private final Set<String> CCOMP = DSUtils.toHashSet(PTBTag.C_S, PTBTag.C_SQ, PTBTag.C_SINV, PTBTag.C_SBARQ);
+    private final Set<String> ADVCL = DSUtils.toHashSet(PTBTag.C_S, PTBTag.C_SBAR, PTBTag.C_SINV);
+    private final Set<String> ADVNP = DSUtils.toHashSet(PTBTag.C_NML, PTBTag.C_NP, PTBTag.C_QP);
+    private final Set<String> META = DSUtils.toHashSet(PTBTag.C_LST, PTBTag.P_CODE, PTBTag.C_CAPTION, PTBTag.C_CIT, PTBTag.C_HEADING, PTBTag.C_TITLE, PTBTag.P_DOLLAR);
+    private final Set<String> POSS = DSUtils.toHashSet(PTBTag.P_PRPS, PTBTag.P_WPS);
+    private final Set<String> INTJ = DSUtils.toHashSet(PTBTag.C_INTJ, PTBTag.P_UH);
+    private final Set<String> PRT = DSUtils.toHashSet(PTBTag.C_PRT, PTBTag.P_RP);
+    private final Set<String> DET = DSUtils.toHashSet(PTBTag.P_DT, PTBTag.P_WDT, PTBTag.P_WP, PTBTag.P_PDT);
+    private final Set<String> NP = DSUtils.toHashSet(PTBTag.C_NP, PTBTag.C_NML);
+    private final Set<String> PP = DSUtils.toHashSet(PTBTag.C_PP, PTBTag.C_WHPP);
+    private final Set<String> ADVP = DSUtils.toHashSet(PTBTag.C_ADJP, PTBTag.C_ADVP, PTBTag.C_PP);
+    private final Set<String> PREP = DSUtils.toHashSet(PTBTag.P_IN, PTBTag.P_TO);
+    private final Set<String> ACOMPP = DSUtils.toHashSet(PTBTag.C_ADJP, PTBTag.C_ADVP);
+    private final Set<String> PREP_DET = DSUtils.toHashSet(PTBTag.P_IN, PTBTag.P_DT);
+    private final Set<String> NMOD_PARENT = DSUtils.toHashSet(PTBTag.C_NML, PTBTag.C_NP, PTBTag.C_NX, PTBTag.C_WHNP);
+    private final Set<String> POSS_PARENT = DSUtils.toHashSet(PTBTag.C_NP, PTBTag.C_NML, PTBTag.C_WHNP, PTBTag.C_QP, PTBTag.C_ADJP);
+    private final Set<String> MARK = DSUtils.toHashSet(PTBTag.P_IN, PTBTag.P_DT, PTBTag.P_TO);
+    private final Set<String> MD_VBx = DSUtils.toHashSet(PTBTag.P_MD, PTBTag.P_VB, PTBTag.P_VBP, PTBTag.P_VBZ, PTBTag.P_VBD, PTBTag.P_VBG, PTBTag.P_VBN);
 
 //	/** Syntactic function tags. */
-//	private final Set<String> SYN_TAGS = Set.of(PTBTag.F_ADV, PTBTag.F_CLF, PTBTag.F_CLR, PTBTag.F_DTV, PTBTag.F_NOM, PTBTag.F_PUT, PTBTag.F_PRD, PTBTag.F_TPC);
+//	private final Set<String> SYN_TAGS = DSUtils.toHashSet(PTBTag.F_ADV, PTBTag.F_CLF, PTBTag.F_CLR, PTBTag.F_DTV, PTBTag.F_NOM, PTBTag.F_PUT, PTBTag.F_PRD, PTBTag.F_TPC);
 
     /**
      * Semantic function tags.
      */
-    private final Set<String> SEM_TAGS = Set.of(PTBTag.F_BNF, PTBTag.F_DIR, PTBTag.F_EXT, PTBTag.F_LOC, PTBTag.F_MNR, PTBTag.F_PRP, PTBTag.F_TMP);
+    private final Set<String> SEM_TAGS = DSUtils.toHashSet(PTBTag.F_BNF, PTBTag.F_DIR, PTBTag.F_EXT, PTBTag.F_LOC, PTBTag.F_MNR, PTBTag.F_PRP, PTBTag.F_TMP);
 
     /**
      * Mappings between phrasal/clausal tags and phrasal/pos tags for coordination.
@@ -74,12 +74,12 @@ public class EnglishC2DConverter extends C2DConverter {
     /**
      * Feats
      */
-    private final Set<String> FEATS = Set.of(PTBTag.F_CLR, PTBTag.F_DIR, PTBTag.F_EXT, PTBTag.F_LOC, PTBTag.F_MNR, PTBTag.F_PRP, PTBTag.F_TMP);
+    private final Set<String> FEATS = DSUtils.toHashSet(PTBTag.F_CLR, PTBTag.F_DIR, PTBTag.F_EXT, PTBTag.F_LOC, PTBTag.F_MNR, PTBTag.F_PRP, PTBTag.F_TMP);
 
     // lexicons
     private final Emoticon emoticon;
     private final Set<String> eventive_nouns;
-    private final Set<String> light_verbs = Set.of("make", "take", "have", "do", "give", "keep");
+    private final Set<String> light_verbs = DSUtils.toHashSet("make", "take", "have", "do", "give", "keep");
 
     private final String NLGS = "NLGS";
     private final String CLGS = "CLGS";
